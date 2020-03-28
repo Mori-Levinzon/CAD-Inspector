@@ -149,7 +149,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39146558}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 100}
   m_LocalScale: {x: 0.088315494, y: 0.088315494, z: 0.088315494}
   m_Children:
@@ -444,23 +444,23 @@ Camera:
   serializedVersion: 2
   m_ClearFlags: 2
   m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_projectionMatrixMode: 1
+  m_projectionMatrixMode: 2
   m_GateFitMode: 2
   m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
-  m_FocalLength: 43.714695
+  m_FocalLength: 31.846056
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.05
   far clip plane: 2000
-  field of view: 30.7
+  field of view: 41.294098
   orthographic: 0
-  orthographic size: 12.48
+  orthographic size: 5
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -489,7 +489,7 @@ Transform:
   m_Children:
   - {fileID: 39146559}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &204467349
 MonoBehaviour:
@@ -551,7 +551,7 @@ Transform:
   m_Children:
   - {fileID: 1146619398}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &338296388
 MonoBehaviour:
@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 1, g: 0, b: 0.07251835, a: 1}
+    m_PressedColor: {r: 1, g: 0, b: 0, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -1117,7 +1117,6 @@ GameObject:
   - component: {fileID: 1146619403}
   - component: {fileID: 1146619402}
   - component: {fileID: 1146619401}
-  - component: {fileID: 1146619404}
   - component: {fileID: 1146619400}
   - component: {fileID: 1146619399}
   m_Layer: 0
@@ -1154,8 +1153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a63cd48dce64fb49b9d07760d41f59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  childMeshRenderers: []
-  explosionSpeed: 0.1
 --- !u!114 &1146619400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1230,20 +1227,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1146619397}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1146619404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1146619397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f81a7b6b8d461934c9eb4029526c6bd6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoomOutMin: 1
-  zoomOutMax: 8
 --- !u!1001 &1152625772
 PrefabInstance:
   m_ObjectHideFlags: 0
