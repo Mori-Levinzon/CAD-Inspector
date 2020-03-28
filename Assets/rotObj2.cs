@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class rotObj2 : MonoBehaviour
 {
     Vector3 mPrevPos = Vector3.zero;
     Vector3 mPosDelta = Vector3.zero;
-    bool sameTime = false;
+    public bool sameTime = false;
 
     // Update is called once per frame
 
