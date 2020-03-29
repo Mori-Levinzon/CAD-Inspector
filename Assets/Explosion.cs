@@ -19,6 +19,8 @@ public class SubMeshes
 
     public Vector3 explodedPosition;
 
+    public Vector3 tmpPosition;
+
 }
 
 public class Explosion : MonoBehaviour
@@ -84,6 +86,22 @@ public class Explosion : MonoBehaviour
             if (isInExplodedView)
 
             {
+                int n = 0;
+
+                foreach (var item in GetComponentsInChildren<MeshRenderer>())
+
+                {
+                    childMeshRenderers[n].tmpPosition = childMeshRenderers[n].meshRenderer.transform.position;
+
+                    childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].originalPosition;
+
+                    childMeshRenderers[n].explodedPosition = item.bounds.center * 1.5f;
+
+                    childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].tmpPosition;
+
+                    n++;
+
+                }
 
                 foreach (var item in childMeshRenderers)
 
@@ -114,7 +132,6 @@ public class Explosion : MonoBehaviour
 
                     item.meshRenderer.transform.position = Vector3.Lerp(item.meshRenderer.transform.position, item.originalPosition, explosionSpeed);
 
-
                     if (Vector3.Distance(item.meshRenderer.transform.position, item.originalPosition) < 0.001f)
 
                     {
@@ -134,6 +151,23 @@ public class Explosion : MonoBehaviour
         {
             if (isInExplodedView)
             {
+                int n = 0;
+
+                foreach (var item in GetComponentsInChildren<MeshRenderer>())
+
+                {
+                    childMeshRenderers[n].tmpPosition = childMeshRenderers[n].meshRenderer.transform.position;
+
+                    childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].originalPosition;
+
+                    childMeshRenderers[n].explodedPosition = item.bounds.center * 1.5f;
+
+                    childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].tmpPosition;
+
+                    n++;
+
+                }
+
                 foreach (var item in childMeshRenderers)
 
                 {
