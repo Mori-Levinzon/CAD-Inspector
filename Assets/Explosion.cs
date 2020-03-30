@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine;
+﻿using UnityEngine;
 
 using System.Collections.Generic;
 
 using System;
+
 
 [Serializable]
 
@@ -21,25 +19,18 @@ public class SubMeshes
 
     public Vector3 tmpPosition;
 
-    public Vector3 lastPosition;
-
-    public Vector3 currentPosition;
+    public Vector3 originalLocalPosition;
 
 }
 
+
 public class Explosion : MonoBehaviour
+
 {
-
-    private GameObject cube;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     #region Variables
 
+    private GameObject cube;
 
     public List<SubMeshes> childMeshRenderers;
 
@@ -47,9 +38,7 @@ public class Explosion : MonoBehaviour
 
     public float explosionSpeed = 0.1f;
 
-    public bool isMoving = false;
-
-    Vector3 cubePrevPosition = Vector3.zero;
+    bool isMoving = false;
 
 
     #endregion
@@ -61,9 +50,8 @@ public class Explosion : MonoBehaviour
     private void Awake()
 
     {
-        cube = GameObject.Find("Cube");
 
-        cubePrevPosition = cube.transform.position;
+        cube = GameObject.Find("Cube");
 
         childMeshRenderers = new List<SubMeshes>();
 
@@ -76,7 +64,9 @@ public class Explosion : MonoBehaviour
 
             mesh.meshRenderer = item;
 
-            mesh.originalPosition = item.transform.position;
+            mesh.originalLocalPosition = item.transform.localPosition;
+
+            mesh.originalPosition = cube.transform.localPosition + transform.localPosition + mesh.originalLocalPosition;
 
             mesh.explodedPosition = item.bounds.center * 1.5f;
 
@@ -93,6 +83,25 @@ public class Explosion : MonoBehaviour
 
         int n = 0;
 
+        foreach (var item in GetComponentsInChildren<MeshRenderer>())
+
+        {
+
+            childMeshRenderers[n].originalPosition = cube.transform.localPosition + transform.localPosition + childMeshRenderers[n].originalLocalPosition;
+
+            childMeshRenderers[n].tmpPosition = childMeshRenderers[n].meshRenderer.transform.position;
+
+            childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].originalPosition;
+
+            childMeshRenderers[n].explodedPosition = item.bounds.center * 1.5f;
+
+            childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].tmpPosition;
+
+            n++;
+
+        }
+
+
         if (isMoving)
 
         {
@@ -100,23 +109,6 @@ public class Explosion : MonoBehaviour
             if (isInExplodedView)
 
             {
-
-                n = 0;
-
-                foreach (var item in GetComponentsInChildren<MeshRenderer>())
-
-                {
-                    childMeshRenderers[n].tmpPosition = childMeshRenderers[n].meshRenderer.transform.position; // saves our current position
-
-                    childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].originalPosition;
-
-                    childMeshRenderers[n].explodedPosition = item.bounds.center * 1.5f; //here our position is the original (imploded) postion
-
-                    childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].tmpPosition; //returns us to where we were
-
-                    n++;
-
-                }
 
                 foreach (var item in childMeshRenderers)
 
@@ -147,6 +139,7 @@ public class Explosion : MonoBehaviour
 
                     item.meshRenderer.transform.position = Vector3.Lerp(item.meshRenderer.transform.position, item.originalPosition, explosionSpeed);
 
+
                     if (Vector3.Distance(item.meshRenderer.transform.position, item.originalPosition) < 0.001f)
 
                     {
@@ -160,7 +153,6 @@ public class Explosion : MonoBehaviour
             }
 
         }
-
 
     }
 
@@ -193,18 +185,11 @@ public class Explosion : MonoBehaviour
 
             isMoving = true;
 
-            foreach (var item in childMeshRenderers)
-
-            {
-
-                item.originalPosition = item.meshRenderer.transform.position;
-
-            }
-
         }
 
     }
 
 
     #endregion
+
 }
