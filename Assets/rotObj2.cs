@@ -1,15 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class rotObj2 : MonoBehaviour
 {
     Vector3 mPrevPos = Vector3.zero;
     Vector3 mPosDelta = Vector3.zero;
-    public bool sameTime = false;
+    Toggle enableToggle;
+    bool sameTime = false;
 
-    // Update is called once per frame
+    // Start is called before the first frame update
+    void Start()
+    {
+        enableToggle = GameObject.Find("Toggle").GetComponent<Toggle>(); // when on -> enable
+    }
 
     void OnMouseEnter()
     {
@@ -18,7 +23,7 @@ public class rotObj2 : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) & enableToggle.isOn)
         {
             mPosDelta = Input.mousePosition - mPrevPos;
             if (sameTime == false)
