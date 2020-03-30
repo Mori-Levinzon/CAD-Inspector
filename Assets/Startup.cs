@@ -1,29 +1,51 @@
-﻿using Dummiesman;
+﻿using UnityEngine;
+using System.Collections;
+using UnityEditor;
+using System;
+using UnityEngine.UI;
+using Dummiesman;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
-/** Doesn't have to be run from start, can be used on any trigger. */
 public class Startup : MonoBehaviour
 {
+
+    [SerializeField]
+    Button btn;
+
+
+    // Use this for initialization
     void Start()
     {
-        //file path
-        /** Sample OBJ from 
-        * https://www.turbosquid.com/3d-models/free-obj-model-ivysaur-pokemon-sample/1136333 
-        * Model .mtl file needs editing to add the texture by default
-        */
-        string filePath = @"Assets/Nissan";
-        // MTL should be linked in the OBJ file by default, 
-        // but if not, you can specify it manually
-        string mtlPath = @"Assets/Nissan";
-
-        var loadedObj = new OBJLoader().Load(filePath, mtlPath);
 
     }
 
+    // Update is called once per frame
     void Update()
     {
 
+        btn.onClick.AddListener(new UnityEngine.Events.UnityAction(askForFileInput));
+    }
+    private void askForFileInput()
+    {
+        // displays dialog
+        //editorutility.displaydialog("select obj",
+        //            "you must select a obj file!",
+        //           "ok");
+        // asks for file input
+        var path = EditorUtility.OpenFilePanel(
+                    "load obj",
+                    "",
+                    "obj");
+        // custon objloader (c) 2015 aaro4130 - free from asset store (runtime obj importer) 25.04.2016
+        var loadedobj = new OBJLoader().Load(path);
+        
+        // save file
+
+
+        Debug.LogWarning(path);
+        throw new NotImplementedException();
     }
 }
