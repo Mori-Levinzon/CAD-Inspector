@@ -65,7 +65,7 @@ public class CSharpscaling : MonoBehaviour
                         float currentAngle = CalculateAngle(Input.touches[0].position - Input.touches[1].position, upV);
                         float rotZ = (currentAngle - initialAngle) * rotSpeed * Mathf.Deg2Rad;
 
-                        transform.RotateAround(Vector3.forward, rotZ);
+                        transform.RotateAround(Camera.main.transform.forward, rotZ);
                         initialAngle = currentAngle;
                     }
                 }
