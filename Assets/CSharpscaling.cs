@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CSharpscaling : MonoBehaviour
 {
@@ -9,7 +10,22 @@ public class CSharpscaling : MonoBehaviour
     public float initialFingersDistance;
     public Vector3 initialScale;
     public static Transform ScaleTransform;
+    public float initialAngle;
+    private Vector3 upV = Vector3.up;
+    public float rotSpeed = 1f;
+    Toggle toggleObject;
 
+    void Start()
+    {
+        toggleObject = GameObject.Find("Toggle").GetComponent<Toggle>(); 
+    }
+
+    public static float CalculateAngle(Vector3 from, Vector3 to)
+    {
+
+        return Quaternion.FromToRotation(Vector3.up, to - from).eulerAngles.z;
+
+    }
 
     void Update()
     {
@@ -28,15 +44,30 @@ public class CSharpscaling : MonoBehaviour
                 {
                     initialFingersDistance = Vector2.Distance(Input.touches[0].position, Input.touches[1].position);
                     initialScale = ScaleTransform.localScale;
+                    initialAngle = CalculateAngle(Input.touches[0].position - Input.touches[1].position, upV);//the angle between the y axis and the vector between the fingers
                 }
                 else
                 {
-                    float currentFingersDistance = Vector2.Distance(Input.touches[0].position, Input.touches[1].position);
+                    if (toggleObject.isOn)
+                    {
+                        float currentFingersDistance = Vector2.Distance(Input.touches[0].position, Input.touches[1].position);
 
-                    float scaleFactor = currentFingersDistance / initialFingersDistance;
+                        float scaleFactor = currentFingersDistance / initialFingersDistance;
 
-                    //transform.localScale = initialScale * scaleFactor;
-                    ScaleTransform.localScale = initialScale * scaleFactor;
+                        //transform.localScale = initialScale * scaleFactor;
+                        ScaleTransform.localScale = initialScale * scaleFactor;
+                    }
+                    
+
+                    //------------------now rotate on z axel with 2 fingers
+                    if (!toggleObject.isOn)
+                    {
+                        float currentAngle = CalculateAngle(Input.touches[0].position - Input.touches[1].position, upV);
+                        float rotZ = (currentAngle - initialAngle) * rotSpeed * Mathf.Deg2Rad;
+
+                        transform.RotateAround(Vector3.forward, rotZ);
+                        initialAngle = currentAngle;
+                    }
                 }
             }
         }

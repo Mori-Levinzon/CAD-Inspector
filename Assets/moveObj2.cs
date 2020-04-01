@@ -32,7 +32,7 @@ public class moveObj2 : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (Input.GetMouseButton(0) & !enableToggle.isOn)
+        if (Input.GetMouseButton(0) & enableToggle.isOn)
         {
             mPosDelta = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.ScreenToWorldPoint(mPrevMousePos);
             //mPosDelta = Input.mousePosition - mPrevPos;

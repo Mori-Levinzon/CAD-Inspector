@@ -12,11 +12,11 @@ public class UIcontrol : MonoBehaviour
     {
         if (newValue)
         {
-            GameObject.Find("Label").GetComponent<Text>().text = "Rotation Change";
+            GameObject.Find("Label").GetComponent<Text>().text = "Position Change";
         }
         else
         {
-            GameObject.Find("Label").GetComponent<Text>().text = "Position Change";
+            GameObject.Find("Label").GetComponent<Text>().text = "Rotation Change";
         }
     }
 
