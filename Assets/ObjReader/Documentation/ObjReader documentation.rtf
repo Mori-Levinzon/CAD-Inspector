@@ -1,0 +1,316 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+\cocoascreenfonts1{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}}
+\margl1440\margr1440\vieww19760\viewh13460\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs30 \cf0 Welcome to ObjReader! There are three Unitypackage files included: 
+\b ObjReader
+\b0 , 
+\b ObjReaderDemos
+\b0 , and 
+\b ObjReaderSource
+\b0 . If you bought ObjReader from the Unity Asset Store, then the demos are normally included with the import, but can be left out by deselecting the ObjReader folder when importing. Also, the source is a separate package, since the DLL and source can't be imported at the same time.\
+\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\sa160\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	\'95	}The only package you strictly need to import is ObjReaderDLL, which contains a DLL. The DLL can be used in Unity Free or Pro, and will work on most platforms. Typically you would use this rather than the source, since the DLL is more convenient\'97it doesn't contribute to script compilation times, and double-clicking any errors in the Unity console goes to your script where you called the ObjReader functions, instead of the depths of the source code. There are actually two DLL packages, where ObjReaderDLL.unitypackage works with Unity 3.5 and later, and ObjReaderDLL-Unity2017-3.unitypackage works with Unity 2017.3 and later. 
+\b NOTE: The DLL won't work when used with webplayer or WebGL build targets. Use the ObjReaderSource package instead.
+\b0 \
+{\listtext	\'95	}The ObjReaderSource package contains the source code version of ObjReader. As mentioned, typically you'd use the DLL, but the source is there if you're building for WebGL or want to make any modifications. Note that you can't use the DLL and the source at the same time; you must use either one or the other or you'll get an error. The source works with Unity 3.5 and later, including Unity 2017.3.\
+{\listtext	\'95	}Lastly, the ObjReaderDemos package contains several demo scenes that illustrate various ObjReader functionality. You should import the DLL first in order to use the demos. (Importing the source code will also work, but you'd need to manually drag the ObjReader script onto the ObjectManager GameObjects first, since without the DLL there will be a missing reference.)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+In the ObjReader demos, there are three scenes showing simple examples of usage: 
+\b Example1-TextAsset
+\b0  loads an .obj file locally from a TextAsset, 
+\b Example2-WWW 
+\b0 loads an .obj file from a web site, and 
+\b Example3-ExternalFile
+\b0  loads an .obj file from an external text file.\
+\
+You can change the file used in Example1-TextAsset by dragging one of the sample .obj text files from the ObjReader/Sample Files folder onto the appropriate slot on the Example1-TextAsset script on the ObjectManager GameObject.\
+\
+You can change the file used in Example2-WWW by changing the ObjFileName variable on the Example2-WWW script on the ObjectManager object or by typing in a new name in the GUI text field at runtime. A few other files to try at the location of "Spot.obj" are "cube.obj", "sphere.obj", and "thing.obj", or you can try other .obj files you know of at other addresses.\
+\
+You can change the file used in Example3-ExternalFile by entering a new name in the appropriate slot...in this demo it's relative to Application.dataPath/ObjReader/Sample Files, but you can use any path in your own code. Note that this example uses an .obj file named with a ".txt" extension simply to prevent Unity from importing it as a mesh. It's fine under typical usage if the file ends with ".obj".\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\b \cf0 SETTING THINGS UP
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+If you bought ObjReader from the Starscene Software website: To use the .unitypackage file, select the 
+\b Import Package...
+\b0  menu item in the 
+\b Assets
+\b0  menu while Unity is running. Locate the ObjReader.unitypackage file and import it. As mentioned above, you can import the ObjReaderSource.unitypackage file instead if you want to use the source code, or if you're planning on building a webplayer.\
+\
+If you bought ObjReader from the Unity Asset Store: Select the 
+\b Window -> Asset Store
+\b0  menu item, then click on the download manager icon. Find ObjReader and click the import button. The source is a separate package, which can be imported as described above.\
+\
+In typical usage, the ObjReader DLL or script is attached to an empty GameObject (such as the ObjectManager object in the example scenes), and it uses DontDestroyOnLoad so it's always available in any scene subsequent to the scene in which it's first used. You can attach ObjReader to a GameObject easily by highlighting the GameObject in the hierarchy view, then selecting 
+\b ObjReader
+\b0  from the 
+\b Component->ObjReader
+\b0  menu. In order to actually convert .obj files, you'd call one of the ObjReader functions, described in the Functions section below.\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\b \cf0 PUBLIC VARIABLES
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+There are a number of public variables you can change on the ObjReader script:\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\sa160\pardirnatural\partightenfactor0
+
+\b \cf0 Use32BitIndices
+\b0  (Unity 2017.3 only) is for setting how large meshes can be. If this is false, then the maximum number of vertices for any group is approximately 65K. If it's true, then the maximum is approximately 4 billion. If using an earlier version of Unity than 2017.3, this setting is unavailable, and the max vertices per group is always 65K. Large, detailed meshes may require Use32BitIndices to be true, or else the object won't load. According to the Unity documentation, certain Android devices don't support 32-bit mesh indices.\
+
+\b CombineMultipleGroups
+\b0 , if checked, will combine all groups found per .obj file into one mesh on a single GameObject. Otherwise each group will result in a separate GameObject. Combining multiple groups into one object will fail if it causes the number of vertices to exceed the maximum number of points, as defined by Use32BitIndices.\
+
+\b UseSubmeshesWhenCombining
+\b0  is only used if CombineMultipleGroups is checked. It makes each group into a submesh on a single GameObject. If it's not checked, then using CombineMultipleGroups will result in a single mesh with a single material, regardless of what an associated .mtl file might contain.\
+It's often convenient to have all groups in an .obj file be returned as one GameObject, and using submeshes will allow each group to have its own material, rather than only being able to use one material for the entire mesh. However, the maximum vertex limit still applies when using submeshes, where the total vertex count in all submeshes can't exceed the value defined by Use32BitIndices.\
+
+\b UseFileNameAsObjectName
+\b0  will cause any generated GameObjects to be named with the actual file name of the .obj file (without extension). If unchecked, the GameObjects will be named by group names that are supplied in the .obj file.\
+
+\b ComputeTangents
+\b0 , if checked, will cause tangents to be calculated for each object. Use this if you intend to use shaders that require tangents to work, such as the various Bumped shaders.\
+
+\b UseSuppliedNormals
+\b0  will cause ObjReader to use any normals that may be supplied by the .obj file. Otherwise, normals are calculated instead (using Unity's RecalculateNormals function).\
+
+\b OverrideDiffuse
+\b0 , if checked, will discard any diffuse color supplied by MTL files in favor of the Main Color used on any materials that you supply.\
+
+\b OverrideSpecular
+\b0 , if checked, will discard any specular color supplied by MTL files in favor of the Specular Color used on any materials that you supply.\
+
+\b OverrideAmbient
+\b0 , if checked, will discard any ambient color supplied by MTL files in favor of the Emissive Color used on any materials that you supply.\
+
+\b SuppressWarnings
+\b0  will prevent any standard ObjReader warnings from being printed. If unchecked, you'll get information about potential situations such as quads being auto-converted into triangles (it may be preferable to convert quads in your 3D app instead), lack of UV data in the .obj file, etc. You'd probably want to make sure this is checked before publishing a final build, since the warnings don't prevent ObjReader from working correctly.\
+
+\b UseMTLFallback
+\b0 , if checked, will use the standard material in such case as an MTL file is specified in the OBJ file, but is missing. If useMTLFallback is not checked, then missing MTL files will generate an error.\
+
+\b AutoCenterOnOrigin
+\b0 , if checked, will physically move the vertices so the object is centered on (0, 0, 0). Note that if there are multiple objects in the OBJ file, and combineMultipleGroups is not checked, then every object will be centered individually, which may be undesired. In that case it's best to use combineMultipleGroups.\
+
+\b ScaleFactor
+\b0  is a Vector3 that scales the resulting object meshes by the specified amount on the x, y, and z axes. This scale factor is "baked into" the mesh, rather than scaling the GameObjects.\
+
+\b ObjRotation
+\b0  will rotate the resulting object meshes around the specified x, y, and z axes. Like ScaleFactor, this "bakes" the rotation into the mesh, rather than rotating the GameObjects.\
+
+\b ObjPosition
+\b0  does the same thing for the position of object meshes. If the .obj file is off-center, you can compensate by using ObjPosition to move the mesh to the desired location.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+All of these variables can be accessed from your scripts if desired at any time, by prepending "ObjReader.use". For example, your script can call "ObjReader.use.combineMultipleGroups = true;" to activate the combineMultipleGroups setting. Or "ObjReader.use.computeTangents = true;" would cause tangents to be computed the next time an .obj file is converted. Note that all the variables are actually lowercase, and are only displayed as uppercase in the inspector.\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\b \cf0 FUNCTIONS
+\b0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+There are three functions that you can use to convert .obj files: 
+\b ConvertString
+\b0 , 
+\b ConvertFile
+\b0 , and
+\b  ConvertFileAsync
+\b0 .\
+\
+ConvertString uses a string that you supply, which contains the .obj file contents. You can obtain the string a number of ways, such as downloading from the internet, extracting from a TextAsset, etc.\
+\
+ConvertFile, on the other hand, uses a file name (including the complete path) of an external file. (Typically .obj files have the .obj extension; the included example files use .txt to prevent Unity from importing them as models. In any case the extension doesn't really matter.) Note that ConvertFile always returns null if used in a web player, since external file access is not allowed by Unity in that case. \
+\
+ConvertFileAsync is what you'd typically use in a webplayer, or if you're loading .obj files from sources on the internet. Like ConvertFile, it uses a file name, but instead of a local file, it's the path to a file on a website. It takes a certain amount of time to run, depending on the size of the .obj file, any textures that might be used, and the speed of the internet connection, so normally you'd use it in a coroutine and wait for the data to finish downloading.\
+\
+The Example1 demo script shows how ConvertString can be used, the Example2 demo shows how ConvertFileAsync works, and Example3 demonstrates ConvertFile.\
+\
+\
+function 
+\b ConvertString
+\b0  (
+\b objString
+\b0  : String, 
+\b mtlString 
+\b0 : String, 
+\b standardMaterial 
+\b0 : Material, 
+\b transparentMaterial 
+\b0 : Material) : GameObject[]\
+\
+The 
+\b objString 
+\b0 parameter is required, and should contain the contents of an .obj file.\
+\
+The 
+\b mtlString
+\b0  parameter is optional, and should contain the contents of an .mtl file. Note that ConvertString doesn't use any textures that may be specified by the .mtl file, so if you want to use a texture, you should supply it with the standardMaterial parameter. However, the ConvertFile function (see below) will use textures specified by the .mtl file.\
+\
+
+\b standardMaterial 
+\b0 is an optional material supplied by you for use with non-transparent materials specified by the .mtl file. It should include any shader that doesn't use transparency, such as Diffuse, Specular, VertexLit, etc. (or any custom shader without transparency).\
+\
+The appropriate colors from the material are used if the overrideDiffuse, overrideSpecular, or overrideAmbient variables are true. If none of the override variables are true, then all colors will come from the .mtl file rather than the material. Specifically, the Kd line in the .mtl file is mapped to the main color (the "_Color" property in the shader), the Ks line is mapped to the specular color ("_SpecColor"), and the Ka line is mapped to the emissive color ("_Emission").\
+\
+Note that not all built-in shaders have all of these properties. The built-in VertexLit shader does, however, and the built-in Specular shader has all but the emissive color (which is frequently just set to zero in the .mtl file anyway, so it can often be ignored).\
+\
+If the material is not supplied or is null, then a default material generated by ObjReader (using the built-in VertexLit shader) will be used instead.\
+\
+
+\b transparentMaterial
+\b0  is an optional material supplied by you for use with transparent materials specified by the .mtl file. It behaves in the same way as the standard material, but is used with any materials in the .mtl file that have a "d" (dissolve) line with less than 1.0 (the "1.0" value means "fully opaque"). Note that it's up to you to supply a material that actually uses transparency, such as any of the built-in transparent shaders (Transparent/Specular, etc.).\
+\
+If the material is not supplied or is null, then a default material generated by ObjReader (using the built-in Transparent/VertexLit shader) will be used instead.\
+\
+\
+\
+function 
+\b ConvertFile
+\b0  (
+\b objFilePath
+\b0  : String, 
+\b useMtl 
+\b0 : boolean, 
+\b standardMaterial 
+\b0 : Material, 
+\b transparentMaterial 
+\b0 : Material) : GameObject[]\
+\
+The 
+\b objFilePath 
+\b0 parameter is required, and should contain the file name (including the complete path) of an .obj file.\
+\
+The 
+\b useMtl 
+\b0 parameter is required, and specifies whether any .mtl files referenced by the .obj file will be used. Any textures referenced by the .mtl file will be used if possible, but they must be either .jpg or .png format. If useMtl is false, then the texture from the standardMaterial will be used.\
+\
+
+\b standardMaterial 
+\b0 is optional and is the same as in ConvertString.\
+\
+
+\b transparentMaterial
+\b0  is optional and is the same as in ConvertString.\
+\
+\
+\
+function 
+\b ConvertFileAsync
+\b0  (
+\b objFilePath
+\b0  : String, 
+\b useMtl 
+\b0 : boolean, 
+\b standardMaterial 
+\b0 : Material, 
+\b transparentMaterial 
+\b0 : Material) : ObjData\
+\
+The 
+\b objFilePath 
+\b0 parameter is required, and should contain the file name (including the complete path) of an .obj file. This must be prefixed with "http://", "https://", or "ftp://". ("file://" will also work, but not in webplayers, and you'd normally use ConvertFile instead when loading local files.)\
+\
+The 
+\b useMtl 
+\b0 parameter is required, and specifies whether any .mtl files referenced by the .obj file will be used. Any textures referenced by the .mtl file will be used if possible, but they must be either .jpg or .png format. If useMtl is false, then the texture from the standardMaterial will be used.\
+\
+
+\b standardMaterial 
+\b0 is optional and is the same as in ConvertString.\
+\
+
+\b transparentMaterial
+\b0  is optional and is the same as in ConvertString.\
+\
+The ConvertFileAsync function returns ObjData, which is a class that contains the following variables:\
+\
+
+\b isDone
+\b0  (read-only): this is a boolean. It's false while the download is incomplete, and true once the download has finished and the GameObjects are generated. You would typically check this in a while loop in a coroutine that yields every frame until isDone is true.\
+\
+
+\b progress 
+\b0 (read-only): this is a float. It ranges from 0.0 to 1.0, where 1.0 means "100% done". You can use this to make progress bars or progress indicators of various sorts. Since it's not possible to tell how much has to be downloaded in total until the .obj file itself has already downloaded, the progress variable devotes the first 50% to the .obj file, and the remaining 50% to any textures. (So if the .mtl file doesn't specify any textures, the last 50% will go very fast.)\
+\
+
+\b gameObjects
+\b0 : this is a GameObject[] array. It contains the generated GameObjects once the download is complete.\
+\
+\
+Note that ConvertString and ConvertFile always return GameObject arrays. If only one GameObject is generated, then it will be a GameObject array with only one entry. (This applies to the ObjData.gameObjects variable too, when using ConvertFileAsync.) If the .obj file includes group names, GameObjects in the array will be named using those group names; otherwise they will just be called "New Game Object". If combineMultipleGroups is used, then the GameObject will be named whatever the first group name is (if any). You can reference the GameObjects in the array and rename them, change materials, etc. as desired.\
+\
+You may cancel in-progress downloads by using the Cancel function in the returned ObjData variable:\
+\
+var objData = ConvertFileAsync (...);\
+...\
+objData.Cancel();\
+\
+See the Example2-WWW script for specific code that cancels the download if the user hits the escape key.\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\b \cf0 USING NORMAL MAPS\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 ObjReader will automatically load any bump map textures specified in the .mtl (indicated by "map_bump" or "bump") as normal maps. In order for this to work properly, there are some considerations.\
+\
+1) The ComputeTangents public variable must be checked, since shaders that use normal maps require tangents.\
+\
+2) A material that contains a shader that uses normal maps, such as the standard Diffuse Bumped shader, must be supplied as the standard material and/or the transparent material, depending on whether the object uses transparency.\
+\
+3) The shader in the material must have a property called "_BumpMap" that's used for the normal map.\
+\
+4) The "bump map" texture must actually be a normal map (despite the property name in the shader). Bump maps are grayscale textures that Unity can convert to normal maps, but they must already be converted to normal maps in order for ObjReader to use them. Normal maps are recognizable by their typically blue-ish color.\
+\
+5) The normal map must be rendered in a way compatible with Unity. There is more than one way to calculate normal maps, and different apps may use different encoding methods. If you find that the lighting on the model is wrong after importing the .obj file, that usually means the normal map isn't Unity-compatible, and will need to be recomputed.\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\b \cf0 HINTS\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 It's usually a good idea to supply a standard material, even if the .obj file gets materials from a .mtl file. You can control what shader is used through the standard material, and can override the diffuse/specular/ambient colors using the main color/specular/emissive properties of the material if desired. (Sometimes the diffuse/specular/ambient colors supplied by the .mtl file don't look very good.)\
+\
+Unity's WWW class unfortunately doesn't detect 404 (missing page) errors. This means "file not found" errors aren't possible, so if you get unexpected results when using ConvertFileAsync\'97such as ObjReader telling you that the .obj file doesn't contain any vertices\'97make sure that you have the path correct.\
+\
+The ObjData variable returned by ConvertFileAsync isn't a YieldInstruction type, so it can't be used like, for example, the WWW class. So rather than "var objData = ConvertFilesAsync(...); yield objData;", you must use it in a loop, such as "var objData = ConvertFilesAsync(...); while (!objData.isDone) yield;" See the Example2-WWW script for a more detailed example.\
+\
+If you're not intending to use .mtl files with ConvertFilesAsync, make sure to use "false" for the useMtl parameter, so the progress indicator will be more accurate.\
+\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\qc\partightenfactor0
+
+\b \cf0 LICENSE INFORMATION\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\b0 \cf0 This software is licensed to you (or your company) only. You can use it in as many projects as you like, and can alter the code as you see fit, but redistribution of the original or any modified versions is prohibited, except as necessary to produce a working runtime.\
+\
+\'a9 2017 Starscene Software\
+\
+The included .obj demo files are public domain. Some of them are from {\field{\*\fldinst{HYPERLINK "http://users.cms.caltech.edu/~keenan/models.html"}}{\fldrslt http://users.cms.caltech.edu/~keenan/models.html}}}
