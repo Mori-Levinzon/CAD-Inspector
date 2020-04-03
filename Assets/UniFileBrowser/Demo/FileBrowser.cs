@@ -46,8 +46,8 @@ public class FileBrowser : MonoBehaviour
     {
         var fileName = Path.GetFileName(pathToFile);
         //message = "You selected file: " + fileName;
-        message = @"files/ " + fileName;
-        var loadedObj = new OBJLoader().Load(fileName);
+        message =  "loading " + fileName;
+        var loadedObj = new OBJLoader().Load(pathToFile);
         Fade();
     }
 
