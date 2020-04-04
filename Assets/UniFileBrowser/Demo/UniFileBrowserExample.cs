@@ -7,9 +7,11 @@ using System.IO;
 using Dummiesman;
 using System.Collections.Generic;
 
+
 public class UniFileBrowserExample : MonoBehaviour
 {
-
+    public Material standardMaterial;
+    public Material transparentMaterial;
     string message = "";
     float alpha = 1.0f;
     static int copyNumber = 1;
@@ -48,7 +50,7 @@ public class UniFileBrowserExample : MonoBehaviour
         //message = "You selected file: " + fileName;
         string path = Application.persistentDataPath;
         var fileName = Path.GetFileName(pathToFile);
-        string finalPath = Path.Combine(path, "files/", fileName);
+        string finalPath = Path.Combine(path, fileName);
 
         message = "loading " + finalPath;
 
@@ -65,16 +67,47 @@ public class UniFileBrowserExample : MonoBehaviour
         newHolderCube.name = "Cube #" + copyNumber++;//change  name of the cube to his serialized name
 
         GameObject loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
-        //loadedObj.setactive(true);
-        loadedObj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
-        loadedObj.transform.position = new Vector3(0f, 26.5f, 1.5f);
+        //GameObject loadedObj = ObjReader.use.ConvertFile(objectPath, true, standardMaterial, transparentMaterial)[0];//load the object to the object
+        //GameObject loadedObj = ObjReader.use.ConvertString(objectPath);
 
+        loadedObj.name = "LoadedObj #" + (copyNumber - 1);
+        GameObject CheckIfExist = GameObject.Find("LoadedObj #" + (copyNumber - 1));
+        if (CheckIfExist == null)
+        {
+            message = "Empty\n";
+
+        }
+        else
+        {
+            message = "i am therefore i exist\n";
+
+        }
+        //WorldAnchor anchor = loadedObj.AddComponent<WorldAnchor>();
+        //anchor.OnTrackingChanged += Anchor_OnTrackingChanged;
+        //Anchor_OnTrackingChanged(anchor, anchor.isLocated);
+
+        //var twoDAnchor = loadedObj.AddComponent(typeof(AnchorBehavior) = OriginalCube;
+
+        //loadedObj.setactive(true);
+
+        newHolderCube = OriginalCube;
         var explosionScriptPropreties = loadedObj.AddComponent((typeof(Explosion))); //where newscriptname is the name of the new component that you want to add.
 
 
         newHolderCube.transform.parent = Holder.transform;//insert the object inside of the cube
         loadedObj.transform.parent = newHolderCube.transform;//insert the object inside of the cube
+
+        loadedObj.transform.position = new Vector3(0f, 0f, 0f);
+        loadedObj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
+        //loadedObj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
+        //loadedObj.transform.position = new Vector3(0f, 26.5f, 1.5f);
     }
+
+    //private void Anchor_OnTrackingChanged(UnityEngine.XR.WSA.WorldAnchor self, bool located)
+    //{
+    //    // This simply activates/deactivates this object and all children when tracking changes
+    //    self.gameObject.SetActive(located);
+    //}
 
     void OpenFiles(string[] pathsToFiles)
     {
@@ -85,7 +118,7 @@ public class UniFileBrowserExample : MonoBehaviour
 
             string path = Application.persistentDataPath;
             var fileName = Path.GetFileName(pathsToFiles[i]);
-            string finalPath = Path.Combine(path, "files/", fileName);
+            string finalPath = Path.Combine(path, fileName);
 
             message += "loading " + finalPath;
 
