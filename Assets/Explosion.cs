@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 using System;
 
+using UnityEngine.UI;
+
 
 [Serializable]
 
@@ -30,16 +32,19 @@ public class Explosion : MonoBehaviour
 
     #region Variables
 
-    private GameObject cube;
+    public GameObject cube;
+
+    public GameObject objectToExplode;
 
     public List<SubMeshes> childMeshRenderers;
 
-    bool isInExplodedView = false;
+    public bool isInExplodedView = false;
 
     public float explosionSpeed = 0.1f;
 
-    bool isMoving = false;
+    public bool isMoving = false;
 
+    public int m_DropdownValue;
 
     #endregion
 
@@ -50,13 +55,22 @@ public class Explosion : MonoBehaviour
     private void Awake()
 
     {
+        //get the current dropdown value
+        Dropdown m_Dropdown = GameObject.Find("Dropdown").GetComponent<Dropdown>();
+        m_DropdownValue = m_Dropdown.value;
 
-        cube = GameObject.Find("Cube");
+        if (m_DropdownValue == 0)
+        {
+            return;
+        }
+
+        cube = GameObject.Find("Cube #" + m_DropdownValue);
+
+        objectToExplode = GameObject.Find("LoadedObj #" + m_DropdownValue);
 
         childMeshRenderers = new List<SubMeshes>();
 
-
-        foreach (var item in GetComponentsInChildren<MeshRenderer>())
+        foreach (var item in objectToExplode.GetComponentsInChildren<MeshRenderer>())
 
         {
 
@@ -83,7 +97,7 @@ public class Explosion : MonoBehaviour
 
         int n = 0;
 
-        foreach (var item in GetComponentsInChildren<MeshRenderer>())
+        foreach (var item in objectToExplode.GetComponentsInChildren<MeshRenderer>())
 
         {
 
@@ -166,6 +180,18 @@ public class Explosion : MonoBehaviour
     public void ToggleExplodedView()
 
     {
+
+        //get the current dropdown value
+        Dropdown m_Dropdown = GameObject.Find("Dropdown").GetComponent<Dropdown>();
+        m_DropdownValue = m_Dropdown.value;
+
+        if (m_DropdownValue == 0)
+        {
+            return;
+        }
+
+        cube = GameObject.Find("Cube #" + m_DropdownValue);
+
 
         if (isInExplodedView)
 

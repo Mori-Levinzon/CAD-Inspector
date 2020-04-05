@@ -1,6 +1,4 @@
-// Example of open/save usage with UniFileBrowser
-// This script is free to use in any manner
-
+﻿
 using UnityEngine;
 using System.Collections;
 using System.IO;
@@ -10,17 +8,15 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using static Explosion;
 
-public class UniFileBrowserExample : MonoBehaviour
+
+public class Browser : MonoBehaviour
 {
-    public Material standardMaterial;
-    public Material transparentMaterial;
     string message = "";
     float alpha = 1.0f;
     static int copyNumber = 1;
 
     public Button explosionButton;
-
-    public Toggle toggleObject;
+    public Explosion explosion;
 
     void OnGUI()
     {
@@ -51,6 +47,17 @@ public class UniFileBrowserExample : MonoBehaviour
         //GUI.color = col;
     }
 
+    public void OpenOnClick()
+    {
+        if (UniFileBrowser.use.allowMultiSelect)
+        {
+            UniFileBrowser.use.OpenFileWindow(OpenFiles);
+        }
+        else
+        {
+            UniFileBrowser.use.OpenFileWindow(OpenFile);
+        }
+    }
 
     void OpenFile(string pathToFile)
     {
@@ -98,20 +105,26 @@ public class UniFileBrowserExample : MonoBehaviour
         loadedObj.transform.parent = newHolderCube.transform;//insert the object inside of the cube
 
         loadedObj.transform.position = new Vector3(0f, 0f, 0f);
-        newHolderCube.transform.localScale = new Vector3(4.00f, 4.00f, 4.00f);
-        loadedObj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        loadedObj.transform.position = new Vector3(0f, 0f, 0f);
+        newHolderCube.transform.localScale = new Vector3(1.00f, 1.00f, 1.00f);
+        loadedObj.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
 
 
         addLoadObjectToDropdownMenu(loadedObj.name);
 
-        toggleObject = GameObject.Find("Toggle").GetComponent<Toggle>();
-        
+
 
         //explosionButton = GameObject.Find("Button").GetComponent<Button>();
+        //var explosionInstance = new Explosion();
+        ////Method method = explosionInstance.ToggleExplodedView();
+        ////explosionButton.onClick += method;
+        //UnityEventTools.AddPersistentListener(explosionButton.onClick, new UnityAction("ToggleExplodedView"));
+
         ////explosionbutton.onclick.AddListener(Explosion.ToggleExplodedView());
         //UnityAction<GameObject> callback = new UnityAction<GameObject>(Explosion.ToggleExplodedView());
         //UnityEventTools.AddObjectPersistentListener<GameObject>(explosionButton.onClick, callback, loadedObj);
-        //explosionButton.GetComponent<Button>().onClick.AddListener(() => SomeFunction(SomeParameter));
+        ////explosionButton.GetComponent<Button>().onClick.AddListener(() => SomeFunction(SomeParameter));
+        //UnityEventTools.AddPersistentListener(explosionButton.onClick, new UnityAction(Explosion.ToggleExplodedView()));
 
 
 
