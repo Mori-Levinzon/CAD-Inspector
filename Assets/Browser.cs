@@ -18,34 +18,7 @@ public class Browser : MonoBehaviour
     public Button explosionButton;
     public Explosion explosion;
 
-    void OnGUI()
-    {
-        //if (GUI.Button(new Rect(100, 50, 95, 35), "Open"))
-        //{
-        //    if (UniFileBrowser.use.allowMultiSelect)
-        //    {
-        //        UniFileBrowser.use.OpenFileWindow(OpenFiles);
-        //    }
-        //    else
-        //    {
-        //        UniFileBrowser.use.OpenFileWindow(OpenFile);
-        //    }
-        //}
-        //if (GUI.Button(new Rect(100, 125, 95, 35), "Save"))
-        //{
-        //    UniFileBrowser.use.SaveFileWindow(SaveFile);
-        //}
-        //if (GUI.Button(new Rect(100, 200, 95, 35), "Open Folder"))
-        //{
-        //    UniFileBrowser.use.OpenFolderWindow(true, OpenFolder);
-        //}
-        //var col = GUI.color;
-        //col.a = alpha;
-        //GUI.color = col;
-        //GUI.Label(new Rect(100, 275, 500, 1000), message);
-        //col.a = 1.0f;
-        //GUI.color = col;
-    }
+
 
     public void OpenOnClick()
     {
@@ -76,44 +49,43 @@ public class Browser : MonoBehaviour
     void addObjectToScene(string objectPath)
     {
         //load
-        GameObject OriginalCube = GameObject.Find("Template");
-        GameObject Holder = GameObject.Find("Holder");
-        GameObject newHolderCube = GameObject.Instantiate(OriginalCube); //create a new identical cube with the same features
+        GameObject OriginalCube=null, Holder = null, newHolderCube = null, loadedObj = null;
+
+        initializeObjects(OriginalCube, Holder, newHolderCube, loadedObj, objectPath);
+
+        var explosionScriptPropreties = loadedObj.AddComponent((typeof(Explosion))); //where newscriptname is the name of the new component that you want to add.
+
+        adjustObjectHierachy(Holder, newHolderCube, loadedObj);
+
+        addLoadObjectToDropdownMenu(loadedObj.name);
+
+        addOnClickEventToExplodeButton(loadedObj);
+
+    }
+
+    void initializeObjects(GameObject OriginalCube, GameObject Holder, GameObject newHolderCube, GameObject loadedObj,string objectPath)
+    {
+        OriginalCube = GameObject.Find("Template");
+        Holder = GameObject.Find("Holder");
+        newHolderCube = GameObject.Instantiate(OriginalCube); //create a new identical cube with the same features
         newHolderCube.name = "Cube #" + copyNumber++;//change  name of the cube to his serialized name
 
-        GameObject loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
+        loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
 
         loadedObj.name = "LoadedObj #" + (copyNumber - 1);
         GameObject CheckIfExist = GameObject.Find("LoadedObj #" + (copyNumber - 1));
         if (CheckIfExist == null)
         {
             message = "Empty\n";
-
         }
         else
         {
             message = "i am therefore i exist\n";
-
         }
+    }
 
-
-        newHolderCube = OriginalCube;
-        var explosionScriptPropreties = loadedObj.AddComponent((typeof(Explosion))); //where newscriptname is the name of the new component that you want to add.
-
-
-        newHolderCube.transform.parent = Holder.transform;//insert the object inside of the cube
-        loadedObj.transform.parent = newHolderCube.transform;//insert the object inside of the cube
-
-        loadedObj.transform.position = new Vector3(0f, 0f, 0f);
-        loadedObj.transform.position = new Vector3(0f, 0f, 0f);
-        newHolderCube.transform.localScale = new Vector3(1.00f, 1.00f, 1.00f);
-        loadedObj.transform.localScale = new Vector3(0.02f, 0.02f, 0.02f);
-
-
-        addLoadObjectToDropdownMenu(loadedObj.name);
-
-
-
+    void addOnClickEventToExplodeButton(GameObject loadedObj)
+    {
         //explosionButton = GameObject.Find("Button").GetComponent<Button>();
         //var explosionInstance = new Explosion();
         ////Method method = explosionInstance.ToggleExplodedView();
@@ -125,7 +97,16 @@ public class Browser : MonoBehaviour
         //UnityEventTools.AddObjectPersistentListener<GameObject>(explosionButton.onClick, callback, loadedObj);
         ////explosionButton.GetComponent<Button>().onClick.AddListener(() => SomeFunction(SomeParameter));
         //UnityEventTools.AddPersistentListener(explosionButton.onClick, new UnityAction(Explosion.ToggleExplodedView()));
+    }
 
+    void adjustObjectHierachy(GameObject Holder, GameObject newHolderCube, GameObject loadedObj)
+    {
+        newHolderCube.transform.parent = Holder.transform;//insert the object inside of the cube
+        loadedObj.transform.parent = newHolderCube.transform;//insert the object inside of the cube
+
+        loadedObj.transform.position = new Vector3(0f, 0f, 0f);
+        loadedObj.transform.position = new Vector3(0f, 0f, 0f);
+        loadedObj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
 
 
     }
@@ -155,19 +136,6 @@ public class Browser : MonoBehaviour
 
             addObjectToScene(finalPath);
         }
-        Fade();
-    }
-
-    void SaveFile(string pathToFile)
-    {
-        var fileName = Path.GetFileName(pathToFile);
-        message = "You're saving file: " + fileName;
-        Fade();
-    }
-
-    void OpenFolder(string pathToFolder)
-    {
-        message = "You selected folder: " + pathToFolder;
         Fade();
     }
 
