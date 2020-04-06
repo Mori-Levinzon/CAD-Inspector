@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 using System;
 
-using UnityEngine.UI;
-
 
 [Serializable]
 
@@ -32,17 +30,19 @@ public class Explosion : MonoBehaviour
 
     #region Variables
 
-
+    public GameObject cube;
 
     public List<SubMeshes> childMeshRenderers;
 
-    public bool isInExplodedView = false;
+    bool isInExplodedView = false;
 
     public float explosionSpeed = 0.1f;
 
-    public bool isMoving = false;
+    bool isMoving = false;
 
-    public int m_DropdownValue;
+    public MeshRenderer mainObjMeshRenderer;
+
+    int numberOfComponents = 0;
 
     #endregion
 
@@ -53,77 +53,87 @@ public class Explosion : MonoBehaviour
     private void Awake()
 
     {
-        //get the current dropdown value
-        Dropdown m_Dropdown = GameObject.Find("Dropdown").GetComponent<Dropdown>();
-        m_DropdownValue = m_Dropdown.value;
+        checkIfNeedToUpdateComponents();
+    }
 
-        if (m_DropdownValue == 0)
+    public void checkIfNeedToUpdateComponents()
+    {
+        int currentSize = GetComponentsInChildren<MeshRenderer>().Length;
+
+        if (currentSize != numberOfComponents)
         {
-            return;
+            updateComponents();
+
         }
+    }
 
-
-        GameObject cube = GameObject.Find("Cube #" + m_DropdownValue);
-
-        GameObject objectToExplode = GameObject.Find("LoadedObj #" + m_DropdownValue);
+    public void updateComponents()
+    {
+        //cube = GameObject.Find("Cube #1");
 
         childMeshRenderers = new List<SubMeshes>();
+
+        int i = 0;
 
         foreach (var item in GetComponentsInChildren<MeshRenderer>())
 
         {
+            if (i == 0)
+            {
+                mainObjMeshRenderer = item;
+            }
+            if (i > 0)
+            {
+                SubMeshes mesh = new SubMeshes();
 
-            SubMeshes mesh = new SubMeshes();
+                mesh.meshRenderer = item;
 
-            mesh.meshRenderer = item;
+                mesh.originalLocalPosition = item.transform.localPosition;
 
-            mesh.originalLocalPosition = item.transform.localPosition;
+                mesh.originalPosition = transform.localPosition + mesh.originalLocalPosition;
 
-            mesh.originalPosition = cube.transform.localPosition + transform.localPosition + mesh.originalLocalPosition;
+                mesh.explodedPosition = item.bounds.center * 1.5f;
 
-            mesh.explodedPosition = item.bounds.center * 1.5f;
+                childMeshRenderers.Add(mesh);
+            }
 
-            childMeshRenderers.Add(mesh);
+            i++;
 
         }
 
+        numberOfComponents = i;
     }
 
 
     private void Update()
 
     {
-        //get the current dropdown value
-        Dropdown m_Dropdown = GameObject.Find("Dropdown").GetComponent<Dropdown>();
-        m_DropdownValue = m_Dropdown.value;
 
-        if (m_DropdownValue == 0)
-        {
-            return;
-        }
+        checkIfNeedToUpdateComponents();
 
-
-        GameObject cube = GameObject.Find("Cube #" + m_DropdownValue);
-
-        GameObject objectToExplode = GameObject.Find("LoadedObj #" + m_DropdownValue);
 
         int n = 0;
+        int i = 0;
 
         foreach (var item in GetComponentsInChildren<MeshRenderer>())
 
         {
+            if (i > 0)
+            {
+                childMeshRenderers[n].originalPosition = transform.localPosition + childMeshRenderers[n].originalLocalPosition;
 
-            childMeshRenderers[n].originalPosition = cube.transform.localPosition + transform.localPosition + childMeshRenderers[n].originalLocalPosition;
+                childMeshRenderers[n].tmpPosition = childMeshRenderers[n].meshRenderer.transform.position;
 
-            childMeshRenderers[n].tmpPosition = childMeshRenderers[n].meshRenderer.transform.position;
+                childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].originalPosition;
 
-            childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].originalPosition;
+                childMeshRenderers[n].explodedPosition = item.bounds.center * 1.5f;
 
-            childMeshRenderers[n].explodedPosition = item.bounds.center * 1.5f;
+                childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].tmpPosition;
 
-            childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].tmpPosition;
+                n++;
+            }
 
-            n++;
+            i++;
 
         }
 
@@ -192,20 +202,6 @@ public class Explosion : MonoBehaviour
     public void ToggleExplodedView()
 
     {
-
-        //get the current dropdown value
-        Dropdown m_Dropdown = GameObject.Find("Dropdown").GetComponent<Dropdown>();
-        m_DropdownValue = m_Dropdown.value;
-
-        if (m_DropdownValue == 0)
-        {
-            return;
-        }
-
-        GameObject cube = GameObject.Find("Cube #" + m_DropdownValue);
-
-        GameObject objectToExplode = GameObject.Find("LoadedObj #" + m_DropdownValue);
-
 
         if (isInExplodedView)
 

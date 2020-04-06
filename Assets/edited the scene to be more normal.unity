@@ -1642,7 +1642,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 590049570}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1621361202}
+        m_TargetAssemblyTypeName: Explosion, Assembly-CSharp
+        m_MethodName: ToggleExplodedView
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &590049570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2251,23 +2263,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1520e7b9332017459480a3b27334d46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &902719941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902719939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ffd05f983621e459dd6bc2e562b3bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  childMeshRenderers: []
-  isInExplodedView: 0
-  explosionSpeed: 0.1
-  isMoving: 0
-  m_DropdownValue: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -2356,15 +2351,15 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1146619398}
+    m_TransformParent: {fileID: 1621361193}
     m_Modifications:
     - target: {fileID: -4216859302048453862, guid: 7638f98f2d99ffa46a125a37d2a2295a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7638f98f2d99ffa46a125a37d2a2295a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.96
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7638f98f2d99ffa46a125a37d2a2295a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2372,7 +2367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7638f98f2d99ffa46a125a37d2a2295a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 7638f98f2d99ffa46a125a37d2a2295a, type: 3}
       propertyPath: m_LocalRotation.y
@@ -2417,6 +2412,10 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 7638f98f2d99ffa46a125a37d2a2295a, type: 3}
       propertyPath: m_Name
       value: RF_Crossbow_01
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 7638f98f2d99ffa46a125a37d2a2295a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7638f98f2d99ffa46a125a37d2a2295a, type: 3}
@@ -2565,6 +2564,7 @@ GameObject:
   - component: {fileID: 1146619408}
   - component: {fileID: 1146619407}
   - component: {fileID: 1146619404}
+  - component: {fileID: 1146619405}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2582,8 +2582,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1015026379}
+  m_Children: []
   m_Father: {fileID: 338296387}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2690,6 +2689,22 @@ MonoBehaviour:
   initialScale: {x: 0, y: 0, z: 0}
   initialAngle: 0
   rotSpeed: 1
+--- !u!114 &1146619405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146619397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ffd05f983621e459dd6bc2e562b3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube: {fileID: 0}
+  childMeshRenderers: []
+  explosionSpeed: 0.1
+  mainObjMeshRenderer: {fileID: 0}
 --- !u!114 &1146619407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3284,6 +3299,7 @@ GameObject:
   - component: {fileID: 1621361196}
   - component: {fileID: 1621361195}
   - component: {fileID: 1621361194}
+  - component: {fileID: 1621361202}
   m_Layer: 0
   m_Name: Cube #1
   m_TagString: Untagged
@@ -3301,7 +3317,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1015026379}
   m_Father: {fileID: 338296387}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3432,6 +3449,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621361192}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1621361202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621361192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ffd05f983621e459dd6bc2e562b3bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cube: {fileID: 1621361192}
+  childMeshRenderers: []
+  explosionSpeed: 0.1
+  mainObjMeshRenderer: {fileID: 0}
 --- !u!1 &1668621706
 GameObject:
   m_ObjectHideFlags: 0
@@ -3783,8 +3816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ffd05f983621e459dd6bc2e562b3bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cube: {fileID: 0}
   childMeshRenderers: []
-  isInExplodedView: 0
   explosionSpeed: 0.1
-  isMoving: 0
-  m_DropdownValue: 0
+  mainObjMeshRenderer: {fileID: 0}

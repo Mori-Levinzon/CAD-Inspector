@@ -71,11 +71,9 @@ public class Browser : MonoBehaviour
     {
         if (copyNumber!= 1)
         {
-            //containerCube = GameObject.CreatePrimitive(PrimitiveType.Cube); //create a new identical cube with the same features
             containerCube = GameObject.Instantiate(containerCube);
             containerCube.name = "Cube #" + copyNumber;//change  name of the cube to his serialized name
         }
-        //newHolderCube.AddComponent<MeshFilter>(PrimitiveType.Cube);
 
         loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
         loadedObj.name = "LoadedObj #" + (copyNumber);
@@ -93,16 +91,15 @@ public class Browser : MonoBehaviour
 
     void addOnClickEventToExplodeButton(ref GameObject loadedObj)
     {
-        //explosionButton = GameObject.Find("Button").GetComponent<Button>();
         //var explosionInstance = new Explosion();
         ////Method method = explosionInstance.ToggleExplodedView();
         ////explosionButton.onClick += method;
         //UnityEventTools.AddPersistentListener(explosionButton.onClick, new UnityAction("ToggleExplodedView"));
 
-        ////explosionbutton.onclick.AddListener(Explosion.ToggleExplodedView());
-        //UnityAction<GameObject> callback = new UnityAction<GameObject>(Explosion.ToggleExplodedView());
+        //explosionButton.onClick.AddListener(explosion.ToggleExplodedView());
+        //UnityAction<GameObject> callback = new UnityAction<Explosion>(ToggleExplodedView);
         //UnityEventTools.AddObjectPersistentListener<GameObject>(explosionButton.onClick, callback, loadedObj);
-        ////explosionButton.GetComponent<Button>().onClick.AddListener(() => SomeFunction(SomeParameter));
+        //explosionButton.GetComponent<Button>().onClick.AddListener(() => SomeFunction(SomeParameter));
         //UnityEventTools.AddPersistentListener(explosionButton.onClick, new UnityAction(Explosion.ToggleExplodedView()));
     }
 
