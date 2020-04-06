@@ -16,8 +16,14 @@ public class Browser : MonoBehaviour
     static int copyNumber = 1;
 
     public Button explosionButton;
-    public Explosion explosion;
 
+    Explosion explosion;
+
+    public GameObject MidAirPositioner;
+
+    public GameObject containerCube;
+
+    GameObject loadedObj;
 
 
     public void OpenOnClick()
@@ -42,38 +48,39 @@ public class Browser : MonoBehaviour
 
         message = "loading " + finalPath;
 
-        addObjectToScene(finalPath);
+        addObjectToScene(ref  finalPath);
         Fade();
     }
 
-    void addObjectToScene(string objectPath)
+    void addObjectToScene(ref string objectPath)
     {
         //load
-        GameObject OriginalCube=null, Holder = null, newHolderCube = null, loadedObj = null;
-
-        initializeObjects(OriginalCube, Holder, newHolderCube, loadedObj, objectPath);
+        initializeObjects(ref containerCube, ref loadedObj, ref objectPath);
 
         var explosionScriptPropreties = loadedObj.AddComponent((typeof(Explosion))); //where newscriptname is the name of the new component that you want to add.
 
-        adjustObjectHierachy(Holder, newHolderCube, loadedObj);
+        adjustObjectHierachy(ref containerCube, ref loadedObj);
 
         addLoadObjectToDropdownMenu(loadedObj.name);
 
-        addOnClickEventToExplodeButton(loadedObj);
+        addOnClickEventToExplodeButton(ref loadedObj);
 
     }
 
-    void initializeObjects(GameObject OriginalCube, GameObject Holder, GameObject newHolderCube, GameObject loadedObj,string objectPath)
+    void initializeObjects(ref GameObject containerCube, ref GameObject loadedObj, ref string objectPath)
     {
-        OriginalCube = GameObject.Find("Template");
-        Holder = GameObject.Find("Holder");
-        newHolderCube = GameObject.Instantiate(OriginalCube); //create a new identical cube with the same features
-        newHolderCube.name = "Cube #" + copyNumber++;//change  name of the cube to his serialized name
+        if (copyNumber!= 1)
+        {
+            //containerCube = GameObject.CreatePrimitive(PrimitiveType.Cube); //create a new identical cube with the same features
+            containerCube = GameObject.Instantiate(containerCube);
+            containerCube.name = "Cube #" + copyNumber;//change  name of the cube to his serialized name
+        }
+        //newHolderCube.AddComponent<MeshFilter>(PrimitiveType.Cube);
 
         loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
+        loadedObj.name = "LoadedObj #" + (copyNumber);
 
-        loadedObj.name = "LoadedObj #" + (copyNumber - 1);
-        GameObject CheckIfExist = GameObject.Find("LoadedObj #" + (copyNumber - 1));
+        GameObject CheckIfExist = GameObject.Find("LoadedObj #" + (copyNumber++));
         if (CheckIfExist == null)
         {
             message = "Empty\n";
@@ -84,7 +91,7 @@ public class Browser : MonoBehaviour
         }
     }
 
-    void addOnClickEventToExplodeButton(GameObject loadedObj)
+    void addOnClickEventToExplodeButton(ref GameObject loadedObj)
     {
         //explosionButton = GameObject.Find("Button").GetComponent<Button>();
         //var explosionInstance = new Explosion();
@@ -99,14 +106,15 @@ public class Browser : MonoBehaviour
         //UnityEventTools.AddPersistentListener(explosionButton.onClick, new UnityAction(Explosion.ToggleExplodedView()));
     }
 
-    void adjustObjectHierachy(GameObject Holder, GameObject newHolderCube, GameObject loadedObj)
+    void adjustObjectHierachy(ref GameObject newHolderCube, ref GameObject loadedObj)
     {
-        newHolderCube.transform.parent = Holder.transform;//insert the object inside of the cube
+        newHolderCube.transform.parent = MidAirPositioner.transform;//insert the object inside of the cube
         loadedObj.transform.parent = newHolderCube.transform;//insert the object inside of the cube
 
-        loadedObj.transform.position = new Vector3(0f, 0f, 0f);
-        loadedObj.transform.position = new Vector3(0f, 0f, 0f);
-        loadedObj.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+        //loadedObj.transform.position = new Vector3(0f, 0f, 0f);
+        loadedObj.transform.localPosition = new Vector3(0f, 0f, 0f);
+        //newHolderCube.transform.localScale = new Vector3(1f, 1f, 1f);
+        loadedObj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
 
 
     }
@@ -134,7 +142,7 @@ public class Browser : MonoBehaviour
 
             message += "loading " + finalPath;
 
-            addObjectToScene(finalPath);
+            addObjectToScene(ref finalPath);
         }
         Fade();
     }

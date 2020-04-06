@@ -32,9 +32,7 @@ public class Explosion : MonoBehaviour
 
     #region Variables
 
-    public GameObject cube;
 
-    public GameObject objectToExplode;
 
     public List<SubMeshes> childMeshRenderers;
 
@@ -64,13 +62,14 @@ public class Explosion : MonoBehaviour
             return;
         }
 
-        cube = GameObject.Find("Cube #" + m_DropdownValue);
 
-        objectToExplode = GameObject.Find("LoadedObj #" + m_DropdownValue);
+        GameObject cube = GameObject.Find("Cube #" + m_DropdownValue);
+
+        GameObject objectToExplode = GameObject.Find("LoadedObj #" + m_DropdownValue);
 
         childMeshRenderers = new List<SubMeshes>();
 
-        foreach (var item in objectToExplode.GetComponentsInChildren<MeshRenderer>())
+        foreach (var item in GetComponentsInChildren<MeshRenderer>())
 
         {
 
@@ -94,10 +93,23 @@ public class Explosion : MonoBehaviour
     private void Update()
 
     {
+        //get the current dropdown value
+        Dropdown m_Dropdown = GameObject.Find("Dropdown").GetComponent<Dropdown>();
+        m_DropdownValue = m_Dropdown.value;
+
+        if (m_DropdownValue == 0)
+        {
+            return;
+        }
+
+
+        GameObject cube = GameObject.Find("Cube #" + m_DropdownValue);
+
+        GameObject objectToExplode = GameObject.Find("LoadedObj #" + m_DropdownValue);
 
         int n = 0;
 
-        foreach (var item in objectToExplode.GetComponentsInChildren<MeshRenderer>())
+        foreach (var item in GetComponentsInChildren<MeshRenderer>())
 
         {
 
@@ -190,7 +202,9 @@ public class Explosion : MonoBehaviour
             return;
         }
 
-        cube = GameObject.Find("Cube #" + m_DropdownValue);
+        GameObject cube = GameObject.Find("Cube #" + m_DropdownValue);
+
+        GameObject objectToExplode = GameObject.Find("LoadedObj #" + m_DropdownValue);
 
 
         if (isInExplodedView)
