@@ -14,7 +14,7 @@ public class DragObject1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        enableToggle = GameObject.Find("Toggle").GetComponent<Toggle>(); // when on -> disable
+        enableToggle = GameObject.Find("Toggle").GetComponent<Toggle>(); // when on -> enable
     }
 
     void OnMouseDown()
@@ -35,7 +35,7 @@ public class DragObject1 : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (!enableToggle.isOn)
+        if (enableToggle.isOn)
         {
             Vector3 curPos =
          new Vector3(Input.mousePosition.x - posX,

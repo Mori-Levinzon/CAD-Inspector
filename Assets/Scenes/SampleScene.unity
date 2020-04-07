@@ -817,7 +817,7 @@ RectTransform:
   m_GameObject: {fileID: 590049567}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2055355, y: 1.2055355, z: 1.2055355}
   m_Children:
   - {fileID: 1189990104}
   m_Father: {fileID: 39146559}
@@ -825,8 +825,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -435, y: 222}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -426.6, y: 196.4}
+  m_SizeDelta: {x: 161.75, y: 31.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &590049569
 MonoBehaviour:
@@ -1036,7 +1036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_OnCullStateChanged:
@@ -1046,7 +1046,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 0
@@ -1305,7 +1305,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   childMeshRenderers: []
   explosionSpeed: 0.1
-  isMoving: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,6 +1513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a63cd48dce64fb49b9d07760d41f59c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0.3
 --- !u!114 &1146619400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,8 +1660,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -0.000015258789, y: -0.000002861023}
+  m_SizeDelta: {x: -35.4, y: -5.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1189990105
 MonoBehaviour:
@@ -1686,7 +1686,7 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
     m_Alignment: 4
@@ -1871,8 +1871,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -392, y: 149}
-  m_SizeDelta: {x: 136.4, y: 21.1}
+  m_AnchoredPosition: {x: -400.35, y: 155.55}
+  m_SizeDelta: {x: 135.61, y: 21.49}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1688865456
 MonoBehaviour:

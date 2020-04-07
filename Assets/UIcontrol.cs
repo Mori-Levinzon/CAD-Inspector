@@ -5,26 +5,52 @@ using UnityEngine.UI;
 
 public class UIcontrol : MonoBehaviour
 {
+    public GameObject crossCanvas;
+    public GameObject crossQuad;
+    public GameObject explodeButton;
+    public GameObject movementMode;
 
     //public Text toggleText;
+
+    void Awake()
+    {
+        crossCanvas.SetActive(false);
+        crossQuad.SetActive(false);
+    }
 
     public void ToggleChanged(bool newValue)
     {
         if (newValue)
         {
-            GameObject.Find("Label").GetComponent<Text>().text = "Rotation Change";
+            GameObject.Find("Label").GetComponent<Text>().text = "Position Change";
         }
         else
         {
-            GameObject.Find("Label").GetComponent<Text>().text = "Position Change";
+            GameObject.Find("Label").GetComponent<Text>().text = "Rotation Change";
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void CrossToggleChanged(bool newValue)
     {
-        
+        if (newValue)
+        {
+            //GameObject.Find("CrossToggleLabel").GetComponent<Text>().text = "Cancel Cross";
+            movementMode.SetActive(false);
+            explodeButton.SetActive(false);
+            crossCanvas.SetActive(true);
+            crossQuad.SetActive(true);
+        }
+        else
+        {
+            //GameObject.Find("CrossToggleLabel").GetComponent<Text>().text = "Cross Cut";
+            movementMode.SetActive(true);
+            explodeButton.SetActive(true);
+            crossCanvas.SetActive(false);
+            crossQuad.SetActive(false);
+        }
     }
+
+    
 
     // Update is called once per frame
     void Update()
