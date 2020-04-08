@@ -30,7 +30,6 @@ public class Explosion : MonoBehaviour
 
     #region Variables
 
-    public GameObject cube;
 
     public List<SubMeshes> childMeshRenderers;
 
@@ -42,7 +41,7 @@ public class Explosion : MonoBehaviour
 
     public MeshRenderer mainObjMeshRenderer;
 
-    int numberOfComponents = 0;
+    int numberOfComponents = -1;
 
     #endregion
 
@@ -69,7 +68,6 @@ public class Explosion : MonoBehaviour
 
     public void updateComponents()
     {
-        //cube = GameObject.Find("Cube #1");
 
         childMeshRenderers = new List<SubMeshes>();
 

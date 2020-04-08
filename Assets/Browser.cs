@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using static Explosion;
-
+using UnityEngine.Animations;
 
 public class Browser : MonoBehaviour
 {
@@ -25,8 +25,26 @@ public class Browser : MonoBehaviour
 
     GameObject loadedObj;
 
+    public void LoadOrRemovebuttonPressed()
+    {
+        if (GameObject.Find("Load Text").GetComponent<Text>().text == "Load")
+        {
+            openBrowserToLoad();
+        }
+        else
+        {
+            destroyLoadedObject();
+        }
+    }
 
-    public void OpenOnClick()
+    public void destroyLoadedObject()
+    {
+        GameObject objectToDelete = GameObject.Find("LoadedObj #1");
+        Destroy(objectToDelete);
+        changeButtonTextFromLoadToRemoveAndWiseversa();
+    }
+
+    public void openBrowserToLoad()
     {
         if (UniFileBrowser.use.allowMultiSelect)
         {
@@ -55,19 +73,20 @@ public class Browser : MonoBehaviour
     void addObjectToScene(ref string objectPath)
     {
         //load
-        initializeObjects(ref containerCube, ref loadedObj, ref objectPath);
+        initializeObjects(ref objectPath);
 
-        var explosionScriptPropreties = loadedObj.AddComponent((typeof(Explosion))); //where newscriptname is the name of the new component that you want to add.
+        adjustObjectHierachy();
 
-        adjustObjectHierachy(ref containerCube, ref loadedObj);
+        ScaleLoadedObject();
 
-        addLoadObjectToDropdownMenu(loadedObj.name);
 
-        addOnClickEventToExplodeButton(ref loadedObj);
+        //addOnClickEventToExplodeButton();
+
+        changeButtonTextFromLoadToRemoveAndWiseversa();
 
     }
 
-    void initializeObjects(ref GameObject containerCube, ref GameObject loadedObj, ref string objectPath)
+    void initializeObjects(ref string objectPath)
     {
         if (copyNumber!= 1)
         {
@@ -89,32 +108,54 @@ public class Browser : MonoBehaviour
         }
     }
 
-    void addOnClickEventToExplodeButton(ref GameObject loadedObj)
+    void changeButtonTextFromLoadToRemoveAndWiseversa()
     {
-        //var explosionInstance = new Explosion();
-        ////Method method = explosionInstance.ToggleExplodedView();
-        ////explosionButton.onClick += method;
-        //UnityEventTools.AddPersistentListener(explosionButton.onClick, new UnityAction("ToggleExplodedView"));
-
-        //explosionButton.onClick.AddListener(explosion.ToggleExplodedView());
-        //UnityAction<GameObject> callback = new UnityAction<Explosion>(ToggleExplodedView);
-        //UnityEventTools.AddObjectPersistentListener<GameObject>(explosionButton.onClick, callback, loadedObj);
-        //explosionButton.GetComponent<Button>().onClick.AddListener(() => SomeFunction(SomeParameter));
-        //UnityEventTools.AddPersistentListener(explosionButton.onClick, new UnityAction(Explosion.ToggleExplodedView()));
+        if (GameObject.Find("Load Text").GetComponent<Text>().text == "Load")
+        {
+            GameObject.Find("Load Text").GetComponent<Text>().text = "Remove";
+        }
+        else
+        {
+            GameObject.Find("Load Text").GetComponent<Text>().text = "Load";
+        }
     }
 
-    void adjustObjectHierachy(ref GameObject newHolderCube, ref GameObject loadedObj)
+    void adjustObjectHierachy()
     {
-        newHolderCube.transform.parent = MidAirPositioner.transform;//insert the object inside of the cube
-        loadedObj.transform.parent = newHolderCube.transform;//insert the object inside of the cube
+        containerCube.transform.parent = MidAirPositioner.transform;//insert the object inside of the cube
+        loadedObj.transform.parent = containerCube.transform;//insert the object inside of the cube
+    }
 
-        //loadedObj.transform.position = new Vector3(0f, 0f, 0f);
+    void ScaleLoadedObject()
+    {
+
+        loadedObj.transform.SetParent(containerCube.transform, true);
         loadedObj.transform.localPosition = new Vector3(0f, 0f, 0f);
-        //newHolderCube.transform.localScale = new Vector3(1f, 1f, 1f);
+        containerCube.transform.position = new Vector3(0f, 0f, 5f);
         loadedObj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
 
+        float cubeRadius = 0.04f;
+        float objectRadius = 1f;
+
+        Collider newHolderCube_Collider = containerCube.GetComponent<Collider>();
+        Vector3 newHolderCubeSizes = newHolderCube_Collider.bounds.size;
+        cubeRadius = Vector3.Distance(newHolderCube_Collider.bounds.max, newHolderCube_Collider.bounds.center);
+
+        Collider loadedObje_Collider = loadedObj.GetComponent<Collider>();
+        Vector3 loadedObjSizes = loadedObje_Collider.bounds.size;
+        objectRadius = Vector3.Distance(loadedObje_Collider.bounds.max, loadedObje_Collider.bounds.center);
+
+
+        float minimumNewSizeRatio = cubeRadius / objectRadius;
+
+        if (minimumNewSizeRatio > 1)
+        {
+            minimumNewSizeRatio = 1 / minimumNewSizeRatio;
+        }
+        loadedObj.transform.localScale = new Vector3(minimumNewSizeRatio, minimumNewSizeRatio, minimumNewSizeRatio);
 
     }
+
 
     void addLoadObjectToDropdownMenu(string objectName)
     {

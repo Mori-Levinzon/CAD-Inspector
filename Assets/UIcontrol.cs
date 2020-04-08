@@ -20,15 +20,6 @@ public class UIcontrol : MonoBehaviour
         }
     }
 
-    public void DropdownChanged()
-    {
-        //if (m_DropdownValue != 0)
-        //{
-        //    //btn.onClick.AddListener(TaskOnClick);
-
-        //}
-    }
-
     // Start is called before the first frame update
     void Start()
     {
