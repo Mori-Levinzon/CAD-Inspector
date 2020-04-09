@@ -30,7 +30,6 @@ public class Explosion : MonoBehaviour
 
     #region Variables
 
-
     public List<SubMeshes> childMeshRenderers;
 
     bool isInExplodedView = false;
