@@ -9,12 +9,17 @@ public class UIcontrol : MonoBehaviour
     public GameObject crossQuad;
     public GameObject explodeButton;
     public GameObject movementMode;
+    public Text activeCrossAxis;
+    Vector3 hideOffset = new Vector3(0, 4, 0);
+    int isInverted = 1; //1 means normal, -1 means inverted
 
     //public Text toggleText;
 
     void Awake()
     {
         crossCanvas.SetActive(false);
+        ChangeHideOffsetByAxis();
+        crossQuad.transform.position += hideOffset; //hide
         crossQuad.SetActive(false);
     }
 
@@ -39,6 +44,8 @@ public class UIcontrol : MonoBehaviour
             explodeButton.SetActive(false);
             crossCanvas.SetActive(true);
             crossQuad.SetActive(true);
+            ChangeHideOffsetByAxis();
+            crossQuad.transform.position -= hideOffset;
         }
         else
         {
@@ -46,15 +53,35 @@ public class UIcontrol : MonoBehaviour
             movementMode.SetActive(true);
             explodeButton.SetActive(true);
             crossCanvas.SetActive(false);
+            ChangeHideOffsetByAxis();
+            crossQuad.transform.position += hideOffset; //hide
             crossQuad.SetActive(false);
         }
     }
-
     
-
-    // Update is called once per frame
-    void Update()
+    void ChangeHideOffsetByAxis()
     {
-        
+        if (activeCrossAxis.text == "X")
+        {
+            hideOffset = new Vector3(0, 4, 0) * isInverted;
+        }
+        if (activeCrossAxis.text == "Y")
+        {
+            hideOffset = new Vector3(4, 0, 0) * isInverted;
+        }
+        if (activeCrossAxis.text == "Z")
+        {
+            hideOffset = new Vector3(0, 0, -4) * isInverted;
+        }
+    }
+
+    public void InvertCrossPress()
+    {
+        isInverted = -1 * isInverted;
+    }
+
+    public void ResetHideOffsetInvert()
+    {
+        isInverted = Mathf.Abs(isInverted); // reset to not inverted on X/Y/Z click
     }
 }
