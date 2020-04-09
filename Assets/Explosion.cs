@@ -67,7 +67,6 @@ public class Explosion : MonoBehaviour
 
     public void updateComponents()
     {
-        //cube = GameObject.Find("Cube #1");
 
         childMeshRenderers = new List<SubMeshes>();
 
