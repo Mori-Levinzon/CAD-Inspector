@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.UI;
 
 public class ButtonBehaviour : MonoBehaviour
 {
@@ -40,5 +41,31 @@ public class ButtonBehaviour : MonoBehaviour
         //newHolderCube.transform.parent = Holder.transform;//insert the object inside of the cube
         //loadedObj.transform.parent = newHolderCube.transform;//insert the object inside of the cube
 
+    }
+
+    void start()
+    {
+        GameObject findIfObjExist = GameObject.Find("LoadedObj #1");
+        if (findIfObjExist != null)
+        {
+            GameObject.Find("LoadButtonText").GetComponent<Text>().text = "Remove";
+        }
+        else
+        {
+            GameObject.Find("LoadButtonText").GetComponent<Text>().text = "Load";
+        }
+    }
+
+    void update()
+    {
+        GameObject findIfObjExist = GameObject.Find("LoadedObj #1");
+        if (findIfObjExist != null)
+        {
+            GameObject.Find("LoadButtonText").GetComponent<Text>().text = "Remove";
+        }
+        else
+        {
+            GameObject.Find("LoadButtonText").GetComponent<Text>().text = "Load";
+        }
     }
 }

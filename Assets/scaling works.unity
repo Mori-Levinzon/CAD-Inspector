@@ -2415,7 +2415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -927199367670048503, guid: 7638f98f2d99ffa46a125a37d2a2295a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7638f98f2d99ffa46a125a37d2a2295a, type: 3}
@@ -2480,8 +2480,9 @@ GameObject:
   - component: {fileID: 1134037799}
   - component: {fileID: 1134037801}
   - component: {fileID: 1134037800}
+  - component: {fileID: 1134037802}
   m_Layer: 5
-  m_Name: Load Text
+  m_Name: LoadButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2547,6 +2548,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134037798}
   m_CullTransparentMesh: 0
+--- !u!114 &1134037802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134037798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc8adcd1fe89fcf4b90e49b2a93108de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1146619397
 GameObject:
   m_ObjectHideFlags: 0

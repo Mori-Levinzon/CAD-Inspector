@@ -27,7 +27,8 @@ public class Browser : MonoBehaviour
 
     public void LoadOrRemovebuttonPressed()
     {
-        if (GameObject.Find("Load Text").GetComponent<Text>().text == "Load")
+        GameObject findIfObjExist = GameObject.Find("LoadedObj #1");
+        if (findIfObjExist == null )
         {
             openBrowserToLoad();
         }
@@ -41,7 +42,6 @@ public class Browser : MonoBehaviour
     {
         GameObject objectToDelete = GameObject.Find("LoadedObj #1");
         Destroy(objectToDelete);
-        changeButtonTextFromLoadToRemoveAndWiseversa();
     }
 
     public void openBrowserToLoad()
@@ -82,7 +82,6 @@ public class Browser : MonoBehaviour
 
         //addOnClickEventToExplodeButton();
 
-        changeButtonTextFromLoadToRemoveAndWiseversa();
 
     }
 
@@ -97,27 +96,6 @@ public class Browser : MonoBehaviour
         loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
         loadedObj.name = "LoadedObj #" + (copyNumber);
 
-        GameObject CheckIfExist = GameObject.Find("LoadedObj #" + (copyNumber++));
-        if (CheckIfExist == null)
-        {
-            message = "Empty\n";
-        }
-        else
-        {
-            message = "i am therefore i exist\n";
-        }
-    }
-
-    void changeButtonTextFromLoadToRemoveAndWiseversa()
-    {
-        if (GameObject.Find("Load Text").GetComponent<Text>().text == "Load")
-        {
-            GameObject.Find("Load Text").GetComponent<Text>().text = "Remove";
-        }
-        else
-        {
-            GameObject.Find("Load Text").GetComponent<Text>().text = "Load";
-        }
     }
 
     void adjustObjectHierachy()
@@ -129,7 +107,7 @@ public class Browser : MonoBehaviour
     void ScaleLoadedObject()
     {
 
-        loadedObj.transform.SetParent(containerCube.transform, true);
+        //loadedObj.transform.SetParent(containerCube.transform, true);
         loadedObj.transform.localPosition = new Vector3(0f, 0f, 0f);
         containerCube.transform.position = new Vector3(0f, 0f, 5f);
         loadedObj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
@@ -137,16 +115,23 @@ public class Browser : MonoBehaviour
         float cubeRadius = 0.04f;
         float objectRadius = 1f;
 
-        Collider newHolderCube_Collider = containerCube.GetComponent<Collider>();
-        Vector3 newHolderCubeSizes = newHolderCube_Collider.bounds.size;
-        cubeRadius = Vector3.Distance(newHolderCube_Collider.bounds.max, newHolderCube_Collider.bounds.center);
+        MeshFilter cubeMesh = loadedObj.AddComponent<MeshFilter>() as MeshFilter;
+        Vector3 cubeSize = cubeMesh.sharedMesh.bounds.max;
+        cubeRadius = Vector3.Distance(cubeMesh.sharedMesh.bounds.max, cubeMesh.sharedMesh.bounds.center);
 
-        Collider loadedObje_Collider = loadedObj.GetComponent<Collider>();
-        Vector3 loadedObjSizes = loadedObje_Collider.bounds.size;
-        objectRadius = Vector3.Distance(loadedObje_Collider.bounds.max, loadedObje_Collider.bounds.center);
+        //Collider newHolderCube_Collider = containerCube.GetComponent<Collider>();
+        //Vector3 newHolderCubeSizes = newHolderCube_Collider.bounds.size;
 
+        MeshFilter objectMesh = loadedObj.AddComponent<MeshFilter>() as MeshFilter;
+        Vector3 objectSize = objectMesh.sharedMesh.bounds.max;
+        objectRadius = Vector3.Distance(objectMesh.sharedMesh.bounds.max, objectMesh.sharedMesh.bounds.center);
+
+        //Collider loadedObje_Collider = loadedObj.GetComponent<Collider>();
+        //Vector3 loadedObjSizes = loadedObje_Collider.bounds.size;
+        //objectRadius = Vector3.Distance(loadedObje_Collider.bounds.max, loadedObje_Collider.bounds.center);
 
         float minimumNewSizeRatio = cubeRadius / objectRadius;
+
 
         if (minimumNewSizeRatio > 1)
         {
