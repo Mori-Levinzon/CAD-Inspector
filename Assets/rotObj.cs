@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class rotObj : MonoBehaviour
 {
-    public float rotSpeed = 1f;
+    public float rotSpeed = 0.7f;
     Toggle toggleObject;
 
     void Start()

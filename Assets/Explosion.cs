@@ -21,6 +21,8 @@ public class SubMeshes
 
     public Vector3 originalLocalPosition;
 
+    public Vector3 originalExpLocalPos;
+
 }
 
 
@@ -41,6 +43,10 @@ public class Explosion : MonoBehaviour
     public MeshRenderer mainObjMeshRenderer;
 
     int numberOfComponents = -1;
+
+    Vector3 tmpPosition = Vector3.zero;
+
+    public float explodeRange = 1.5f;
 
     #endregion
 
@@ -92,6 +98,18 @@ public class Explosion : MonoBehaviour
 
                 mesh.explodedPosition = item.bounds.center * 1.5f;
 
+                /*//added
+
+                mesh.tmpPosition = item.transform.position;
+
+                item.transform.position = mesh.explodedPosition;
+
+                mesh.originalExpLocalPos = item.transform.localPosition;
+
+                item.transform.position = mesh.tmpPosition;
+
+                //end */
+
                 childMeshRenderers.Add(mesh);
             }
 
@@ -124,7 +142,31 @@ public class Explosion : MonoBehaviour
 
                 childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].originalPosition;
 
+                /*/removed:
+
                 childMeshRenderers[n].explodedPosition = item.bounds.center * 1.5f;
+
+                //end */
+
+                //added:
+
+                tmpPosition = transform.position;
+
+                transform.position = Vector3.zero;
+
+                childMeshRenderers[n].explodedPosition = tmpPosition + item.bounds.center * explodeRange;
+
+                transform.position = tmpPosition;
+
+                /*
+
+                childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].explodedPosition;
+
+                childMeshRenderers[n].originalExpLocalPos = item.transform.localPosition;
+
+                childMeshRenderers[n].explodedPosition = transform.localPosition + childMeshRenderers[n].originalExpLocalPos*0.02f;
+
+                //end */
 
                 childMeshRenderers[n].meshRenderer.transform.position = childMeshRenderers[n].tmpPosition;
 
