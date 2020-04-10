@@ -13,12 +13,7 @@ public class CSharpscaling : MonoBehaviour
     public float initialAngle;
     private Vector3 upV = Vector3.up;
     public float rotSpeed = 1f;
-    public Toggle toggleObject;
-
-    void Start()
-    {
-        //toggleObject = GameObject.Find("Toggle").GetComponent<Toggle>(); 
-    }
+    
 
     public static float CalculateAngle(Vector3 from, Vector3 to)
     {
@@ -48,26 +43,21 @@ public class CSharpscaling : MonoBehaviour
                 }
                 else
                 {
-                    if (toggleObject.isOn)
-                    {
-                        float currentFingersDistance = Vector2.Distance(Input.touches[0].position, Input.touches[1].position);
-
-                        float scaleFactor = currentFingersDistance / initialFingersDistance;
-
-                        //transform.localScale = initialScale * scaleFactor;
-                        ScaleTransform.localScale = initialScale * scaleFactor;
-                    }
+                    //scale with 2 fingers
                     
+                    float currentFingersDistance = Vector2.Distance(Input.touches[0].position, Input.touches[1].position);
+
+                    float scaleFactor = currentFingersDistance / initialFingersDistance;
+
+                    ScaleTransform.localScale = initialScale * scaleFactor;
+
 
                     //------------------now rotate on z axel with 2 fingers
-                    if (!toggleObject.isOn)
-                    {
-                        float currentAngle = CalculateAngle(Input.touches[0].position - Input.touches[1].position, upV);
-                        float rotZ = (currentAngle - initialAngle) * rotSpeed * Mathf.Deg2Rad;
+                    float currentAngle = CalculateAngle(Input.touches[0].position - Input.touches[1].position, upV);
+                    float rotZ = (currentAngle - initialAngle) * rotSpeed * Mathf.Deg2Rad;
 
-                        transform.RotateAround(Camera.main.transform.forward, rotZ);
-                        initialAngle = currentAngle;
-                    }
+                    transform.RotateAround(Camera.main.transform.forward, rotZ);
+                    initialAngle = currentAngle;
                 }
             }
         }

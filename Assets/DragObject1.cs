@@ -9,13 +9,6 @@ public class DragObject1 : MonoBehaviour
     Vector3 dist;
     float posX;
     float posY;
-    Toggle enableToggle;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        enableToggle = GameObject.Find("Toggle").GetComponent<Toggle>(); // when on -> enable
-    }
 
     void OnMouseDown()
     {
@@ -35,15 +28,22 @@ public class DragObject1 : MonoBehaviour
 
     void OnMouseDrag()
     {
-        if (enableToggle.isOn)
+        var fingerCount = 0;
+        foreach (Touch touch in Input.touches)
         {
-            Vector3 curPos =
-         new Vector3(Input.mousePosition.x - posX,
-                     Input.mousePosition.y - posY, dist.z);
+            if (touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled)
+            {
+                fingerCount++;
+            }
+        }
+        if (fingerCount > 1)
+        {
+            Vector3 curPos = new Vector3(Input.mousePosition.x - posX, Input.mousePosition.y - posY, dist.z);
 
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(curPos);
             transform.position = worldPos;
         }
     }
+    
 }
 

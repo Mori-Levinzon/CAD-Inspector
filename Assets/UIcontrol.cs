@@ -8,7 +8,6 @@ public class UIcontrol : MonoBehaviour
     public GameObject crossCanvas;
     public GameObject crossQuad;
     public GameObject explodeButton;
-    public GameObject movementMode;
     public Text activeCrossAxis;
     Vector3 hideOffset = new Vector3(0, 4, 0);
     int isInverted = 1; //1 means normal, -1 means inverted
@@ -40,7 +39,6 @@ public class UIcontrol : MonoBehaviour
         if (newValue)
         {
             //GameObject.Find("CrossToggleLabel").GetComponent<Text>().text = "Cancel Cross";
-            movementMode.SetActive(false);
             explodeButton.SetActive(false);
             crossCanvas.SetActive(true);
             crossQuad.SetActive(true);
@@ -50,7 +48,6 @@ public class UIcontrol : MonoBehaviour
         else
         {
             //GameObject.Find("CrossToggleLabel").GetComponent<Text>().text = "Cross Cut";
-            movementMode.SetActive(true);
             explodeButton.SetActive(true);
             crossCanvas.SetActive(false);
             ChangeHideOffsetByAxis();
