@@ -26,5 +26,20 @@ public class ChangeShaderForCross : MonoBehaviour
         }
 
     }
+	
+	private void Update()
+
+    {
+        int i = 0;
+        foreach (var item in GetComponentsInChildren<MeshRenderer>())
+        {
+            if (i>0)
+            {
+                item.material.shader = shaderCross;
+            }
+            i++;
+        }
+
+    }
 
 }

@@ -13,11 +13,11 @@ public class CSharpscaling : MonoBehaviour
     public float initialAngle;
     private Vector3 upV = Vector3.up;
     public float rotSpeed = 1f;
-    Toggle toggleObject;
+    public Toggle toggleObject;
 
     void Start()
     {
-        toggleObject = GameObject.Find("Toggle").GetComponent<Toggle>(); 
+        //toggleObject = GameObject.Find("Toggle").GetComponent<Toggle>(); 
     }
 
     public static float CalculateAngle(Vector3 from, Vector3 to)

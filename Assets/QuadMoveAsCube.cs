@@ -9,14 +9,12 @@ public class QuadMoveAsCube : MonoBehaviour
     Vector3 localPos = Vector3.zero;
     Vector3 originalPos = Vector3.zero;
     Vector3 prevCubePos = Vector3.zero;
+    Vector3 prevCubeScale = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
-        //originalPos = transform.position;
         prevCubePos = cube.transform.position;
-        //offset = cube.transform.position - this.transform.position;
-        //offset = transform.localPosition - cube.transform.localPosition; // local position realtive to the cube;
-        //offset = transform.localPosition;
+        prevCubeScale = cube.transform.localScale;
     }
     void Update()
     {
@@ -24,6 +22,11 @@ public class QuadMoveAsCube : MonoBehaviour
         {
             transform.position = transform.position + cube.transform.position - prevCubePos;
             prevCubePos = cube.transform.position;
+        }
+        if (cube.transform.localScale != prevCubeScale)
+        {
+            transform.localScale = transform.localScale * (cube.transform.localScale.x / prevCubeScale.x); // im counting on the fact that all axis are scaling the same
+            prevCubeScale = cube.transform.localScale;
         }
         
     }

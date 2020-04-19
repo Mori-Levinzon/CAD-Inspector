@@ -42,6 +42,8 @@ public class Browser : MonoBehaviour
     {
         GameObject objectToDelete = GameObject.Find("LoadedObj #1");
         Destroy(objectToDelete);
+        containerCube.SetActive(false);
+        GameObject.Find("LoadLabel").GetComponent<Text>().text = "Load";
     }
 
     public void openBrowserToLoad()
@@ -92,14 +94,18 @@ public class Browser : MonoBehaviour
             containerCube = GameObject.Instantiate(containerCube);
             containerCube.name = "Cube #" + copyNumber;//change  name of the cube to his serialized name
         }
-
+        containerCube.SetActive(true);
         loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
         loadedObj.name = "LoadedObj #" + (copyNumber);
+
+        GameObject.Find("LoadLabel").GetComponent<Text>().text = "Remove";
 
     }
 
     void adjustObjectHierachy()
     {
+        containerCube.transform.position = new Vector3(0f, 0f, 5f);
+        containerCube.transform.Rotate(0.0f, 0.0f, 0.0f, Space.World);
         containerCube.transform.parent = MidAirPositioner.transform;//insert the object inside of the cube
         loadedObj.transform.parent = containerCube.transform;//insert the object inside of the cube
     }
@@ -110,6 +116,8 @@ public class Browser : MonoBehaviour
         //loadedObj.transform.SetParent(containerCube.transform, true);
         loadedObj.transform.localPosition = new Vector3(0f, 0f, 0f);
         containerCube.transform.position = new Vector3(0f, 0f, 5f);
+        containerCube.transform.Rotate(0.0f, 0.0f, 0.0f, Space.World);
+
         loadedObj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
 
         float cubeRadius = 0.04f;
