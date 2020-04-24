@@ -15,6 +15,7 @@ public class UIcontrol : MonoBehaviour
 
     //public Text toggleText;
 
+    public GameObject dropdownGameObject;
     void Awake()
     {
         crossCanvas.SetActive(false);
@@ -83,5 +84,40 @@ public class UIcontrol : MonoBehaviour
     public void ResetHideOffsetInvert()
     {
         isInverted = Mathf.Abs(isInverted); // reset to not inverted on X/Y/Z click
+    }
+
+    public void onDropdownValueChanged()
+    {
+        Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
+        int selectedComponent = m_Dropdown.value;
+        GameObject loadedObj = GameObject.Find("LoadedObj #1");
+        Renderer[] lChildRenderers = loadedObj.GetComponentsInChildren<Renderer>();
+        if (selectedComponent == 0)
+        {
+            ShowChildren(lChildRenderers);
+        }
+        else
+        {
+            HideChildren(lChildRenderers);
+            lChildRenderers[selectedComponent - 1].enabled = true;
+        }
+        m_Dropdown.RefreshShownValue();
+    }
+
+    void HideChildren(Renderer[] lChildRenderers)
+    {
+
+        foreach (Renderer lRenderer in lChildRenderers)
+        {
+            lRenderer.enabled = false;
+        }
+    }
+    void ShowChildren(Renderer[] lChildRenderers)
+    {
+
+        foreach (Renderer lRenderer in lChildRenderers)
+        {
+            lRenderer.enabled = true;
+        }
     }
 }

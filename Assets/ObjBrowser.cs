@@ -9,6 +9,8 @@ using UnityEngine.Events;
 using static Explosion;
 using UnityEngine.Animations;
 using SimpleFileBrowser;
+using AsImpL;
+using UnityEngine.SocialPlatforms;
 
 public class ObjBrowser : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class ObjBrowser : MonoBehaviour
     public GameObject containerCube;
 
     GameObject loadedObj;
+
+    public GameObject dropdownGameObject;
 
     public void LoadOrRemovebuttonPressed()
     {
@@ -67,6 +71,8 @@ public class ObjBrowser : MonoBehaviour
         Destroy(objectToDelete);
         containerCube.SetActive(false);
         GameObject.Find("LoadLabel").GetComponent<Text>().text = "Load";
+
+        removeObjectsFromDropdownMenu();
     }
 
     void OpenFile(string pathToFile)
@@ -86,11 +92,12 @@ public class ObjBrowser : MonoBehaviour
         //load
         initializeObjects(ref objectPath);
 
+        addLoadObjectToDropdownMenu("LoadedObj #" + (copyNumber));
+
         adjustObjectHierachy();
 
         ScaleLoadedObject();
 
-        //addOnClickEventToExplodeButton();
 
     }
 
@@ -104,6 +111,11 @@ public class ObjBrowser : MonoBehaviour
         containerCube.SetActive(true);
         containerCube.transform.Rotate(0.0f, 0.0f, 0.0f, Space.World);
         loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
+
+        //ImportOptions importOptions = new ImportOptions();
+        //objImporter.ImportModelAsync("newObj" + (copyNumber), objectPath, null, importOptions);
+        //loadedObj = gamnewObj;
+
         loadedObj.name = "LoadedObj #" + (copyNumber);
 
         GameObject.Find("LoadLabel").GetComponent<Text>().text = "Remove";
@@ -160,11 +172,41 @@ public class ObjBrowser : MonoBehaviour
     void addLoadObjectToDropdownMenu(string objectName)
     {
         //This is the Dropdown
-        Dropdown m_Dropdown = GameObject.Find("Dropdown").GetComponent<Dropdown>();
+        //dropDownGameObject.SetActive(true);
         //Create a List of new Dropdown options
-        List<string> m_DropOptions = new List<string> { objectName };
+        Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
+
+        List<string> m_DropOptions = new List<string> ();
+
+        MeshRenderer[] lChildRenderers = loadedObj.GetComponentsInChildren<MeshRenderer>();
+        for (int i = 1; i < lChildRenderers.Length; i++)
+        {
+            if (i == 0)
+            {
+                m_DropOptions.Add("Entiree obkect");
+            }
+            else
+            {
+                m_DropOptions.Add("Particle #" + i);
+            }
+        }
         //Add the options created in the List above
         m_Dropdown.AddOptions(m_DropOptions);
+        //set the defualt value to show the whole object
+        m_Dropdown.value = 0;
+        m_Dropdown.RefreshShownValue();
+
+    }
+
+    public void removeObjectsFromDropdownMenu()
+    {
+        // reach the game object of the dropdown
+        //This is the Dropdown
+        Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
+        //Clear the old options of the Dropdown menu
+        m_Dropdown.ClearOptions();
+
+        //dropDownGameObject.SetActive(false);
     }
 
 
