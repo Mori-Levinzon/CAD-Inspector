@@ -5,22 +5,52 @@ using UnityEngine.UI;
 
 public class UIcontrol : MonoBehaviour
 {
-    public GameObject crossCanvas;
+    public GameObject crossPanel;
+    public GameObject basicPanel;
     public GameObject crossQuad;
-    public GameObject explodeButton;
-    public GameObject movementMode;
+    public GameObject exit;
+    public GameObject menuOpen;
+    public GameObject CrossToggle;
     public Text activeCrossAxis;
     Vector3 hideOffset = new Vector3(0, 4, 0);
     int isInverted = 1; //1 means normal, -1 means inverted
 
     //public Text toggleText;
 
+    public GameObject dropdownGameObject;
     void Awake()
     {
-        crossCanvas.SetActive(false);
+        crossPanel.SetActive(false);
         ChangeHideOffsetByAxis();
         crossQuad.transform.position += hideOffset; //hide
         crossQuad.SetActive(false);
+        basicPanel.SetActive(false);
+        exit.SetActive(false);
+        CrossToggle.SetActive(false);
+    }
+
+    public void openMenuPressed()
+    {
+        crossPanel.SetActive(false);
+        ChangeHideOffsetByAxis();
+        crossQuad.transform.position += hideOffset; //hide
+        crossQuad.SetActive(false);
+        basicPanel.SetActive(true);
+        menuOpen.SetActive(false);
+        exit.SetActive(true);
+        CrossToggle.SetActive(true);
+    }
+
+    public void exitPressed()
+    {
+        crossPanel.SetActive(false);
+        ChangeHideOffsetByAxis();
+        crossQuad.transform.position += hideOffset; //hide
+        crossQuad.SetActive(false);
+        basicPanel.SetActive(false);
+        menuOpen.SetActive(true);
+        exit.SetActive(false);
+        CrossToggle.SetActive(false);
     }
 
     public void ToggleChanged(bool newValue)
@@ -40,9 +70,8 @@ public class UIcontrol : MonoBehaviour
         if (newValue)
         {
             //GameObject.Find("CrossToggleLabel").GetComponent<Text>().text = "Cancel Cross";
-            movementMode.SetActive(false);
-            explodeButton.SetActive(false);
-            crossCanvas.SetActive(true);
+            basicPanel.SetActive(false);
+            crossPanel.SetActive(true);
             crossQuad.SetActive(true);
             ChangeHideOffsetByAxis();
             crossQuad.transform.position -= hideOffset;
@@ -50,9 +79,8 @@ public class UIcontrol : MonoBehaviour
         else
         {
             //GameObject.Find("CrossToggleLabel").GetComponent<Text>().text = "Cross Cut";
-            movementMode.SetActive(true);
-            explodeButton.SetActive(true);
-            crossCanvas.SetActive(false);
+            basicPanel.SetActive(true);
+            crossPanel.SetActive(false);
             ChangeHideOffsetByAxis();
             crossQuad.transform.position += hideOffset; //hide
             crossQuad.SetActive(false);
@@ -83,5 +111,40 @@ public class UIcontrol : MonoBehaviour
     public void ResetHideOffsetInvert()
     {
         isInverted = Mathf.Abs(isInverted); // reset to not inverted on X/Y/Z click
+    }
+
+    public void onDropdownValueChanged()
+    {
+        Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
+        int selectedComponent = m_Dropdown.value;
+        GameObject loadedObj = GameObject.Find("LoadedObj #1");
+        Renderer[] lChildRenderers = loadedObj.GetComponentsInChildren<Renderer>();
+        if (selectedComponent == 0)
+        {
+            ShowChildren(lChildRenderers);
+        }
+        else
+        {
+            HideChildren(lChildRenderers);
+            lChildRenderers[selectedComponent - 1].enabled = true;
+        }
+        m_Dropdown.RefreshShownValue();
+    }
+
+    void HideChildren(Renderer[] lChildRenderers)
+    {
+
+        foreach (Renderer lRenderer in lChildRenderers)
+        {
+            lRenderer.enabled = false;
+        }
+    }
+    void ShowChildren(Renderer[] lChildRenderers)
+    {
+
+        foreach (Renderer lRenderer in lChildRenderers)
+        {
+            lRenderer.enabled = true;
+        }
     }
 }

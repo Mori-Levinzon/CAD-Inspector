@@ -10,14 +10,32 @@ public class QuadMoveAsCube : MonoBehaviour
     Vector3 originalPos = Vector3.zero;
     Vector3 prevCubePos = Vector3.zero;
     Vector3 prevCubeScale = Vector3.zero;
+    static bool isLoadedObject = true;
     // Start is called before the first frame update
     void Start()
     {
-        prevCubePos = cube.transform.position;
-        prevCubeScale = cube.transform.localScale;
+        setPosAndScale();
+    }
+
+    void setPosAndScale()
+    {
+        if (isLoadedObject)
+        {
+            prevCubePos = cube.transform.position;
+            prevCubeScale = cube.transform.localScale;
+            isLoadedObject = false;
+        }
     }
     void Update()
     {
+        if (GameObject.Find("LoadedObj #1") != null)
+        {
+            setPosAndScale();
+        }
+        else
+        {
+            isLoadedObject = true;
+        }
         if (cube.transform.position != prevCubePos)// if cube moved
         {
             transform.position = transform.position + cube.transform.position - prevCubePos;
