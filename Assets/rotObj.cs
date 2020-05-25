@@ -4,17 +4,19 @@ using UnityEngine.UI;
 
 public class rotObj : MonoBehaviour
 {
-    public float rotSpeed = 0.7f;
-    Toggle toggleObject;
-
-    void Start()
-    {
-        toggleObject = GameObject.Find("Toggle").GetComponent<Toggle>(); // when on -> disable
-    }
+    public float rotSpeed = 0.5f;
 
     void OnMouseDrag()
     {
-        if (!toggleObject.isOn)
+        var fingerCount = 0;
+        foreach (Touch touch in Input.touches)
+        {
+            if (touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled)
+            {
+                fingerCount++;
+            }
+        }
+        if (fingerCount == 1)
         {
             float rotX = Input.GetAxis("Mouse X") * rotSpeed * Mathf.Deg2Rad;
             float rotY = Input.GetAxis("Mouse Y") * rotSpeed * Mathf.Deg2Rad;

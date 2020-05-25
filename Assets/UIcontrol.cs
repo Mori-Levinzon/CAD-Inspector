@@ -27,6 +27,37 @@ public class UIcontrol : MonoBehaviour
         basicPanel.SetActive(false);
         exit.SetActive(false);
         CrossToggle.SetActive(false);
+        addLoadObjectToDropdownMenu("LoadedObj #1");
+    }
+
+    void addLoadObjectToDropdownMenu(string objectName)
+    {
+        //This is the Dropdown
+        //dropDownGameObject.SetActive(true);
+        //Create a List of new Dropdown options
+        Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
+
+        List<string> m_DropOptions = new List<string>();
+
+        GameObject loadedObj = GameObject.Find("LoadedObj #1");
+        MeshRenderer[] lChildRenderers = loadedObj.GetComponentsInChildren<MeshRenderer>();
+        for (int i = 1; i < lChildRenderers.Length; i++)
+        {
+            if (i == 0)
+            {
+                m_DropOptions.Add("Entire object");
+            }
+            else
+            {
+                m_DropOptions.Add("Particle #" + i);
+            }
+        }
+        //Add the options created in the List above
+        m_Dropdown.AddOptions(m_DropOptions);
+        //set the defualt value to show the whole object
+        m_Dropdown.value = 0;
+        m_Dropdown.RefreshShownValue();
+
     }
 
     public void openMenuPressed()

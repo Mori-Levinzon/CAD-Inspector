@@ -183,7 +183,7 @@ public class ObjBrowser : MonoBehaviour
         {
             if (i == 0)
             {
-                m_DropOptions.Add("Entiree obkect");
+                m_DropOptions.Add("Entire object");
             }
             else
             {
