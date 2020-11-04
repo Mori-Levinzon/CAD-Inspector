@@ -29,7 +29,7 @@ public class ObjBrowser : MonoBehaviour
 
     public void LoadOrRemovebuttonPressed()
     {
-        GameObject findIfObjExist = GameObject.Find("LoadedObj #1");
+        GameObject findIfObjExist = loadedObj;
         if (findIfObjExist == null)
         {
             // Set default filter that is selected when the dialog is shown (optional)
@@ -67,7 +67,7 @@ public class ObjBrowser : MonoBehaviour
 
     public void destroyLoadedObject()
     {
-        GameObject objectToDelete = GameObject.Find("LoadedObj #1");
+        GameObject objectToDelete = loadedObj;
         Destroy(objectToDelete);
         containerCube.SetActive(false);
         GameObject.Find("LoadLabel").GetComponent<Text>().text = "Load";
@@ -84,15 +84,16 @@ public class ObjBrowser : MonoBehaviour
         string finalPath = Path.Combine(path, fileName);
 
 
-        addObjectToScene(ref finalPath);
+        addObjectToScene(ref finalPath, fileName);
     }
 
-    void addObjectToScene(ref string objectPath)
+    void addObjectToScene(ref string objectPath,string fileName)
     {
         //load
-        initializeObjects(ref objectPath);
+        initializeObjects(ref objectPath, fileName);
 
-        addLoadObjectToDropdownMenu("LoadedObj #" + (copyNumber));
+        //addLoadObjectToDropdownMenu("LoadedObj #" + (copyNumber));
+        addLoadObjectToDropdownMenu(fileName);
 
         adjustObjectHierachy();
 
@@ -101,7 +102,7 @@ public class ObjBrowser : MonoBehaviour
 
     }
 
-    void initializeObjects(ref string objectPath)
+    void initializeObjects(ref string objectPath, string fileName)
     {
         if (copyNumber != 1)
         {
@@ -116,7 +117,8 @@ public class ObjBrowser : MonoBehaviour
         //objImporter.ImportModelAsync("newObj" + (copyNumber), objectPath, null, importOptions);
         //loadedObj = gamnewObj;
 
-        loadedObj.name = "LoadedObj #" + (copyNumber);
+        //loadedObj.name = "LoadedObj #" + (copyNumber);
+        loadedObj.name = fileName;
 
         GameObject.Find("LoadLabel").GetComponent<Text>().text = "Remove";
 
@@ -179,17 +181,14 @@ public class ObjBrowser : MonoBehaviour
         List<string> m_DropOptions = new List<string> ();
 
         MeshRenderer[] lChildRenderers = loadedObj.GetComponentsInChildren<MeshRenderer>();
-        for (int i = 1; i < lChildRenderers.Length; i++)
+        m_DropOptions.Add(loadedObj.name);
+        for (int i = 0; i < lChildRenderers.Length; i++)
         {
-            if (i == 0)
-            {
-                m_DropOptions.Add("Entire object");
-            }
-            else
-            {
-                m_DropOptions.Add("Particle #" + i);
-            }
+            if (lChildRenderers[i].name == "Cube #1") continue;
+            m_DropOptions.Add(lChildRenderers[i].name);
         }
+        //clear the options previusly displayed
+        m_Dropdown.ClearOptions();
         //Add the options created in the List above
         m_Dropdown.AddOptions(m_DropOptions);
         //set the defualt value to show the whole object
@@ -205,6 +204,9 @@ public class ObjBrowser : MonoBehaviour
         Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
         //Clear the old options of the Dropdown menu
         m_Dropdown.ClearOptions();
+        List<string> m_DropOptions = new List<string>();
+        m_DropOptions.Add("No object was Loaded");
+        m_Dropdown.AddOptions(m_DropOptions);
 
         //dropDownGameObject.SetActive(false);
     }

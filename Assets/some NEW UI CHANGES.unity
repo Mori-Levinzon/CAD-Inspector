@@ -245,6 +245,7 @@ MonoBehaviour:
   exit: {fileID: 534948571}
   menuOpen: {fileID: 532125357}
   CrossToggle: {fileID: 217939555}
+  containerCube: {fileID: 1022940299}
   activeCrossAxis: {fileID: 1206266573}
   dropdownGameObject: {fileID: 790288726}
 --- !u!1 &67927601
@@ -3642,9 +3643,7 @@ MonoBehaviour:
   m_ItemImage: {fileID: 0}
   m_Value: 0
   m_Options:
-    m_Options:
-    - m_Text: Select Component
-      m_Image: {fileID: 0}
+    m_Options: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -6730,7 +6729,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Select Component
+  m_Text: 
 --- !u!222 &1587779158
 CanvasRenderer:
   m_ObjectHideFlags: 0

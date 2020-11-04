@@ -11,6 +11,7 @@ public class UIcontrol : MonoBehaviour
     public GameObject exit;
     public GameObject menuOpen;
     public GameObject CrossToggle;
+    public GameObject containerCube;
     public Text activeCrossAxis;
     Vector3 hideOffset = new Vector3(0, 4, 0);
     int isInverted = 1; //1 means normal, -1 means inverted
@@ -27,10 +28,10 @@ public class UIcontrol : MonoBehaviour
         basicPanel.SetActive(false);
         exit.SetActive(false);
         CrossToggle.SetActive(false);
-        addLoadObjectToDropdownMenu("LoadedObj #1");
+        addLoadObjectToDropdownMenu();
     }
 
-    void addLoadObjectToDropdownMenu(string objectName)
+    void addLoadObjectToDropdownMenu()
     {
         //This is the Dropdown
         //dropDownGameObject.SetActive(true);
@@ -39,19 +40,23 @@ public class UIcontrol : MonoBehaviour
 
         List<string> m_DropOptions = new List<string>();
 
-        GameObject loadedObj = GameObject.Find("LoadedObj #1");
-        MeshRenderer[] lChildRenderers = loadedObj.GetComponentsInChildren<MeshRenderer>();
-        for (int i = 1; i < lChildRenderers.Length; i++)
+        //GameObject loadedObj = GameObject.Find("LoadedObj #1");
+        //MeshRenderer[] lChildRenderers = loadedObj.GetComponentsInChildren<MeshRenderer>();
+        MeshRenderer[] lChildRenderers = containerCube.GetComponentsInChildren<MeshRenderer>();
+        if (lChildRenderers.Length == 1)
         {
-            if (i == 0)
+            m_DropOptions.Add("No object was Loaded");
+        }
+        else
+        {
+            for (int i = 0; i < lChildRenderers.Length; i++)
             {
-                m_DropOptions.Add("Entire object");
-            }
-            else
-            {
-                m_DropOptions.Add("Particle #" + i);
+                if (lChildRenderers[i].name == "Cube #1") continue;
+                m_DropOptions.Add(lChildRenderers[i].name);
             }
         }
+        //Clear the old options of the Dropdown menu
+        m_Dropdown.ClearOptions();
         //Add the options created in the List above
         m_Dropdown.AddOptions(m_DropOptions);
         //set the defualt value to show the whole object
@@ -148,8 +153,8 @@ public class UIcontrol : MonoBehaviour
     {
         Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
         int selectedComponent = m_Dropdown.value;
-        GameObject loadedObj = GameObject.Find("LoadedObj #1");
-        Renderer[] lChildRenderers = loadedObj.GetComponentsInChildren<Renderer>();
+
+        Renderer[] lChildRenderers = containerCube.GetComponentsInChildren<Renderer>();
         if (selectedComponent == 0)
         {
             ShowChildren(lChildRenderers);
@@ -157,7 +162,7 @@ public class UIcontrol : MonoBehaviour
         else
         {
             HideChildren(lChildRenderers);
-            lChildRenderers[selectedComponent - 1].enabled = true;
+            lChildRenderers[selectedComponent].enabled = true;
         }
         m_Dropdown.RefreshShownValue();
     }
