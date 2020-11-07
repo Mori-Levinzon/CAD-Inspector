@@ -27,6 +27,13 @@ public class ObjBrowser : MonoBehaviour
 
     public GameObject dropdownGameObject;
 
+    public Material standardMaterial;   // The shader for non-transparent objects is supplied by this material. Also used for objects that have no MTL file.
+
+    public Material transparentMaterial;
+
+    public TextAsset myObjFile;
+
+
     public void LoadOrRemovebuttonPressed()
     {
         GameObject findIfObjExist = loadedObj;
@@ -111,20 +118,34 @@ public class ObjBrowser : MonoBehaviour
         }
         containerCube.SetActive(true);
         containerCube.transform.Rotate(0.0f, 0.0f, 0.0f, Space.World);
-        loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
+        //first option i used - a bit heavy but still promising
+        //loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
 
-        //ImportOptions importOptions = new ImportOptions();
-        //objImporter.ImportModelAsync("newObj" + (copyNumber), objectPath, null, importOptions);
-        //loadedObj = gamnewObj;
+        //second option i used - loaded simple and not more then 65k verticles and still had to be splitted to pieces
+        //GameObject[] importedObjectsArr = ObjReader.use.ConvertFile(objectPath, false, standardMaterial, transparentMaterial);
+        //loadedObj = importedObjectsArr[0];
 
-        //loadedObj.name = "LoadedObj #" + (copyNumber);
+        //the 3rd option that works on all options
+        loadedObj = ObjImporter.Import(File.ReadAllText(objectPath));
+
+        //normalize the meshes -for further inspection
+
+        //MeshFilter[] meshFilters = loadedObj.GetComponentsInChildren<MeshFilter>();
+        //for (int i = 0; i < meshFilters.Length; i++)
+        //{
+        //    Mesh mesh = meshFilters[i].sharedMesh;
+        //    mesh.RecalculateNormals();
+        //}
+
+
         loadedObj.name = fileName;
 
         GameObject.Find("LoadLabel").GetComponent<Text>().text = "Remove";
 
     }
 
-    void adjustObjectHierachy()
+
+        void adjustObjectHierachy()
     {
         containerCube.transform.position = new Vector3(0f, 0f, 5f);
         containerCube.transform.Rotate(0.0f, 0.0f, 0.0f, Space.World);
