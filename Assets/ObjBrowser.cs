@@ -76,6 +76,10 @@ public class ObjBrowser : MonoBehaviour
     {
         GameObject objectToDelete = loadedObj;
         Destroy(objectToDelete);
+        //scale, locate and rotate the cube to the starting position
+        containerCube.transform.rotation = Quaternion.identity;
+        containerCube.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        containerCube.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
         containerCube.SetActive(false);
         GameObject.Find("LoadLabel").GetComponent<Text>().text = "Load";
 
@@ -117,7 +121,10 @@ public class ObjBrowser : MonoBehaviour
             containerCube.name = "Cube #" + copyNumber;//change  name of the cube to his serialized name
         }
         containerCube.SetActive(true);
-        containerCube.transform.Rotate(0.0f, 0.0f, 0.0f, Space.World);
+        //scale, locate and rotate the cube to the starting position
+        containerCube.transform.rotation = Quaternion.identity;
+        containerCube.transform.localScale= new Vector3(1.0f,1.0f, 1.0f);
+        containerCube.transform.position = new Vector3(0.0f,0.0f,0.0f);
         //first option i used - a bit heavy but still promising
         //loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
 
@@ -148,9 +155,26 @@ public class ObjBrowser : MonoBehaviour
         void adjustObjectHierachy()
     {
         containerCube.transform.position = new Vector3(0f, 0f, 5f);
-        containerCube.transform.Rotate(0.0f, 0.0f, 0.0f, Space.World);
+
         containerCube.transform.parent = MidAirPositioner.transform;//insert the object inside of the cube
         loadedObj.transform.parent = containerCube.transform;//insert the object inside of the cube
+
+        var loadedObjColliders = loadedObj.GetComponentsInChildren<Collider>();
+
+        Bounds loadedObjCollidersBounds = loadedObjColliders[0].bounds;
+        foreach (var c in loadedObjColliders) loadedObjCollidersBounds.Encapsulate(c.bounds);
+
+        var containerCubecolliders = containerCube.GetComponentsInChildren<Collider>();
+
+        Bounds containerCubebounds = containerCubecolliders[0].bounds;
+        foreach (var c in containerCubecolliders) containerCubebounds.Encapsulate(c.bounds);
+
+        var szA = loadedObjCollidersBounds.size;
+        var szB = containerCubebounds.size;
+        var scale = new Vector3(szA.x / szB.x, szA.y / szB.y, szA.z / szB.z);
+        loadedObj.transform.localScale = scale;
+
+
     }
 
     void ScaleLoadedObject()
@@ -158,7 +182,7 @@ public class ObjBrowser : MonoBehaviour
 
         loadedObj.transform.localPosition = new Vector3(0f, 0f, 0f);
         containerCube.transform.position = new Vector3(0f, 0f, 5f);
-        containerCube.transform.Rotate(0.0f, 0.0f, 0.0f, Space.World);
+        //containerCube.transform.Rotate(0.0f, 0.0f, 0.0f, Space.World);
 
         loadedObj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
 
