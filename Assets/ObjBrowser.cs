@@ -31,9 +31,6 @@ public class ObjBrowser : MonoBehaviour
 
     public Material transparentMaterial;
 
-    public TextAsset myObjFile;
-
-
     public void LoadOrRemovebuttonPressed()
     {
         GameObject findIfObjExist = loadedObj;
@@ -109,8 +106,6 @@ public class ObjBrowser : MonoBehaviour
         adjustObjectHierachy();
 
         ScaleLoadedObject();
-
-
     }
 
     void initializeObjects(ref string objectPath, string fileName)
@@ -135,15 +130,6 @@ public class ObjBrowser : MonoBehaviour
         //the 3rd option that works on all options
         loadedObj = ObjImporter.Import(File.ReadAllText(objectPath));
 
-        //normalize the meshes -for further inspection
-
-        //MeshFilter[] meshFilters = loadedObj.GetComponentsInChildren<MeshFilter>();
-        //for (int i = 0; i < meshFilters.Length; i++)
-        //{
-        //    Mesh mesh = meshFilters[i].sharedMesh;
-        //    mesh.RecalculateNormals();
-        //}
-
 
         loadedObj.name = fileName;
 
@@ -158,60 +144,60 @@ public class ObjBrowser : MonoBehaviour
 
         containerCube.transform.parent = MidAirPositioner.transform;//insert the object inside of the cube
         loadedObj.transform.parent = containerCube.transform;//insert the object inside of the cube
-
-        var loadedObjColliders = loadedObj.GetComponentsInChildren<Collider>();
-
-        Bounds loadedObjCollidersBounds = loadedObjColliders[0].bounds;
-        foreach (var c in loadedObjColliders) loadedObjCollidersBounds.Encapsulate(c.bounds);
-
-        var containerCubecolliders = containerCube.GetComponentsInChildren<Collider>();
-
-        Bounds containerCubebounds = containerCubecolliders[0].bounds;
-        foreach (var c in containerCubecolliders) containerCubebounds.Encapsulate(c.bounds);
-
-        var szA = loadedObjCollidersBounds.size;
-        var szB = containerCubebounds.size;
-        var scale = new Vector3(szA.x / szB.x, szA.y / szB.y, szA.z / szB.z);
-        loadedObj.transform.localScale = scale;
-
-
     }
 
     void ScaleLoadedObject()
     {
 
         loadedObj.transform.localPosition = new Vector3(0f, 0f, 0f);
-        containerCube.transform.position = new Vector3(0f, 0f, 5f);
-        //containerCube.transform.Rotate(0.0f, 0.0f, 0.0f, Space.World);
+        containerCube.transform.position = new Vector3(0f, 0.00f, 0f);
 
-        loadedObj.transform.localScale = new Vector3(0.04f, 0.04f, 0.04f);
+        loadedObj.AddComponent<MeshFilter>();
+        var loadedobjcolliders = loadedObj.GetComponentsInChildren<MeshFilter>();
+        Bounds loadedobjcollidersbounds = loadedobjcolliders[0].mesh.bounds;
+        foreach (var c in loadedobjcolliders) loadedobjcollidersbounds.Encapsulate(c.mesh.bounds);
 
-        float cubeRadius = 0.04f;
-        float objectRadius = 1f;
+        Transform root = loadedObj.transform;// assigned wherever in the inspector;
 
-        MeshFilter cubeMesh = loadedObj.AddComponent<MeshFilter>() as MeshFilter;
-        Vector3 cubeSize = cubeMesh.sharedMesh.bounds.max;
-        cubeRadius = Vector3.Distance(cubeMesh.sharedMesh.bounds.max, cubeMesh.sharedMesh.bounds.center);
+        Renderer[] loadedObjrenderers = root.GetComponentsInChildren<Renderer>();
 
-        //Collider newHolderCube_Collider = containerCube.GetComponent<Collider>();
-        //Vector3 newHolderCubeSizes = newHolderCube_Collider.bounds.size;
+        Bounds loadedobjbounds = loadedObjrenderers[0].bounds;
 
-        MeshFilter objectMesh = loadedObj.AddComponent<MeshFilter>() as MeshFilter;
-        Vector3 objectSize = objectMesh.sharedMesh.bounds.max;
-        objectRadius = Vector3.Distance(objectMesh.sharedMesh.bounds.max, objectMesh.sharedMesh.bounds.center);
+        for (int i = 1; i < loadedObjrenderers.Length; ++i)
+        {
+            loadedobjbounds.Encapsulate(loadedObjrenderers[i].bounds.min);
+            loadedobjbounds.Encapsulate(loadedObjrenderers[i].bounds.max);
+        }
 
-        //Collider loadedObje_Collider = loadedObj.GetComponent<Collider>();
-        //Vector3 loadedObjSizes = loadedObje_Collider.bounds.size;
-        //objectRadius = Vector3.Distance(loadedObje_Collider.bounds.max, loadedObje_Collider.bounds.center);
+        //Debug.Log("loadedObj spans from " + loadedobjbounds.min + " to " + loadedobjbounds.max);
 
-        float minimumNewSizeRatio = cubeRadius / objectRadius;
+        Transform root2 = containerCube.transform;// assigned wherever in the inspector;
 
+        Renderer[] cuberenderers = root2.GetComponentsInChildren<Renderer>();
+
+        Bounds cubebounds = cuberenderers[0].bounds;
+
+        //Debug.Log("cube spans from " + cubebounds.min + " to " + cubebounds.max);
+
+        var sza = loadedobjbounds.size;
+        //Debug.Log("sza: " + sza);
+
+        var szb = cubebounds.size;
+        //Debug.Log("szb: " + szb);
+
+        float loadedObjMaxAxis = Mathf.Max(sza.x, Mathf.Max(sza.y, sza.z));
+        float cubeMinAxis = Mathf.Min(szb.x, Mathf.Min(szb.y, szb.z));
+
+        float minimumNewSizeRatio = cubeMinAxis / loadedObjMaxAxis;
+        //Debug.Log("minimumNewSizeRatio: " + minimumNewSizeRatio);
 
         if (minimumNewSizeRatio > 1)
         {
             minimumNewSizeRatio = 1 / minimumNewSizeRatio;
         }
-        loadedObj.transform.localScale = new Vector3(minimumNewSizeRatio, minimumNewSizeRatio, minimumNewSizeRatio);
+
+        var scale = new Vector3(minimumNewSizeRatio, minimumNewSizeRatio, minimumNewSizeRatio);
+        loadedObj.transform.localScale = scale;
 
     }
 
