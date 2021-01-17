@@ -20,7 +20,7 @@ public class ChangeShaderForCross : MonoBehaviour
         {
             if (i>0)
             {
-                item.material.shader = shaderCross;
+                //item.material.shader = shaderCross;
             }
             i++;
         }
@@ -35,7 +35,7 @@ public class ChangeShaderForCross : MonoBehaviour
         {
             if (i>0)
             {
-                item.material.shader = shaderCross;
+                //item.material.shader = shaderCross;
             }
             i++;
         }

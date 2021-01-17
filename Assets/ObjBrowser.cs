@@ -31,6 +31,9 @@ public class ObjBrowser : MonoBehaviour
 
     public Material transparentMaterial;
 
+    public Texture2D[] textures;
+
+
     public void LoadOrRemovebuttonPressed()
     {
         GameObject findIfObjExist = loadedObj;
@@ -85,14 +88,20 @@ public class ObjBrowser : MonoBehaviour
 
     void OpenFile(string pathToFile)
     {
+
+        Debug.Log("objectPath pathToFile" + pathToFile);
+
         //var fileName = Path.GetFileName(pathToFile);
-        //message = "You selected file: " + fileName;
-        string path = Application.persistentDataPath;
+        //string path = Application.persistentDataPath;
+
+
         var fileName = Path.GetFileName(pathToFile);
-        string finalPath = Path.Combine(path, fileName);
 
 
-        addObjectToScene(ref finalPath, fileName);
+        //string finalPath = Path.Combine(path, fileName);
+
+
+        addObjectToScene(ref pathToFile, fileName);
     }
 
     void addObjectToScene(ref string objectPath,string fileName)
@@ -128,7 +137,21 @@ public class ObjBrowser : MonoBehaviour
         //loadedObj = importedObjectsArr[0];
 
         //the 3rd option that works on all options
-        loadedObj = ObjImporter.Import(File.ReadAllText(objectPath));
+        //loadedObj = ObjImporter.Import(File.ReadAllText(objectPath));
+        //Debug.Log("objectPath " + objectPath);
+
+        //check if there is mtl file and if there is load it:
+        string mtlPath = objectPath.Remove(objectPath.Length - 3) + "mtl";
+        if (File.Exists(mtlPath))
+        {
+
+            loadedObj = ObjImporter.Import(File.ReadAllText(objectPath), File.ReadAllText(mtlPath),textures);
+        }
+        else
+        {
+            loadedObj = ObjImporter.Import(File.ReadAllText(objectPath));
+        }
+
 
 
         loadedObj.name = fileName;
