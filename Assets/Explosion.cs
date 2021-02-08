@@ -238,6 +238,17 @@ public class Explosion : MonoBehaviour
 
     #region CustomFunctions
 
+    public void ImageRecognized()
+    {
+        for (int i = 0; i <= transform.childCount; i++)
+            transform.GetChild(i).localPosition = new Vector3(0f, 0f, 0f);
+        isMoving = true;
+        updateComponents();
+        Update();
+        for (int i = 0; i <= transform.childCount; i++)
+            transform.GetChild(i).localPosition = new Vector3(0f, 0f, 0f);
+    }
+
 
     public void ToggleExplodedView()
 
