@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ImageTracker : DefaultTrackableEventHandler
 {
-    public GameObject cubeContainer;
+    public GameObject MidAirPositioner;
+    bool appear_once = true;
     // Start is called before the first frame update
     //void Start()
     //{
@@ -18,65 +19,79 @@ public class ImageTracker : DefaultTrackableEventHandler
     //        cubeContainer.transform.GetChild(i++).gameObject.SetActive(activeState);
     //}
 
+    void Start()
+    {
+       
+    }
+
     protected override void OnTrackingFound()
     {
-        if (mTrackableBehaviour)
+        if (appear_once) // meaning it wasnt loaded after finding picture even once
         {
-            var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);
-            var colliderComponents = mTrackableBehaviour.GetComponentsInChildren<Collider>(true);
-            var canvasComponents = mTrackableBehaviour.GetComponentsInChildren<Canvas>(true);
-
-            // Enable rendering:
-            foreach (var component in rendererComponents)
-                component.enabled = true;
-
-            // Enable colliders:
-            foreach (var component in colliderComponents)
-                component.enabled = true;
-
-            // Enable canvas':
-            foreach (var component in canvasComponents)
-                component.enabled = true;
+            appear_once = false;
+            MidAirPositioner.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
 
-        if (OnTargetFound != null)
-            OnTargetFound.Invoke();
-        if (cubeContainer.transform.childCount > 0)
-            SetChildrenActive(true);
+
+
+
+    //    if (mTrackableBehaviour)
+    //    {
+    //        var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);
+    //        var colliderComponents = mTrackableBehaviour.GetComponentsInChildren<Collider>(true);
+    //        var canvasComponents = mTrackableBehaviour.GetComponentsInChildren<Canvas>(true);
+
+    //        // Enable rendering:
+    //        foreach (var component in rendererComponents)
+    //            component.enabled = true;
+
+    //        // Enable colliders:
+    //        foreach (var component in colliderComponents)
+    //            component.enabled = true;
+
+    //        // Enable canvas':
+    //        foreach (var component in canvasComponents)
+    //            component.enabled = true;
+    //    }
+
+    //    if (OnTargetFound != null)
+    //        OnTargetFound.Invoke();
+    //    if (cubeContainer.transform.childCount > 0)
+    //        SetChildrenActive(true);
     }
 
-    protected override void OnTrackingLost()
-    {
-        if (mTrackableBehaviour)
-        {
-            var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);
-            var colliderComponents = mTrackableBehaviour.GetComponentsInChildren<Collider>(true);
-            var canvasComponents = mTrackableBehaviour.GetComponentsInChildren<Canvas>(true);
+    //protected override void OnTrackingLost()
+    //{
+    //    if (mTrackableBehaviour)
+    //    {
+    //        var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);
+    //        var colliderComponents = mTrackableBehaviour.GetComponentsInChildren<Collider>(true);
+    //        var canvasComponents = mTrackableBehaviour.GetComponentsInChildren<Canvas>(true);
 
-            // Disable rendering:
-            foreach (var component in rendererComponents)
-                component.enabled = false;
+    //        // Disable rendering:
+    //        foreach (var component in rendererComponents)
+    //            component.enabled = false;
 
-            // Disable colliders:
-            foreach (var component in colliderComponents)
-                component.enabled = false;
+    //        // Disable colliders:
+    //        foreach (var component in colliderComponents)
+    //            component.enabled = false;
 
-            // Disable canvas':
-            foreach (var component in canvasComponents)
-                component.enabled = false;
-        }
+    //        // Disable canvas':
+    //        foreach (var component in canvasComponents)
+    //            component.enabled = false;
+    //    }
 
-        if (OnTargetLost != null)
-            OnTargetLost.Invoke();
-        if (cubeContainer.transform.childCount > 0)
-            SetChildrenActive(false);
-    }
+    //    if (OnTargetLost != null)
+    //        OnTargetLost.Invoke();
+    //    if (cubeContainer.transform.childCount > 0)
+    //        SetChildrenActive(false);
+    //}
 
-    private void SetChildrenActive(bool activeState)
-    {
-        return;
-        cubeContainer.transform.localPosition = new Vector3(0f, 0f, 0f);
-        for (int i = 0; i <= transform.childCount; i++)
-            cubeContainer.transform.GetChild(i++).gameObject.SetActive(activeState);
-    }
+    //private void SetChildrenActive(bool activeState)
+    //{
+    //    return;
+    //    cubeContainer.transform.localPosition = new Vector3(0f, 0f, 0f);
+    //    for (int i = 0; i <= transform.childCount; i++)
+    //        cubeContainer.transform.GetChild(i++).gameObject.SetActive(activeState);
+    //}
 }

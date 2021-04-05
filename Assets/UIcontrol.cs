@@ -110,7 +110,8 @@ public class UIcontrol : MonoBehaviour
             crossPanel.SetActive(true);
             crossQuad.SetActive(true);
             ChangeHideOffsetByAxis();
-            crossQuad.transform.position -= hideOffset;
+            //crossQuad.transform.position -= hideOffset;
+            crossQuad.transform.localPosition = containerCube.transform.localPosition;
         }
         else
         {
@@ -118,7 +119,7 @@ public class UIcontrol : MonoBehaviour
             basicPanel.SetActive(true);
             crossPanel.SetActive(false);
             ChangeHideOffsetByAxis();
-            crossQuad.transform.position += hideOffset; //hide
+            crossQuad.transform.position += containerCube.transform.localPosition + hideOffset; //hide
             crossQuad.SetActive(false);
         }
     }
@@ -144,9 +145,12 @@ public class UIcontrol : MonoBehaviour
         isInverted = -1 * isInverted;
     }
 
-    public void ResetHideOffsetInvert()
+    public void ResetHideOffsetInvert() // LETS USE THIS FUNCTION TO RESET THE LOCATION OF THE QUAD WHEN STARTING IN A SPECIFIC AXIS
     {
         isInverted = Mathf.Abs(isInverted); // reset to not inverted on X/Y/Z click
+        crossQuad.transform.localPosition = Vector3.zero;
+        // SCALE?????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+        // ROTATION IS DEFINED OUSIDE
     }
 
     public void onDropdownValueChanged()

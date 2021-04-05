@@ -20,7 +20,7 @@ public class QuadMoveAsCube : MonoBehaviour
 
     void setPosAndScale()
     {
-        if (isLoadedObject)
+        if (isLoadedObject) // for initiating position when loaded
         {
             prevCubePos = cube.transform.localPosition;
             prevCubeScale = cube.transform.localScale;
@@ -29,7 +29,6 @@ public class QuadMoveAsCube : MonoBehaviour
     }
     void Update()
     {
-        cube = GameObject.Find("Cube #1");
         if (cube != null)
         {
             isLoadedObject = true;
@@ -44,16 +43,16 @@ public class QuadMoveAsCube : MonoBehaviour
         {
             Debug.Log("QuadMoveAsCube position before: " + prevCubePos);
             Debug.Log("QuadMoveAsCube position after: " + cube.transform.position);
-            //transform.localPosition = transform.localPosition + cube.transform.localPosition - prevCubePos;
-            transform.localPosition = cube.transform.localPosition;
+            transform.localPosition = transform.localPosition + cube.transform.localPosition - prevCubePos;
+            //transform.localPosition = cube.transform.localPosition;
             prevCubePos = cube.transform.localPosition;
         }
         if (cube.transform.localScale != prevCubeScale)
         {
             Debug.Log("QuadMoveAsCube localScale before: " + prevCubeScale);
             Debug.Log("QuadMoveAsCube localScale after: " + cube.transform.localScale);
-            //transform.localScale = transform.localScale * (cube.transform.localScale.x / prevCubeScale.x); // im counting on the fact that all axis are scaling the same
-            transform.localScale = cube.transform.localScale ; // im counting on the fact that all axis are scaling the same
+            transform.localScale = transform.localScale * (cube.transform.localScale.x / prevCubeScale.x); // im counting on the fact that all axis are scaling the same
+            //transform.localScale = cube.transform.localScale ; // im counting on the fact that all axis are scaling the same
             prevCubeScale = cube.transform.localScale;
         }
         if (!(cube.transform.rotation == prevCubeRot))

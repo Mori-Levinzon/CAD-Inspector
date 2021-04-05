@@ -1,5 +1,5 @@
-﻿// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
 
 using Microsoft.MixedReality.Toolkit.Utilities;
 using System.Collections;
@@ -128,7 +128,6 @@ namespace Microsoft.MixedReality.Toolkit.SpatialAwareness
             return x.Equals(y);
         }
 
-        /// <inheritdoc /> 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) { return false; }
@@ -151,7 +150,6 @@ namespace Microsoft.MixedReality.Toolkit.SpatialAwareness
             return obj.GetHashCode();
         }
 
-        /// <inheritdoc /> 
         public override int GetHashCode()
         {
             return Mathf.Abs(SourceName.GetHashCode());
@@ -219,9 +217,9 @@ namespace Microsoft.MixedReality.Toolkit.SpatialAwareness
         }
 
         #endregion Helpers
-        
+
         #region Obsolete
-        
+
         /// <summary>
         /// Constructor.
         /// </summary>

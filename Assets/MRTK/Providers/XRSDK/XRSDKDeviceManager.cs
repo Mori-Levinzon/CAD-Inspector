@@ -17,7 +17,7 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK.Input
     [MixedRealityDataProvider(
         typeof(IMixedRealityInputSystem),
         SupportedPlatforms.WindowsStandalone | SupportedPlatforms.MacStandalone | SupportedPlatforms.LinuxStandalone | SupportedPlatforms.WindowsUniversal,
-        "XRSDK Device Manager")]
+        "XR SDK Device Manager")]
     public class XRSDKDeviceManager : BaseInputDeviceManager, IMixedRealityCapabilityCheck
     {
         /// <summary>
@@ -43,7 +43,19 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK.Input
         protected static readonly Dictionary<InputDevice, GenericXRSDKController> ActiveControllers = new Dictionary<InputDevice, GenericXRSDKController>();
 
         private readonly List<InputDevice> inputDevices = new List<InputDevice>();
+        private readonly List<InputDevice> inputDevicesSubset = new List<InputDevice>();
         private readonly List<InputDevice> lastInputDevices = new List<InputDevice>();
+
+        private List<InputDeviceCharacteristics> GenericDesiredInputCharacteristics = new List<InputDeviceCharacteristics>()
+        {
+            InputDeviceCharacteristics.Controller,
+            InputDeviceCharacteristics.HandTracking
+        };
+        protected virtual List<InputDeviceCharacteristics> DesiredInputCharacteristics
+        {
+            get { return GenericDesiredInputCharacteristics; }
+            set { GenericDesiredInputCharacteristics = value; }
+        }
 
         private static readonly ProfilerMarker UpdatePerfMarker = new ProfilerMarker("[MRTK] XRSDKDeviceManager.Update");
 
@@ -54,28 +66,31 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK.Input
             {
                 base.Update();
 
-                if (XRSDKSubsystemHelpers.InputSubsystem == null || !XRSDKSubsystemHelpers.InputSubsystem.running)
+                if (XRSubsystemHelpers.InputSubsystem == null || !XRSubsystemHelpers.InputSubsystem.running)
                 {
                     return;
                 }
 
-                InputDevices.GetDevicesWithCharacteristics(InputDeviceCharacteristics.Controller, inputDevices);
+                inputDevices.Clear();
+                foreach (InputDeviceCharacteristics inputDeviceCharacteristics in DesiredInputCharacteristics)
+                {
+                    InputDevices.GetDevicesWithCharacteristics(inputDeviceCharacteristics, inputDevicesSubset);
+                    foreach (InputDevice device in inputDevicesSubset)
+                    {
+                        if (!inputDevices.Contains(device))
+                        {
+                            inputDevices.Add(device);
+                        }
+                    }
+                }
+
                 foreach (InputDevice device in inputDevices)
                 {
                     if (device.isValid)
                     {
                         GenericXRSDKController controller = GetOrAddController(device);
 
-                        if (controller == null)
-                        {
-                            continue;
-                        }
-
-                        if (!lastInputDevices.Contains(device))
-                        {
-                            CoreServices.InputSystem?.RaiseSourceDetected(controller.InputSource, controller);
-                        }
-                        else
+                        if (controller != null && lastInputDevices.Contains(device))
                         {
                             // Remove devices from our previously tracked list as we update them.
                             // This will allow us to remove all stale devices that were tracked
@@ -88,12 +103,7 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK.Input
 
                 foreach (InputDevice device in lastInputDevices)
                 {
-                    GenericXRSDKController controller = GetOrAddController(device);
-                    if (controller != null)
-                    {
-                        CoreServices.InputSystem?.RaiseSourceLost(controller.InputSource, controller);
-                        RemoveController(device);
-                    }
+                    RemoveController(device);
                 }
 
                 lastInputDevices.Clear();
@@ -137,13 +147,12 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK.Input
                     controllingHand = Handedness.None;
                 }
 
-                var currentControllerType = GetCurrentControllerType(inputDevice);
+                SupportedControllerType currentControllerType = GetCurrentControllerType(inputDevice);
                 Type controllerType = GetControllerType(currentControllerType);
                 InputSourceType inputSourceType = GetInputSourceType(currentControllerType);
 
-                IMixedRealityInputSystem inputSystem = Service as IMixedRealityInputSystem;
                 IMixedRealityPointer[] pointers = RequestPointers(currentControllerType, controllingHand);
-                IMixedRealityInputSource inputSource = inputSystem?.RequestNewGenericInputSource($"{currentControllerType} Controller {controllingHand}", pointers, inputSourceType);
+                IMixedRealityInputSource inputSource = Service?.RequestNewGenericInputSource($"{currentControllerType} Controller {controllingHand}", pointers, inputSourceType);
                 GenericXRSDKController detectedController = Activator.CreateInstance(controllerType, TrackingState.NotTracked, controllingHand, inputSource, null) as GenericXRSDKController;
 
                 if (detectedController == null || !detectedController.Enabled)
@@ -162,6 +171,8 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK.Input
 
                 ActiveControllers.Add(inputDevice, detectedController);
 
+                CoreServices.InputSystem?.RaiseSourceDetected(detectedController.InputSource, detectedController);
+
                 return detectedController;
             }
         }
@@ -176,16 +187,21 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK.Input
         {
             using (RemoveControllerPerfMarker.Auto())
             {
-                GenericXRSDKController controller = GetOrAddController(inputDevice);
-
-                if (controller != null)
+                if (ActiveControllers.ContainsKey(inputDevice))
                 {
-                    RecyclePointers(controller.InputSource);
+                    GenericXRSDKController controller = ActiveControllers[inputDevice];
 
-                    if (controller.Visualizer != null &&
-                        controller.Visualizer.GameObjectProxy != null)
+                    if (controller != null)
                     {
-                        controller.Visualizer.GameObjectProxy.SetActive(false);
+                        CoreServices.InputSystem?.RaiseSourceLost(controller.InputSource, controller);
+
+                        RecyclePointers(controller.InputSource);
+
+                        if (controller.Visualizer != null &&
+                            controller.Visualizer.GameObjectProxy != null)
+                        {
+                            controller.Visualizer.GameObjectProxy.SetActive(false);
+                        }
                     }
 
                     ActiveControllers.Remove(inputDevice);

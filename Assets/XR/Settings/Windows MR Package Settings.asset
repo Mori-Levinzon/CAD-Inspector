@@ -60,7 +60,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DepthBufferFormat: 0
-  UseSharedDepthBuffer: 1
+  UseSharedDepthBuffer: 0
 --- !u!114 &4605761808719438621
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,7 +30,7 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK.WindowsMixedReality
     [MixedRealityDataProvider(
         typeof(IMixedRealityInputSystem),
         SupportedPlatforms.WindowsStandalone | SupportedPlatforms.WindowsUniversal,
-        "XRSDK Windows Mixed Reality Device Manager")]
+        "XR SDK Windows Mixed Reality Device Manager")]
     public class WindowsMixedRealityDeviceManager : XRSDKDeviceManager
     {
         /// <summary>
@@ -111,7 +111,7 @@ namespace Microsoft.MixedReality.Toolkit.XRSDK.WindowsMixedReality
             }
             else // Pre-Windows 10 1903.
             {
-                if (XRSDKSubsystemHelpers.DisplaySubsystem != null && !XRSDKSubsystemHelpers.DisplaySubsystem.displayOpaque)
+                if (XRSubsystemHelpers.DisplaySubsystem != null && !XRSubsystemHelpers.DisplaySubsystem.displayOpaque)
                 {
                     // HoloLens supports GGV hands
                     return capability == MixedRealityCapability.GGVHand;
