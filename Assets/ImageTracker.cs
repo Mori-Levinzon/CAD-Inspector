@@ -7,7 +7,7 @@ public class ImageTracker : DefaultTrackableEventHandler
     public GameObject MidAirPositioner;
 
     public GameObject containerCube;
-    bool appear_once = true;
+    public bool appear_once = true;
     // Start is called before the first frame update
     //void Start()
     //{

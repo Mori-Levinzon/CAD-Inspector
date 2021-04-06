@@ -15,7 +15,7 @@ using UnityEngine.SocialPlatforms;
 
 public class ObjBrowser : MonoBehaviour
 {
-    //public GameObject ITScript;
+    public GameObject ImageTarget;
 
     static int copyNumber = 1;
 
@@ -120,7 +120,7 @@ public class ObjBrowser : MonoBehaviour
 
         //Debug.Log("appear_once" + ITScript.GetComponent<ImageTracker>().appear_once);
 
-        //ITScript.GetComponent<ImageTracker>().appear_once = true;
+        ImageTarget.GetComponent<ImageTracker>().appear_once = true;
 
 
         //Debug.Log("appear_twice" + ITScript.GetComponent<ImageTracker>().appear_once);
