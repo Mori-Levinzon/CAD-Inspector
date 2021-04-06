@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ImageTragetQR.unity
-    guid: e847bf4ebf21b7a4d9bbcc46b63cd2c2
+    path: Assets/AR_arndroind_finished.unity
+    guid: c017c8b3b21d25e44a0faaf8f0b03e76
   m_configObjects:
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: c679f2e0cc9a88f42bccadf9ba2d809d, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e2d89db66f22f0d48a83e673101f44d7, type: 2}
