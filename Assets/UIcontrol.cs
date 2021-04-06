@@ -111,7 +111,7 @@ public class UIcontrol : MonoBehaviour
             crossQuad.SetActive(true);
             ChangeHideOffsetByAxis();
             //crossQuad.transform.position -= hideOffset;
-            crossQuad.transform.localPosition = containerCube.transform.localPosition;
+            crossQuad.transform.position = containerCube.transform.position;
         }
         else
         {
@@ -119,7 +119,8 @@ public class UIcontrol : MonoBehaviour
             basicPanel.SetActive(true);
             crossPanel.SetActive(false);
             ChangeHideOffsetByAxis();
-            crossQuad.transform.position += containerCube.transform.localPosition + hideOffset; //hide
+            //crossQuad.transform.position += containerCube.transform.localPosition + hideOffset; //hide
+            crossQuad.transform.position = containerCube.transform.position + hideOffset;
             crossQuad.SetActive(false);
         }
     }

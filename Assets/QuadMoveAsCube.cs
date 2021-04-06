@@ -8,7 +8,7 @@ public class QuadMoveAsCube : MonoBehaviour
     Vector3 offset = Vector3.zero;
     Vector3 localPos = Vector3.zero;
     Vector3 originalPos = Vector3.zero;
-    Quaternion prevCubeRot = Quaternion.identity;
+    Vector3 prevCubeRot = Vector3.zero;
     Vector3 prevCubePos = Vector3.zero;
     Vector3 prevCubeScale = Vector3.zero;
     static bool isLoadedObject = false;
@@ -23,6 +23,7 @@ public class QuadMoveAsCube : MonoBehaviour
         if (isLoadedObject) // for initiating position when loaded
         {
             prevCubePos = cube.transform.localPosition;
+            prevCubeRot = cube.transform.eulerAngles;
             prevCubeScale = cube.transform.localScale;
             isLoadedObject = false;
         }
@@ -41,27 +42,39 @@ public class QuadMoveAsCube : MonoBehaviour
 
         if (cube.transform.localPosition != prevCubePos)// if cube moved
         {
-            Debug.Log("QuadMoveAsCube position before: " + prevCubePos);
-            Debug.Log("QuadMoveAsCube position after: " + cube.transform.position);
+            //Debug.Log("QuadMoveAsCube position before: " + prevCubePos);
+            //Debug.Log("QuadMoveAsCube position after: " + cube.transform.position);
             transform.localPosition = transform.localPosition + cube.transform.localPosition - prevCubePos;
             //transform.localPosition = cube.transform.localPosition;
             prevCubePos = cube.transform.localPosition;
         }
         if (cube.transform.localScale != prevCubeScale)
         {
-            Debug.Log("QuadMoveAsCube localScale before: " + prevCubeScale);
-            Debug.Log("QuadMoveAsCube localScale after: " + cube.transform.localScale);
-            transform.localScale = transform.localScale * (cube.transform.localScale.x / prevCubeScale.x); // im counting on the fact that all axis are scaling the same
-            //transform.localScale = cube.transform.localScale ; // im counting on the fact that all axis are scaling the same
+            //Debug.Log("QuadMoveAsCube localScale before: " + prevCubeScale);
+            //Debug.Log("QuadMoveAsCube localScale after: " + cube.transform.localScale);
+            //transform.localScale = transform.localScale * (cube.transform.localScale.x / prevCubeScale.x); // im counting on the fact that all axis are scaling the same
+            transform.localScale = cube.transform.localScale ; // im counting on the fact that all axis are scaling the same
             prevCubeScale = cube.transform.localScale;
         }
-        if (!(cube.transform.rotation == prevCubeRot))
+        if (!(cube.transform.eulerAngles == prevCubeRot))
         {
-            Debug.Log("QuadMoveAsCube rotate before: " + prevCubeRot);
-            Debug.Log("QuadMoveAsCube rotate after: " + cube.transform.rotation);
+            //Debug.Log("QuadMoveAsCube rotate before: " + prevCubeRot);
+            //Debug.Log("QuadMoveAsCube rotate after: " + cube.transform.rotation);
+            transform.RotateAround(cube.transform.position, new Vector3(1,0,0),cube.transform.eulerAngles.x - prevCubeRot.x);
+            transform.RotateAround(cube.transform.position, new Vector3(0, 1, 0), cube.transform.eulerAngles.y - prevCubeRot.y);
+            transform.RotateAround(cube.transform.position, new Vector3(0, 0, 1), cube.transform.eulerAngles.z - prevCubeRot.z);
             transform.rotation = cube.transform.rotation;
-            prevCubeRot = cube.transform.rotation;
+            prevCubeRot = cube.transform.eulerAngles;
         }
+
+        ////change position:
+        //transform.localPosition = cube.transform.localPosition + prevLocalPosVector;
+        //prevLocalPosVector = transform.localPosition - cube.transform.localPosition;
+        ////change rotation:                   -  V
+        //transform.rotation = cube.transform.rotation;
+        ////change ratio:                      -  V
+        //transform.localScale = transform.localScale * (cube.transform.localScale.x / prevCubeScale.x); // im counting on the fact that all axis are scaling the same
+        //prevCubeScale = cube.transform.localScale;
 
     }
 }
