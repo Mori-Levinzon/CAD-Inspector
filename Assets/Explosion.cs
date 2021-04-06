@@ -94,7 +94,7 @@ public class Explosion : MonoBehaviour
 
                 mesh.originalLocalPosition = item.transform.localPosition;
 
-                mesh.originalPosition = transform.localPosition + mesh.originalLocalPosition;
+                mesh.originalPosition = transform.position + mesh.originalLocalPosition;
 
                 mesh.explodedPosition = item.bounds.center * 1.5f;
 
@@ -136,7 +136,7 @@ public class Explosion : MonoBehaviour
         {
             if (i > 0)
             {
-                childMeshRenderers[n].originalPosition = transform.localPosition + childMeshRenderers[n].originalLocalPosition;
+                childMeshRenderers[n].originalPosition = transform.position + childMeshRenderers[n].originalLocalPosition;
 
                 childMeshRenderers[n].tmpPosition = childMeshRenderers[n].meshRenderer.transform.position;
 

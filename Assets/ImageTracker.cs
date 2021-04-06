@@ -36,6 +36,7 @@ public class ImageTracker : DefaultTrackableEventHandler
         if (appear_once) // meaning it wasnt loaded after finding picture even once
         {
             appear_once = false;
+
             MidAirPositioner.transform.localPosition = new Vector3(0f, 1f, 0f);
             containerCube.transform.localPosition = new Vector3(0f, 0f, 0f);
 
