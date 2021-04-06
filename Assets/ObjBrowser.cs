@@ -10,10 +10,12 @@ using static Explosion;
 using UnityEngine.Animations;
 using SimpleFileBrowser;
 using AsImpL;
+//using static ImageTracker;
 using UnityEngine.SocialPlatforms;
 
 public class ObjBrowser : MonoBehaviour
 {
+    //public GameObject ITScript;
 
     static int copyNumber = 1;
 
@@ -79,7 +81,7 @@ public class ObjBrowser : MonoBehaviour
         //scale, locate and rotate the cube to the starting position
         containerCube.transform.rotation = Quaternion.identity;
         containerCube.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        containerCube.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        containerCube.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         containerCube.SetActive(false);
         GameObject.Find("LoadLabel").GetComponent<Text>().text = "Load";
 
@@ -115,6 +117,15 @@ public class ObjBrowser : MonoBehaviour
         adjustObjectHierachy();
 
         ScaleLoadedObject();
+
+        //Debug.Log("appear_once" + ITScript.GetComponent<ImageTracker>().appear_once);
+
+        //ITScript.GetComponent<ImageTracker>().appear_once = true;
+
+
+        //Debug.Log("appear_twice" + ITScript.GetComponent<ImageTracker>().appear_once);
+
+
     }
 
     void initializeObjects(ref string objectPath, string fileName)
@@ -128,7 +139,7 @@ public class ObjBrowser : MonoBehaviour
         //scale, locate and rotate the cube to the starting position
         containerCube.transform.rotation = Quaternion.identity;
         containerCube.transform.localScale= new Vector3(1.0f,1.0f, 1.0f);
-        containerCube.transform.position = new Vector3(0.0f,0.0f,0.0f);
+        containerCube.transform.localPosition = new Vector3(0.0f,0.0f,0.0f);
         //first option i used - a bit heavy but still promising
         //loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
 
@@ -163,7 +174,7 @@ public class ObjBrowser : MonoBehaviour
 
         void adjustObjectHierachy()
     {
-        containerCube.transform.position = new Vector3(0f, 0f, 5f);
+        containerCube.transform.localPosition = new Vector3(0f, 0f, 0f);
 
         containerCube.transform.parent = MidAirPositioner.transform;//insert the object inside of the cube
         loadedObj.transform.parent = containerCube.transform;//insert the object inside of the cube
@@ -173,7 +184,7 @@ public class ObjBrowser : MonoBehaviour
     {
 
         loadedObj.transform.localPosition = new Vector3(0f, 0f, 0f);
-        containerCube.transform.position = new Vector3(0f, 0.00f, 0f);
+        containerCube.transform.localPosition = new Vector3(0f, 0.00f, 0f);
 
         loadedObj.AddComponent<MeshFilter>();
         var loadedobjcolliders = loadedObj.GetComponentsInChildren<MeshFilter>();
