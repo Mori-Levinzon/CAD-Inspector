@@ -37,7 +37,11 @@ public class ImageTracker : DefaultTrackableEventHandler
         {
             appear_once = false;
 
+            //that line worked and screw the other one
             MidAirPositioner.transform.localPosition = new Vector3(0f, 1f, 0f);
+
+
+            //MidAirPositioner.transform.localPosition = transform.position + transform.up * 0.0f;
             containerCube.transform.localPosition = new Vector3(0f, 0f, 0f);
 
         }
