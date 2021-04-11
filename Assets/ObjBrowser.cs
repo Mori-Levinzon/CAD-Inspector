@@ -17,6 +17,8 @@ public class ObjBrowser : MonoBehaviour
 {
     public GameObject ImageTarget;
 
+    //public GameObject ARCamera;
+
     static int copyNumber = 1;
 
     public Button explosionButton;
@@ -122,7 +124,7 @@ public class ObjBrowser : MonoBehaviour
 
         ImageTarget.GetComponent<ImageTracker>().appear_once = true;
 
-
+        MidAirPositioner.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.0f;
         //Debug.Log("appear_twice" + ITScript.GetComponent<ImageTracker>().appear_once);
 
 

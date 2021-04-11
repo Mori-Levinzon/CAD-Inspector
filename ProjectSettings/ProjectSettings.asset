@@ -699,10 +699,17 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: 
-    4: 
-    7: 
-    14: 
+    1: CT_FB;CT_FB_PRO;CT_UI
+    4: CT_FB;CT_FB_PRO;CT_UI
+    7: CT_FB;CT_FB_PRO;CT_UI
+    13: CT_FB;CT_FB_PRO;CT_UI
+    14: CT_FB;CT_FB_PRO;CT_UI
+    19: CT_FB;CT_FB_PRO;CT_UI
+    21: CT_FB;CT_FB_PRO;CT_UI
+    25: CT_FB;CT_FB_PRO;CT_UI
+    27: CT_FB;CT_FB_PRO;CT_UI
+    28: CT_FB;CT_FB_PRO;CT_UI
+    29: CT_FB;CT_FB_PRO;CT_UI
   platformArchitecture: {}
   scriptingBackend:
     Android: 1
@@ -741,6 +748,7 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities:
     WindowsStoreApps:
+      CodeGeneration: False
       VideosLibrary: False
       Location: False
       HumanInterfaceDevice: False
@@ -752,7 +760,6 @@ PlayerSettings:
       LowLevelDevices: False
       InternetClientServer: False
       OfflineMapsManagement: False
-      BackgroundMediaPlayback: False
       Objects3D: True
       RemoteSystem: False
       BlockedChatMessages: False
@@ -775,9 +782,9 @@ PlayerSettings:
       PointOfService: False
       RecordedCallsFolder: False
       Contacts: False
-      InternetClient: True
       Proximity: False
-      CodeGeneration: False
+      InternetClient: True
+      BackgroundMediaPlayback: False
       EnterpriseAuthentication: False
   metroTargetDeviceFamilies:
     Desktop: False
