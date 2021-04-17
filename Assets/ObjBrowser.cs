@@ -21,7 +21,7 @@ public class ObjBrowser : MonoBehaviour
 
     public Button explosionButton;
 
-    public GameObject MidAirPositioner;
+    //public GameObject MidAirPositioner;
 
     public GameObject containerCube;
 
@@ -86,6 +86,9 @@ public class ObjBrowser : MonoBehaviour
         GameObject.Find("LoadLabel").GetComponent<Text>().text = "Load";
 
         removeObjectsFromDropdownMenu();
+
+        containerCube.GetComponent<ImageTracker>().appear_once = true;
+
     }
 
     void OpenFile(string pathToFile)
@@ -120,10 +123,8 @@ public class ObjBrowser : MonoBehaviour
 
         //Debug.Log("appear_once" + ITScript.GetComponent<ImageTracker>().appear_once);
 
-        ImageTarget.GetComponent<ImageTracker>().appear_once = true;
-
         //that line works here fucks the other one
-        ImageTarget.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 1.0f;
+        containerCube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
 
         //MidAirPositioner.transform.position = Camera.main.transform.forward * 1.0f;
 
@@ -178,7 +179,7 @@ public class ObjBrowser : MonoBehaviour
     {
         containerCube.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-        containerCube.transform.parent = MidAirPositioner.transform;//insert the object inside of the cube
+        containerCube.transform.parent = ImageTarget.transform;//insert the object inside of the cube
         loadedObj.transform.parent = containerCube.transform;//insert the object inside of the cube
     }
 
