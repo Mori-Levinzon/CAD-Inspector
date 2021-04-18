@@ -12,6 +12,11 @@ using SimpleFileBrowser;
 using AsImpL;
 //using static ImageTracker;
 using UnityEngine.SocialPlatforms;
+//WSA NATIVE NAMESPACES
+using CI.WSANative.Common;
+using CI.WSANative.Dispatchers;
+using CI.WSANative.Pickers;
+
 
 public class ObjBrowser : MonoBehaviour
 {
@@ -35,6 +40,11 @@ public class ObjBrowser : MonoBehaviour
 
     public Texture2D[] textures;
 
+    public void Awake()
+    {
+        // Call this once when your app starts up to configure the library
+        WSANativeCore.Initialise();
+    }
 
     public void LoadOrRemovebuttonPressed()
     {
@@ -44,14 +54,36 @@ public class ObjBrowser : MonoBehaviour
             // Set default filter that is selected when the dialog is shown (optional)
             // Returns true if the default filter is set successfully
             // In this case, set Images filter as the default filter
+
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+	                                    // UWP implementation here
+                                        ShowFileOpenPicker();
+#else
+            // Another implementation here (e.g. Android / IOS)
             SimpleFileBrowser.FileBrowser.SetDefaultFilter(".obj");
 
-            StartCoroutine(ShowLoadDialogCoroutine());
+                        StartCoroutine(ShowLoadDialogCoroutine());
+#endif
+
         }
         else
         {
             destroyLoadedObject();
         }
+    }
+
+    public void ShowFileOpenPicker()
+    {
+        WSANativeFilePicker.PickSingleFile("Select", WSAPickerViewMode.Thumbnail, WSAPickerLocationId.DocumentsLibrary, new[] { ".obj" }, result =>
+        {
+            if (result != null)
+            {
+                string filePath = result.Path;
+                OpenFile(filePath);
+                //byte[] fileBytes = result.ReadBytes();
+                //string fileString = result.ReadText();
+            }
+        });
     }
 
     IEnumerator ShowLoadDialogCoroutine()
