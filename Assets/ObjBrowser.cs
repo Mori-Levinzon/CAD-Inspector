@@ -2,7 +2,8 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
-using Dummiesman;
+//WSA OBJlaoader - crappy loader
+//using Dummiesman;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -16,6 +17,13 @@ using UnityEngine.SocialPlatforms;
 using CI.WSANative.Common;
 using CI.WSANative.Dispatchers;
 using CI.WSANative.Pickers;
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+using Windows.Storage;
+using System;
+using Windows.Foundation;
+using Windows.Storage.Pickers;
+using System.Threading.Tasks;
+#endif
 
 
 public class ObjBrowser : MonoBehaviour
@@ -72,19 +80,61 @@ public class ObjBrowser : MonoBehaviour
         }
     }
 
-    public void ShowFileOpenPicker()
+    public async void ShowFileOpenPicker()
     {
-        WSANativeFilePicker.PickSingleFile("Select", WSAPickerViewMode.Thumbnail, WSAPickerLocationId.DocumentsLibrary, new[] { ".obj" }, result =>
+        WSANativeFilePicker.PickSingleFile("Select", WSAPickerViewMode.Thumbnail, WSAPickerLocationId.PicturesLibrary, new[] { ".obj" }, result =>
         {
             if (result != null)
             {
-                string filePath = result.Path;
-                OpenFile(filePath);
+                //StorageFile StorageFile.GetFileFromPathAsync(filePath)
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+                StorageFile storageFile = result.OriginalFile; 
+
+                string fileString = result.ReadText();
+                Debug.Log("fileString size is: "+fileString.Length);
+
+                string fileMtlString = "";
+                string filePath = storageFile.Path;
+                string fileName = storageFile.Name;
+
+                string mtlName = fileName.Remove(fileName.Length - 3) + "mtl";
+
+                SearchForMtlFile(filePath, mtlName,fileString, fileMtlString);
+
+#endif
                 //byte[] fileBytes = result.ReadBytes();
                 //string fileString = result.ReadText();
             }
         });
     }
+
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+    public async void SearchForMtlFile(string filePath, string mtlName, string  fileString, string  fileMtlString)
+    {
+        Windows.Storage.StorageFolder storageFolder = KnownFolders.PicturesLibrary;
+        Windows.Storage.StorageFile mtlFile = await storageFolder.GetFileAsync(mtlName);
+        if (mtlFile != null)
+        {
+            try
+                {
+                    fileMtlString = await FileIO.ReadTextAsync(mtlFile);
+                }
+            // Handle errors with catch blocks
+            catch (FileNotFoundException)
+            {
+                // For example, handle file not found
+            }
+            Debug.Log(fileMtlString.Length);
+        }
+        else
+        {
+            Debug.Log("no MTL");
+        }
+        OpenFile(filePath,fileString,fileMtlString);
+
+    }
+#endif
+
 
     IEnumerator ShowLoadDialogCoroutine()
     {
@@ -119,11 +169,11 @@ public class ObjBrowser : MonoBehaviour
 
         removeObjectsFromDropdownMenu();
 
-        containerCube.GetComponent<ImageTracker>().appear_once = true;
+        //containerCube.GetComponent<ImageTracker>().appear_once = true;
 
     }
 
-    void OpenFile(string pathToFile)
+    void OpenFile(string pathToFile, string fileString="", string fileMtlString = "")
     {
 
         Debug.Log("objectPath pathToFile" + pathToFile);
@@ -138,13 +188,13 @@ public class ObjBrowser : MonoBehaviour
         //string finalPath = Path.Combine(path, fileName);
 
 
-        addObjectToScene(ref pathToFile, fileName);
+        addObjectToScene(ref pathToFile, fileName, fileString, fileMtlString);
     }
 
-    void addObjectToScene(ref string objectPath,string fileName)
+    void addObjectToScene(ref string objectPath,string fileName, string fileString = "", string fileMtlString = "")
     {
         //load
-        initializeObjects(ref objectPath, fileName);
+        initializeObjects(ref objectPath, fileName,fileString, fileMtlString);
 
         //addLoadObjectToDropdownMenu("LoadedObj #" + (copyNumber));
         addLoadObjectToDropdownMenu(fileName);
@@ -163,7 +213,7 @@ public class ObjBrowser : MonoBehaviour
 
     }
 
-    void initializeObjects(ref string objectPath, string fileName)
+    void initializeObjects(ref string objectPath, string fileName, string fileString = "", string fileMtlString = "")
     {
         if (copyNumber != 1)
         {
@@ -188,22 +238,24 @@ public class ObjBrowser : MonoBehaviour
 
         //check if there is mtl file and if there is load it:
         string mtlPath = objectPath.Remove(objectPath.Length - 3) + "mtl";
-        if (File.Exists(mtlPath))
+        #if UNITY_WSA && ENABLE_WINMD_SUPPORT
+
+        #else
+            fileString = File.ReadAllText(objectPath);
+            fileMtlString = File.ReadAllText(mtlPath);
+        #endif
+        if (fileMtlString != "")
         {
 
-            loadedObj = ObjImporter.Import(File.ReadAllText(objectPath), File.ReadAllText(mtlPath),textures);
+            loadedObj = ObjImporter.Import(fileString, fileMtlString, textures);
         }
         else
         {
-            loadedObj = ObjImporter.Import(File.ReadAllText(objectPath));
+            loadedObj = ObjImporter.Import(fileString);
         }
-
-
-
         loadedObj.name = fileName;
 
         GameObject.Find("LoadLabel").GetComponent<Text>().text = "Remove";
-
     }
 
 

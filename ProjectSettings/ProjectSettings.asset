@@ -732,7 +732,7 @@ PlayerSettings:
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 008986097755d701
-  metroApplicationDescription: Template_3D
+  metroApplicationDescription: Inspector For CAD models (.obj files)
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -782,10 +782,10 @@ PlayerSettings:
       PointOfService: True
       RecordedCallsFolder: False
       Contacts: False
+      InternetClient: True
       Proximity: True
       CodeGeneration: True
       BackgroundMediaPlayback: True
-      InternetClient: True
   metroTargetDeviceFamilies:
     Desktop: True
     Holographic: True
