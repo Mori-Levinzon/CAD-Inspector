@@ -8,8 +8,10 @@ public class ImageTracker : DefaultTrackableEventHandler
     public GameObject ImageTarget;
 
     public GameObject containerCube;
-    public bool appear_once = true;
 
+    public GameObject quad;
+
+    public bool appear_once = true;
 
     public void isCubePresent()
     {
@@ -40,6 +42,8 @@ public class ImageTracker : DefaultTrackableEventHandler
         //MidAirPositioner.transform.localPosition = transform.position + transform.up * 0.0f;
         if (appear_once && containerCube.activeSelf && m_NewStatus== TrackableBehaviour.Status.TRACKED)
         {
+            containerCube.transform.parent = ImageTarget.transform;//insert the object inside of the cube
+            quad.transform.parent = ImageTarget.transform;//insert the object inside of the cube
             containerCube.transform.localPosition =new Vector3(0f,0f,0f);
             appear_once = false;
         }

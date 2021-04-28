@@ -48,6 +48,8 @@ public class Explosion : MonoBehaviour
 
     public float explodeRange = 1.5f;
 
+    GameObject CurrentParent;
+
     #endregion
 
 
@@ -124,6 +126,9 @@ public class Explosion : MonoBehaviour
     private void Update()
 
     {
+        CurrentParent = transform.parent.gameObject;
+
+        transform.parent = null;
 
         checkIfNeedToUpdateComponents();
 
@@ -229,6 +234,8 @@ public class Explosion : MonoBehaviour
             }
 
         }
+
+        transform.parent = CurrentParent.transform;
 
     }
 

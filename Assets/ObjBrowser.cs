@@ -34,7 +34,7 @@ public class ObjBrowser : MonoBehaviour
 
     public Button explosionButton;
 
-    //public GameObject MidAirPositioner;
+    public GameObject MidAirPositioner;
 
     public GameObject containerCube;
 
@@ -169,7 +169,7 @@ public class ObjBrowser : MonoBehaviour
 
         removeObjectsFromDropdownMenu();
 
-        //containerCube.GetComponent<ImageTracker>().appear_once = true;
+        containerCube.GetComponent<ImageTracker>().appear_once = true;
 
     }
 
@@ -263,7 +263,7 @@ public class ObjBrowser : MonoBehaviour
     {
         containerCube.transform.localPosition = new Vector3(0f, 0f, 0f);
 
-        containerCube.transform.parent = ImageTarget.transform;//insert the object inside of the cube
+        containerCube.transform.parent = MidAirPositioner.transform;//insert the object inside of the cube
         loadedObj.transform.parent = containerCube.transform;//insert the object inside of the cube
     }
 

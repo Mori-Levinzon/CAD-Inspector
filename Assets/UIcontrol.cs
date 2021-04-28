@@ -16,6 +16,8 @@ public class UIcontrol : MonoBehaviour
     Vector3 hideOffset = new Vector3(0, 4, 0);
     int isInverted = 1; //1 means normal, -1 means inverted
 
+    bool isCrossCutPressed = false;
+
     //public Text toggleText;
 
     public GameObject dropdownGameObject;
@@ -103,7 +105,7 @@ public class UIcontrol : MonoBehaviour
 
     public void CrossToggleChanged(bool newValue)
     {
-        if (newValue)
+        if (!isCrossCutPressed)
         {
             //GameObject.Find("CrossToggleLabel").GetComponent<Text>().text = "Cancel Cross";
             basicPanel.SetActive(false);
@@ -112,6 +114,7 @@ public class UIcontrol : MonoBehaviour
             ChangeHideOffsetByAxis();
             //crossQuad.transform.position -= hideOffset;
             crossQuad.transform.position = containerCube.transform.position;
+            isCrossCutPressed = !isCrossCutPressed;
         }
         else
         {
@@ -122,6 +125,7 @@ public class UIcontrol : MonoBehaviour
             //crossQuad.transform.position += containerCube.transform.localPosition + hideOffset; //hide
             crossQuad.transform.position = containerCube.transform.position + hideOffset;
             crossQuad.SetActive(false);
+            isCrossCutPressed = !isCrossCutPressed;
         }
     }
     
