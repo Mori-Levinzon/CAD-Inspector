@@ -15,38 +15,38 @@ public class ObjScaler : MonoBehaviour
     {
         GameObject cube = GameObject.Find("Cube #1");
         float isObjLoaded = cube.transform.childCount;
-        Debug.Log("ScalebuttonPressed isObjLoaded: " + isObjLoaded);
+        //Debug.Log("ScalebuttonPressed isObjLoaded: " + isObjLoaded);
         if (isObjLoaded == 0)
         {
             return;
         }
         float loadedObjScale = cube.transform.GetChild(0).localScale.x;
-        Debug.Log("ScalebuttonPressed loadedObjScale: " + loadedObjScale);
+        //Debug.Log("ScalebuttonPressed loadedObjScale: " + loadedObjScale);
 
         if (!isOriginalScaled)
         {
             isOriginalScaled = true;
 
-            Debug.Log("ScalebuttonPressed loadedObjScale != originalScale start");
+            //Debug.Log("ScalebuttonPressed loadedObjScale != originalScale start");
             fitScale = loadedObjScale;
             float newScale = 1 / loadedObjScale;
             cube.transform.localScale = new Vector3(newScale, newScale, newScale);
             GameObject.Find("ScaleButtonText").GetComponent<Text>().text = "Fit Scale";
 
-            Debug.Log("ScalebuttonPressed loadedObjScale != originalScale end");
+            //Debug.Log("ScalebuttonPressed loadedObjScale != originalScale end");
 
         }
         else
         {
             isOriginalScaled = false;
 
-            Debug.Log("ScalebuttonPressed loadedObjScale == originalScale start");
+            //Debug.Log("ScalebuttonPressed loadedObjScale == originalScale start");
 
             cube.transform.localScale = new Vector3(1f, 1f, 1f);
 
             GameObject.Find("ScaleButtonText").GetComponent<Text>().text = "Original Scale";
 
-            Debug.Log("ScalebuttonPressed loadedObjScale == originalScale end");
+            //Debug.Log("ScalebuttonPressed loadedObjScale == originalScale end");
 
         }
     }

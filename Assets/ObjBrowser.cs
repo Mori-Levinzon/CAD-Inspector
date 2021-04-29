@@ -91,7 +91,7 @@ public class ObjBrowser : MonoBehaviour
                 StorageFile storageFile = result.OriginalFile; 
 
                 string fileString = result.ReadText();
-                Debug.Log("fileString size is: "+fileString.Length);
+                //Debug.Log("fileString size is: "+fileString.Length);
 
                 string fileMtlString = "";
                 string filePath = storageFile.Path;
@@ -124,11 +124,11 @@ public class ObjBrowser : MonoBehaviour
             {
                 // For example, handle file not found
             }
-            Debug.Log(fileMtlString.Length);
+            //Debug.Log(fileMtlString.Length);
         }
         else
         {
-            Debug.Log("no MTL");
+            //Debug.Log("no MTL");
         }
         OpenFile(filePath,fileString,fileMtlString);
 
@@ -145,7 +145,7 @@ public class ObjBrowser : MonoBehaviour
         // Dialog is closed
         // Print whether a file is chosen (FileBrowser.Success)
         // and the path to the selected file (FileBrowser.Result) (null, if FileBrowser.Success is false)
-        Debug.Log(SimpleFileBrowser.FileBrowser.Success + " " + SimpleFileBrowser.FileBrowser.Result);
+        //Debug.Log(SimpleFileBrowser.FileBrowser.Success + " " + SimpleFileBrowser.FileBrowser.Result);
 
         if (SimpleFileBrowser.FileBrowser.Success)
         {
@@ -176,7 +176,7 @@ public class ObjBrowser : MonoBehaviour
     void OpenFile(string pathToFile, string fileString="", string fileMtlString = "")
     {
 
-        Debug.Log("objectPath pathToFile" + pathToFile);
+        //Debug.Log("objectPath pathToFile" + pathToFile);
 
         //var fileName = Path.GetFileName(pathToFile);
         //string path = Application.persistentDataPath;

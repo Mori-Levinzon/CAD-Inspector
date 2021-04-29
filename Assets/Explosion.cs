@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 using System;
 
+using Microsoft.MixedReality.Toolkit.UI.BoundsControl;
+
 
 [Serializable]
 
@@ -68,7 +70,13 @@ public class Explosion : MonoBehaviour
 
         if (currentSize != numberOfComponents)
         {
+
+            BoundsControl boundsControl = GetComponent<BoundsControl>();
+            boundsControl.Active = false;
             updateComponents();
+            if (currentSize > 1) {
+                boundsControl.Active = true;
+            }
 
         }
     }
@@ -126,12 +134,11 @@ public class Explosion : MonoBehaviour
     private void Update()
 
     {
-        CurrentParent = transform.parent.gameObject;
-
-        transform.parent = null;
 
         checkIfNeedToUpdateComponents();
 
+        //BoundsControl boundsControl = GetComponent<BoundsControl>();
+        //boundsControl.Active = false;
 
         int n = 0;
         int i = 0;
@@ -194,7 +201,6 @@ public class Explosion : MonoBehaviour
                 foreach (var item in childMeshRenderers)
 
                 {
-
                     item.meshRenderer.transform.position = Vector3.Lerp(item.meshRenderer.transform.position, item.explodedPosition, explosionSpeed);
 
 
@@ -217,9 +223,7 @@ public class Explosion : MonoBehaviour
                 foreach (var item in childMeshRenderers)
 
                 {
-
                     item.meshRenderer.transform.position = Vector3.Lerp(item.meshRenderer.transform.position, item.originalPosition, explosionSpeed);
-
 
                     if (Vector3.Distance(item.meshRenderer.transform.position, item.originalPosition) < 0.001f)
 
@@ -235,7 +239,7 @@ public class Explosion : MonoBehaviour
 
         }
 
-        transform.parent = CurrentParent.transform;
+        //boundsControl.Active = true;
 
     }
 
