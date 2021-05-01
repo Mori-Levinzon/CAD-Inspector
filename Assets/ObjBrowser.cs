@@ -164,7 +164,11 @@ public class ObjBrowser : MonoBehaviour
         containerCube.transform.rotation = Quaternion.identity;
         containerCube.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         containerCube.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        MidAirPositioner.transform.rotation = Quaternion.identity;
+        MidAirPositioner.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        MidAirPositioner.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         containerCube.SetActive(false);
+        MidAirPositioner.SetActive(false);
         GameObject.Find("LoadLabel").GetComponent<Text>().text = "Load";
 
         removeObjectsFromDropdownMenu();
@@ -206,7 +210,8 @@ public class ObjBrowser : MonoBehaviour
         //Debug.Log("appear_once" + ITScript.GetComponent<ImageTracker>().appear_once);
 
         //that line works here fucks the other one
-        containerCube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
+        //containerCube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
+        MidAirPositioner.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
 
         //MidAirPositioner.transform.position = Camera.main.transform.forward * 1.0f;
 
@@ -220,11 +225,15 @@ public class ObjBrowser : MonoBehaviour
             containerCube = GameObject.Instantiate(containerCube);
             containerCube.name = "Cube #" + copyNumber;//change  name of the cube to his serialized name
         }
+        MidAirPositioner.SetActive(true);
         containerCube.SetActive(true);
         //scale, locate and rotate the cube to the starting position
         containerCube.transform.rotation = Quaternion.identity;
         containerCube.transform.localScale= new Vector3(1.0f,1.0f, 1.0f);
         containerCube.transform.localPosition = new Vector3(0.0f,0.0f,0.0f);
+        MidAirPositioner.transform.rotation = Quaternion.identity;
+        MidAirPositioner.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        MidAirPositioner.transform.localPosition = new Vector3(0.0f, -0.5f, 2.0f);
         //first option i used - a bit heavy but still promising
         //loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
 

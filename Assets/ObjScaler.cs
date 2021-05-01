@@ -13,6 +13,7 @@ public class ObjScaler : MonoBehaviour
 
     public void ScalebuttonPressed()
     {
+        GameObject MidAirPositioner = GameObject.Find("Mid Air Positioner");
         GameObject cube = GameObject.Find("Cube #1");
         float isObjLoaded = cube.transform.childCount;
         //Debug.Log("ScalebuttonPressed isObjLoaded: " + isObjLoaded);
@@ -30,7 +31,8 @@ public class ObjScaler : MonoBehaviour
             //Debug.Log("ScalebuttonPressed loadedObjScale != originalScale start");
             fitScale = loadedObjScale;
             float newScale = 1 / loadedObjScale;
-            cube.transform.localScale = new Vector3(newScale, newScale, newScale);
+            //cube.transform.localScale = new Vector3(newScale, newScale, newScale);
+            MidAirPositioner.transform.localScale = new Vector3(newScale, newScale, newScale);
             GameObject.Find("ScaleButtonText").GetComponent<Text>().text = "Fit Scale";
 
             //Debug.Log("ScalebuttonPressed loadedObjScale != originalScale end");
@@ -42,7 +44,8 @@ public class ObjScaler : MonoBehaviour
 
             //Debug.Log("ScalebuttonPressed loadedObjScale == originalScale start");
 
-            cube.transform.localScale = new Vector3(1f, 1f, 1f);
+            //cube.transform.localScale = new Vector3(1f, 1f, 1f);
+            MidAirPositioner.transform.localScale = new Vector3(1f, 1f, 1f);
 
             GameObject.Find("ScaleButtonText").GetComponent<Text>().text = "Original Scale";
 

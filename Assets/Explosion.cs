@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 using System;
 
-using Microsoft.MixedReality.Toolkit.UI.BoundsControl;
-
-
 [Serializable]
 
 public class SubMeshes
@@ -50,8 +47,6 @@ public class Explosion : MonoBehaviour
 
     public float explodeRange = 1.5f;
 
-    GameObject CurrentParent;
-
     #endregion
 
 
@@ -70,20 +65,12 @@ public class Explosion : MonoBehaviour
 
         if (currentSize != numberOfComponents)
         {
-
-            BoundsControl boundsControl = GetComponent<BoundsControl>();
-            boundsControl.Active = false;
             updateComponents();
-            if (currentSize > 1) {
-                boundsControl.Active = true;
-            }
-
         }
     }
 
     public void updateComponents()
     {
-        //cube = GameObject.Find("Cube #1");
 
         childMeshRenderers = new List<SubMeshes>();
 
@@ -136,9 +123,6 @@ public class Explosion : MonoBehaviour
     {
 
         checkIfNeedToUpdateComponents();
-
-        //BoundsControl boundsControl = GetComponent<BoundsControl>();
-        //boundsControl.Active = false;
 
         int n = 0;
         int i = 0;
@@ -238,8 +222,6 @@ public class Explosion : MonoBehaviour
             }
 
         }
-
-        //boundsControl.Active = true;
 
     }
 

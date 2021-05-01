@@ -748,7 +748,6 @@ PlayerSettings:
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities:
     WindowsStoreApps:
-      EnterpriseAuthentication: True
       VideosLibrary: True
       Location: True
       HumanInterfaceDevice: True
@@ -761,6 +760,7 @@ PlayerSettings:
       InternetClientServer: True
       OfflineMapsManagement: False
       Objects3D: True
+      Proximity: True
       RemoteSystem: True
       BlockedChatMessages: False
       PhoneCall: False
@@ -783,9 +783,9 @@ PlayerSettings:
       RecordedCallsFolder: False
       Contacts: False
       InternetClient: True
-      Proximity: True
       CodeGeneration: True
       BackgroundMediaPlayback: True
+      EnterpriseAuthentication: True
   metroTargetDeviceFamilies:
     Desktop: True
     Holographic: True
