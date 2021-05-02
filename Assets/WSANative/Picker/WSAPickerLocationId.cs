@@ -16,6 +16,7 @@ namespace CI.WSANative.Pickers
         Downloads,
         HomeGroup,
         MusicLibrary,
+        Objects3D,
         PicturesLibrary,
         VideosLibrary
     }

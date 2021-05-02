@@ -165,6 +165,8 @@ namespace CI.WSANative.Pickers
                     return PickerLocationId.HomeGroup;
                 case WSAPickerLocationId.MusicLibrary:
                     return PickerLocationId.MusicLibrary;
+                case WSAPickerLocationId.Objects3D:
+                    return PickerLocationId.Objects3D;
                 case WSAPickerLocationId.PicturesLibrary:
                     return PickerLocationId.PicturesLibrary;
                 case WSAPickerLocationId.VideosLibrary:

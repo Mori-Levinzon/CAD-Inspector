@@ -82,7 +82,7 @@ public class ObjBrowser : MonoBehaviour
 
     public async void ShowFileOpenPicker()
     {
-        WSANativeFilePicker.PickSingleFile("Select", WSAPickerViewMode.Thumbnail, WSAPickerLocationId.PicturesLibrary, new[] { ".obj" }, result =>
+        WSANativeFilePicker.PickSingleFile("Select", WSAPickerViewMode.Thumbnail, WSAPickerLocationId.Objects3D, new[] { ".obj" }, result =>
         {
             if (result != null)
             {
@@ -91,7 +91,7 @@ public class ObjBrowser : MonoBehaviour
                 StorageFile storageFile = result.OriginalFile; 
 
                 string fileString = result.ReadText();
-                //Debug.Log("fileString size is: "+fileString.Length);
+                Debug.Log("fileString size is: "+fileString.Length);
 
                 string fileMtlString = "";
                 string filePath = storageFile.Path;
@@ -111,7 +111,7 @@ public class ObjBrowser : MonoBehaviour
 #if UNITY_WSA && ENABLE_WINMD_SUPPORT
     public async void SearchForMtlFile(string filePath, string mtlName, string  fileString, string  fileMtlString)
     {
-        Windows.Storage.StorageFolder storageFolder = KnownFolders.PicturesLibrary;
+        Windows.Storage.StorageFolder storageFolder = KnownFolders.Objects3D;
         Windows.Storage.StorageFile mtlFile = await storageFolder.GetFileAsync(mtlName);
         if (mtlFile != null)
         {
