@@ -5,6 +5,7 @@ namespace CI.WSANative.FileStorage
     {
         Local,
         Music,
+        Objects3D,
         Pictures,
         Videos
     }

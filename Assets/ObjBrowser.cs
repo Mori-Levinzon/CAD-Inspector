@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections;
 using System.IO;
+using System;
 //WSA OBJlaoader - crappy loader
 //using Dummiesman;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ using UnityEngine.SocialPlatforms;
 using CI.WSANative.Common;
 using CI.WSANative.Dispatchers;
 using CI.WSANative.Pickers;
+using CI.WSANative.FileStorage;
 #if UNITY_WSA && ENABLE_WINMD_SUPPORT
 using Windows.Storage;
 using System;
@@ -86,54 +88,49 @@ public class ObjBrowser : MonoBehaviour
         {
             if (result != null)
             {
-                //StorageFile StorageFile.GetFileFromPathAsync(filePath)
-#if UNITY_WSA && ENABLE_WINMD_SUPPORT
-                StorageFile storageFile = result.OriginalFile; 
 
                 string fileString = result.ReadText();
-                Debug.Log("fileString size is: "+fileString.Length);
+                //Debug.Log("fileString size is: "+fileString.Length);
 
                 string fileMtlString = "";
-                string filePath = storageFile.Path;
-                string fileName = storageFile.Name;
+                string filePath = result.Path;
+                string fileName = result.Name;
 
                 string mtlName = fileName.Remove(fileName.Length - 3) + "mtl";
+                string mtlPath = filePath.Remove(filePath.Length - 3) + "mtl";
+                //Debug.Log("mtlPath is: " + mtlPath);
+                string knownFolderName = "3D Objects";
+                int startofknownFolderName = 0;
+                string RelativePath = "";
+                try
+                {
+                    startofknownFolderName =mtlPath.IndexOf(knownFolderName);
+                    RelativePath = mtlPath.Remove(0, startofknownFolderName + knownFolderName.Length + 1);
+                }
+                catch (ArgumentException e)
+                {
+                    RelativePath = mtlName;
 
-                SearchForMtlFile(filePath, mtlName,fileString, fileMtlString);
+                }
 
-#endif
+                if (WSANativeStorageLibrary.DoesFileExist(WSAStorageLibrary.Objects3D, RelativePath))
+                {
+                    WSANativeStorageLibrary.GetFile(WSAStorageLibrary.Objects3D, RelativePath, MTLResult =>
+                    {
+                        fileMtlString = MTLResult.ReadText();
+                        OpenFile(filePath, fileString, fileMtlString);
+                    });
+                }
+                else
+                {
+                    OpenFile(filePath, fileString, fileMtlString);
+                }
+
                 //byte[] fileBytes = result.ReadBytes();
                 //string fileString = result.ReadText();
             }
         });
     }
-
-#if UNITY_WSA && ENABLE_WINMD_SUPPORT
-    public async void SearchForMtlFile(string filePath, string mtlName, string  fileString, string  fileMtlString)
-    {
-        Windows.Storage.StorageFolder storageFolder = KnownFolders.Objects3D;
-        Windows.Storage.StorageFile mtlFile = await storageFolder.GetFileAsync(mtlName);
-        if (mtlFile != null)
-        {
-            try
-                {
-                    fileMtlString = await FileIO.ReadTextAsync(mtlFile);
-                }
-            // Handle errors with catch blocks
-            catch (FileNotFoundException)
-            {
-                // For example, handle file not found
-            }
-            //Debug.Log(fileMtlString.Length);
-        }
-        else
-        {
-            //Debug.Log("no MTL");
-        }
-        OpenFile(filePath,fileString,fileMtlString);
-
-    }
-#endif
 
 
     IEnumerator ShowLoadDialogCoroutine()
@@ -247,12 +244,12 @@ public class ObjBrowser : MonoBehaviour
 
         //check if there is mtl file and if there is load it:
         string mtlPath = objectPath.Remove(objectPath.Length - 3) + "mtl";
-        #if UNITY_WSA && ENABLE_WINMD_SUPPORT
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
 
-        #else
+#else
             fileString = File.ReadAllText(objectPath);
             fileMtlString = File.ReadAllText(mtlPath);
-        #endif
+#endif
         if (fileMtlString != "")
         {
 

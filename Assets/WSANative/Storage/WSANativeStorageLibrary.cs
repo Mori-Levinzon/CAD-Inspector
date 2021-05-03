@@ -232,6 +232,8 @@ namespace CI.WSANative.FileStorage
                     return ApplicationData.Current.LocalFolder;
                 case WSAStorageLibrary.Music:
                     return KnownFolders.MusicLibrary;
+                case WSAStorageLibrary.Objects3D:
+                    return KnownFolders.Objects3D;
                 case WSAStorageLibrary.Pictures:
                     return KnownFolders.PicturesLibrary;
                 default:
