@@ -33,9 +33,9 @@ namespace Microsoft.MixedReality.Toolkit.UI
             }
         }
 
-        [Range(0, 1)]
+        [Range(-1, 1)]
         [SerializeField]
-        private float sliderValue = 0.5f;
+        private float sliderValue = 0f;
         public float SliderValue
         {
             get { return sliderValue; }
@@ -160,7 +160,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
 
         [SerializeField]
         [Tooltip("Where the slider track starts, as distance from center along slider axis, in local space units.")]
-        private float sliderStartDistance = -.5f;
+        private float sliderStartDistance = -0.12f;
         public float SliderStartDistance
         {
             get { return sliderStartDistance; }
@@ -169,7 +169,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
 
         [SerializeField]
         [Tooltip("Where the slider track ends, as distance from center along slider axis, in local space units.")]
-        private float sliderEndDistance = .5f;
+        private float sliderEndDistance = 0.12f;
         public float SliderEndDistance
         {
             get { return sliderEndDistance; }
@@ -445,7 +445,7 @@ namespace Microsoft.MixedReality.Toolkit.UI
                 var delta = activePointer.Position - startPointerPosition;
                 var handDelta = Vector3.Dot(SliderTrackDirection.normalized, delta);
 
-                SliderValue = Mathf.Clamp(startSliderValue + handDelta / SliderTrackDirection.magnitude, 0, 1);
+                SliderValue = Mathf.Clamp(startSliderValue + handDelta / SliderTrackDirection.magnitude, -1, 1);
 
                 // Mark the pointer data as used to prevent other behaviors from handling input events
                 eventData.Use();

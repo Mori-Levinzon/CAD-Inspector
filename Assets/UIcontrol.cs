@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class UIcontrol : MonoBehaviour
 {
@@ -13,24 +15,35 @@ public class UIcontrol : MonoBehaviour
     public GameObject CrossToggle;
     public GameObject containerCube;
     public Text activeCrossAxis;
+    public TMP_Text activeCrossMRTKAxis;
     Vector3 hideOffset = new Vector3(0, 4, 0);
     int isInverted = 1; //1 means normal, -1 means inverted
 
     bool isCrossCutPressed = false;
 
+
     //public Text toggleText;
 
-    public GameObject dropdownGameObject;
+    public Dropdown m_Dropdown;
+
     void Awake()
     {
-        crossPanel.SetActive(false);
         ChangeHideOffsetByAxis();
         crossQuad.transform.position += hideOffset; //hide
+
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+        crossPanel.SetActive(false);
+        crossQuad.SetActive(false);
+        basicPanel.SetActive(true);
+#else
+        crossPanel.SetActive(false);
         crossQuad.SetActive(false);
         basicPanel.SetActive(false);
         exit.SetActive(false);
         CrossToggle.SetActive(false);
+#endif
         addLoadObjectToDropdownMenu();
+
     }
 
     void addLoadObjectToDropdownMenu()
@@ -38,7 +51,10 @@ public class UIcontrol : MonoBehaviour
         //This is the Dropdown
         //dropDownGameObject.SetActive(true);
         //Create a List of new Dropdown options
-        Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
+
+        //Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
+
+
 
         List<string> m_DropOptions = new List<string>();
 
@@ -74,9 +90,14 @@ public class UIcontrol : MonoBehaviour
         crossQuad.transform.position += hideOffset; //hide
         crossQuad.SetActive(false);
         basicPanel.SetActive(true);
+
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+
+#else
         menuOpen.SetActive(false);
         exit.SetActive(true);
         CrossToggle.SetActive(true);
+#endif
     }
 
     public void exitPressed()
@@ -86,9 +107,14 @@ public class UIcontrol : MonoBehaviour
         crossQuad.transform.position += hideOffset; //hide
         crossQuad.SetActive(false);
         basicPanel.SetActive(false);
+
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+
+#else
+        CrossToggle.SetActive(false);
         menuOpen.SetActive(true);
         exit.SetActive(false);
-        CrossToggle.SetActive(false);
+#endif
     }
 
     public void ToggleChanged(bool newValue)
@@ -128,18 +154,25 @@ public class UIcontrol : MonoBehaviour
             isCrossCutPressed = !isCrossCutPressed;
         }
     }
-    
+
     void ChangeHideOffsetByAxis()
     {
-        if (activeCrossAxis.text == "X")
+        string currentAxis;
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+        currentAxis = activeCrossMRTKAxis.text;
+
+#else
+        currentAxis = activeCrossAxis.text;
+#endif
+        if (currentAxis == "X")
         {
             hideOffset = new Vector3(0, 4, 0) * isInverted;
         }
-        if (activeCrossAxis.text == "Y")
+        if (currentAxis == "Y")
         {
             hideOffset = new Vector3(4, 0, 0) * isInverted;
         }
-        if (activeCrossAxis.text == "Z")
+        if (currentAxis == "Z")
         {
             hideOffset = new Vector3(0, 0, -4) * isInverted;
         }
@@ -160,7 +193,9 @@ public class UIcontrol : MonoBehaviour
 
     public void onDropdownValueChanged()
     {
-        Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
+
+        //Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
+
         int selectedComponent = m_Dropdown.value;
 
         Renderer[] lChildRenderers = containerCube.GetComponentsInChildren<Renderer>();
@@ -190,6 +225,19 @@ public class UIcontrol : MonoBehaviour
         foreach (Renderer lRenderer in lChildRenderers)
         {
             lRenderer.enabled = true;
+        }
+    }
+
+    public void changeQuadVisibility()
+    {
+        Renderer rend = crossQuad.GetComponent<Renderer>();
+        if (rend.isVisible)
+        {
+            rend.enabled = false;
+        }
+        else
+        {
+            rend.enabled = true;
         }
     }
 }

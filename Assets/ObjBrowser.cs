@@ -12,6 +12,8 @@ using static Explosion;
 using UnityEngine.Animations;
 using SimpleFileBrowser;
 using AsImpL;
+using TMPro;
+using Microsoft.MixedReality.Toolkit.UI;
 //using static ImageTracker;
 using UnityEngine.SocialPlatforms;
 //WSA NATIVE NAMESPACES
@@ -42,18 +44,27 @@ public class ObjBrowser : MonoBehaviour
 
     GameObject loadedObj;
 
-    public GameObject dropdownGameObject;
+    public Dropdown m_Dropdown;
 
     public Material standardMaterial;   // The shader for non-transparent objects is supplied by this material. Also used for objects that have no MTL file.
 
     public Material transparentMaterial;
 
-    public Texture2D[] textures;
+    Texture2D[] textures;
+
+    public GameObject LoadButton;
+
+    public GameObject RemoveButton;
 
     public void Awake()
     {
         // Call this once when your app starts up to configure the library
         WSANativeCore.Initialise();
+
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+        RemoveButton.SetActive(false);
+        LoadButton.SetActive(true);
+#endif
     }
 
     public void LoadOrRemovebuttonPressed()
@@ -106,11 +117,11 @@ public class ObjBrowser : MonoBehaviour
                 {
                     startofknownFolderName =mtlPath.IndexOf(knownFolderName);
                     RelativePath = mtlPath.Remove(0, startofknownFolderName + knownFolderName.Length + 1);
+                    //Debug.Log("RelativePath is: " + RelativePath);
                 }
                 catch (ArgumentException e)
                 {
                     RelativePath = mtlName;
-
                 }
 
                 if (WSANativeStorageLibrary.DoesFileExist(WSAStorageLibrary.Objects3D, RelativePath))
@@ -166,11 +177,18 @@ public class ObjBrowser : MonoBehaviour
         MidAirPositioner.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
         containerCube.SetActive(false);
         MidAirPositioner.SetActive(false);
-        GameObject.Find("LoadLabel").GetComponent<Text>().text = "Load";
+
 
         removeObjectsFromDropdownMenu();
 
-        containerCube.GetComponent<ImageTracker>().appear_once = true;
+        ImageTarget.GetComponent<ImageTracker>().appear_once = true;
+
+        //GameObject.Find("LoadLabel").GetComponent<Text>().text = "Load";
+
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+        RemoveButton.SetActive(false);
+        LoadButton.SetActive(true);
+#endif
 
     }
 
@@ -260,12 +278,17 @@ public class ObjBrowser : MonoBehaviour
             loadedObj = ObjImporter.Import(fileString);
         }
         loadedObj.name = fileName;
+        //TODO: change it later
 
-        GameObject.Find("LoadLabel").GetComponent<Text>().text = "Remove";
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+        RemoveButton.SetActive(true);
+        LoadButton.SetActive(false);
+#endif
+
     }
 
 
-        void adjustObjectHierachy()
+    void adjustObjectHierachy()
     {
         containerCube.transform.localPosition = new Vector3(0f, 0f, 0f);
 
@@ -333,9 +356,7 @@ public class ObjBrowser : MonoBehaviour
     {
         //This is the Dropdown
         //dropDownGameObject.SetActive(true);
-        //Create a List of new Dropdown options
-        Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
-
+        //Create a List of new Dropdown options 
         List<string> m_DropOptions = new List<string> ();
 
         MeshRenderer[] lChildRenderers = loadedObj.GetComponentsInChildren<MeshRenderer>();
@@ -359,7 +380,6 @@ public class ObjBrowser : MonoBehaviour
     {
         // reach the game object of the dropdown
         //This is the Dropdown
-        Dropdown m_Dropdown = dropdownGameObject.GetComponent<Dropdown>();
         //Clear the old options of the Dropdown menu
         m_Dropdown.ClearOptions();
         List<string> m_DropOptions = new List<string>();

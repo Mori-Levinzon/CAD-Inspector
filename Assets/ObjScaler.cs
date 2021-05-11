@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Microsoft.MixedReality.Toolkit.UI;
+
 
 public class ObjScaler : MonoBehaviour
 {
@@ -33,8 +35,12 @@ public class ObjScaler : MonoBehaviour
             float newScale = 1 / loadedObjScale;
             //cube.transform.localScale = new Vector3(newScale, newScale, newScale);
             MidAirPositioner.transform.localScale = new Vector3(newScale, newScale, newScale);
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+        //TODO: change it later
+        GameObject.Find("ScaleButton").GetComponent<ButtonConfigHelper>().MainLabelText = "Fit Scale";
+#else
             GameObject.Find("ScaleButtonText").GetComponent<Text>().text = "Fit Scale";
-
+#endif
             //Debug.Log("ScalebuttonPressed loadedObjScale != originalScale end");
 
         }
@@ -47,8 +53,12 @@ public class ObjScaler : MonoBehaviour
             //cube.transform.localScale = new Vector3(1f, 1f, 1f);
             MidAirPositioner.transform.localScale = new Vector3(1f, 1f, 1f);
 
+#if UNITY_WSA && ENABLE_WINMD_SUPPORT
+        //TODO: change it later
+            GameObject.Find("ScaleButton").GetComponent<ButtonConfigHelper>().MainLabelText = "Original Scale";
+#else
             GameObject.Find("ScaleButtonText").GetComponent<Text>().text = "Original Scale";
-
+#endif
             //Debug.Log("ScalebuttonPressed loadedObjScale == originalScale end");
 
         }

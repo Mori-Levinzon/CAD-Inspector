@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Microsoft.MixedReality.Toolkit.UI;
+using TMPro;
 
 public class QuadMoveAsCube : MonoBehaviour
 {
     public GameObject cube;
-    public Text axis;
-    public Slider axisPos;
-    public Toggle isCrossCutOn;
+    //public Text axis;
+    public TMP_Text axis;
+    //public Slider axisPos;
+    public PinchSlider axisPos;
+    //public Toggle isCrossCutOn;
+    public GameObject CrossCutPanel;
     Vector3 offset = Vector3.zero;
     Vector3 localPos = Vector3.zero;
     Vector3 originalPos = Vector3.zero;
@@ -41,12 +46,13 @@ public class QuadMoveAsCube : MonoBehaviour
     void Update()
     {
 
-        if (isCrossCutOn.isOn)
+        //if (isCrossCutOn.isOn)
+        if (CrossCutPanel.activeSelf)
         {
             Vector3 newPosition = Vector3.zero;
             if (axis.text == "X")
             {
-                newPosition = new Vector3(axisPos ? axisPos.value : 0, 0, 0);
+                newPosition = new Vector3(axisPos ? axisPos.SliderValue : 0, 0, 0);
                 if (isInverted == 1) // not inverted
                 {
                     transform.eulerAngles = new Vector3(0, -90, 0);
@@ -59,7 +65,7 @@ public class QuadMoveAsCube : MonoBehaviour
             }
             if (axis.text == "Y")
             {
-                newPosition = new Vector3(0, axisPos ? axisPos.value : 0, 0);
+                newPosition = new Vector3(0, axisPos ? axisPos.SliderValue : 0, 0);
                 if (isInverted == 1) // not inverted
                 {
                     transform.eulerAngles = new Vector3(90, 0, 0);
@@ -72,7 +78,7 @@ public class QuadMoveAsCube : MonoBehaviour
             }
             if (axis.text == "Z")
             {
-                newPosition = new Vector3(0, 0, axisPos ? axisPos.value : 0);
+                newPosition = new Vector3(0, 0, axisPos ? axisPos.SliderValue : 0);
                 
                 if (isInverted == 1) // not inverted
                 {
