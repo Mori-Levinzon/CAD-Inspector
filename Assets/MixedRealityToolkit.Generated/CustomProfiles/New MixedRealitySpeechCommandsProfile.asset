@@ -31,13 +31,6 @@ MonoBehaviour:
       description: None
       axisConstraint: 0
   - localizationKey: 
-    keyword: Select Component
-    keyCode: 0
-    action:
-      id: 1
-      description: Select
-      axisConstraint: 2
-  - localizationKey: 
     keyword: scale
     keyCode: 0
     action:
@@ -62,8 +55,8 @@ MonoBehaviour:
     keyword: y
     keyCode: 0
     action:
-      id: 16
-      description: StartToDrag
+      id: 0
+      description: None
       axisConstraint: 0
   - localizationKey: 
     keyword: z
@@ -108,11 +101,11 @@ MonoBehaviour:
       description: LoadData
       axisConstraint: 0
   - localizationKey: 
-    keyword: Start replay
+    keyword: select component
     keyCode: 0
     action:
-      id: 22
-      description: StartReplayData
+      id: 0
+      description: None
       axisConstraint: 0
   - localizationKey: 
     keyword: Stop replay

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &396776474
 Transform:
   m_ObjectHideFlags: 0
@@ -352,7 +352,7 @@ GameObject:
   - component: {fileID: 836762762}
   - component: {fileID: 836762761}
   m_Layer: 0
-  m_Name: MixedRealityToolkit
+  m_Name: MixedRealityToolkit (Inactive)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -453,6 +453,17 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 7184140997535965237, guid: e9e54ebd208487c409e32502a50a1f20, type: 3}
   m_PrefabInstance: {fileID: 1283210365}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1283210368 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6678224065106208686, guid: e9e54ebd208487c409e32502a50a1f20, type: 3}
+  m_PrefabInstance: {fileID: 1283210365}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283210366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a98de877dee5fc341b4eb59dfdab266c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1283210369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -481,7 +492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 181cd563a8349c34ea8978b0bc8d9c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hostTransform: {fileID: 0}
+  hostTransform: {fileID: 1283210371}
   manipulationType: 3
   twoHandedManipulationType: 7
   allowFarManipulation: 1
@@ -495,7 +506,7 @@ MonoBehaviour:
   rotateLerpTime: 0.001
   scaleLerpTime: 0.001
   enableConstraints: 1
-  constraintsManager: {fileID: 0}
+  constraintsManager: {fileID: 1283210368}
   elasticsManager: {fileID: 0}
   onManipulationStarted:
     m_PersistentCalls:
@@ -557,6 +568,11 @@ MonoBehaviour:
   onHoverExited:
     m_PersistentCalls:
       m_Calls: []
+--- !u!4 &1283210371 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4538655477204070, guid: e9e54ebd208487c409e32502a50a1f20, type: 3}
+  m_PrefabInstance: {fileID: 1283210365}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1523610417
 PrefabInstance:
   m_ObjectHideFlags: 0
