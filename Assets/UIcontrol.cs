@@ -32,15 +32,16 @@ public class UIcontrol : MonoBehaviour
         crossQuad.transform.position += hideOffset; //hide
 
 #if UNITY_WSA && ENABLE_WINMD_SUPPORT
-        crossPanel.SetActive(false);
+        crossQuad.SetActive(false);
         crossQuad.SetActive(false);
         basicPanel.SetActive(true);
 #else
         crossPanel.SetActive(false);
         crossQuad.SetActive(false);
-        basicPanel.SetActive(false);
+        basicPanel.SetActive(true);
         exit.SetActive(false);
         CrossToggle.SetActive(false);
+
 #endif
         addLoadObjectToDropdownMenu();
 
@@ -133,7 +134,6 @@ public class UIcontrol : MonoBehaviour
     {
         if (!isCrossCutPressed)
         {
-            //GameObject.Find("CrossToggleLabel").GetComponent<Text>().text = "Cancel Cross";
             basicPanel.SetActive(false);
             crossPanel.SetActive(true);
             crossQuad.SetActive(true);
@@ -144,7 +144,6 @@ public class UIcontrol : MonoBehaviour
         }
         else
         {
-            //GameObject.Find("CrossToggleLabel").GetComponent<Text>().text = "Cross Cut";
             basicPanel.SetActive(true);
             crossPanel.SetActive(false);
             ChangeHideOffsetByAxis();

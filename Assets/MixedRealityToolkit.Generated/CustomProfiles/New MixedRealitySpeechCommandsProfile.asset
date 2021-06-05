@@ -31,100 +31,100 @@ MonoBehaviour:
       description: None
       axisConstraint: 0
   - localizationKey: 
-    keyword: scale
+    keyword: Scale
     keyCode: 0
     action:
       id: 0
       description: None
       axisConstraint: 0
   - localizationKey: 
-    keyword: cross cut
+    keyword: Cross cut
     keyCode: 0
     action:
       id: 0
       description: None
       axisConstraint: 0
   - localizationKey: 
-    keyword: x
+    keyword: X
     keyCode: 0
     action:
       id: 17
       description: StopToDrag
       axisConstraint: 0
   - localizationKey: 
-    keyword: y
+    keyword: Y
     keyCode: 0
     action:
       id: 0
       description: None
       axisConstraint: 0
   - localizationKey: 
-    keyword: z
+    keyword: Z
     keyCode: 0
     action:
       id: 17
       description: StopToDrag
       axisConstraint: 0
   - localizationKey: 
-    keyword: invert
+    keyword: Invert
     keyCode: 0
     action:
       id: 18
       description: ZoomIn
       axisConstraint: 0
   - localizationKey: 
-    keyword: visible
+    keyword: Visible
     keyCode: 0
     action:
       id: 19
       description: ZoomOut
       axisConstraint: 0
   - localizationKey: 
-    keyword: remove
+    keyword: Remove
     keyCode: 0
     action:
       id: 20
       description: StartRecordingData
       axisConstraint: 0
   - localizationKey: 
-    keyword: place
+    keyword: Place
     keyCode: 0
     action:
       id: 21
       description: StopRecordingData
       axisConstraint: 0
   - localizationKey: 
-    keyword: menu
+    keyword: Menu
     keyCode: 0
     action:
       id: 24
       description: LoadData
       axisConstraint: 0
   - localizationKey: 
-    keyword: select component
+    keyword: Select component
     keyCode: 0
     action:
       id: 0
       description: None
       axisConstraint: 0
   - localizationKey: 
-    keyword: Stop replay
-    keyCode: 0
-    action:
-      id: 23
-      description: StopReplayData
-      axisConstraint: 0
-  - localizationKey: 
-    keyword: Pop
+    keyword: Trail
     keyCode: 0
     action:
       id: 0
       description: None
       axisConstraint: 0
   - localizationKey: 
-    keyword: Come to me
+    keyword: Enable gestures
     keyCode: 0
     action:
-      id: 25
-      description: SummonTargetStart
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Disable gestures
+    keyCode: 0
+    action:
+      id: 0
+      description: None
       axisConstraint: 0

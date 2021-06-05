@@ -13,11 +13,14 @@ public class GesturesListener :  MonoBehaviour
     public Interactable ScaleBtn;
     public Interactable ExplodeBtn;
     public Interactable PlaceBtn;
+    public Interactable CrossCutPanelBtn;
     public Interactable XBtn;
     public Interactable YBtn;
     public Interactable ZBtn;
+    public GameObject midAirPositioner;
     public GameObject Cube;
-    public TimeSpan tapTreshold = new TimeSpan(0, 0, 3);
+    public GameObject Menu;
+    public TimeSpan tapTreshold = new TimeSpan(0, 0, 1);
     private int tapCounter;
     private DateTime latestTap;
     private List<Vector3> pointerDraggedPositions;
@@ -44,9 +47,11 @@ public class GesturesListener :  MonoBehaviour
 
     private List<Tuple<VerticalDirection, HorizontalDirection>> signDirections;
 
-    private string debugResult="";
-
     Transform trailTransform;
+
+    bool isTrailActivated = true;
+
+    bool isPointerOnObject = false; //dont check gestures on pointed objects
     // Start is called before the first frame update
     void Start()
     {
@@ -82,7 +87,7 @@ public class GesturesListener :  MonoBehaviour
             //Debug.Log("too slow");
             tapCounter = 1;
         }
-        if (tapCounter == 3)
+        if (tapCounter == 5)
         {
             //Debug.Log("Three taps");
             PressLoadOrRemoveBtn();
@@ -110,12 +115,27 @@ public class GesturesListener :  MonoBehaviour
 
     public void pointerUp(MixedRealityPointerEventData eventData)
     {
-        checkGestureMatch();
+        if (isPointerOnObject)//check only when gestures is not on object
+        {
+            isPointerOnObject = false;
+            pointerDraggedPositions.Clear();
+            signDirections.Clear();
+        }
+        else
+        {
+            checkGestureMatch();
+        }
 
     }
 
     public void pointerDragged(MixedRealityPointerEventData eventData)
     {
+        GameObject objectPointedByGaze = gazeProvider.GazeTarget;
+        if (objectPointedByGaze == midAirPositioner || objectPointedByGaze == Cube || objectPointedByGaze == Menu)
+        {
+            isPointerOnObject = true;
+            return;//dont show trail or do gestures on the menu or the loaded object
+        }
         Vector3 pointerPosition = gazeProvider.GazeOrigin + gazeProvider.GazeDirection*3;
         Vector3 pointerPositionAdjested = new Vector3(((int)(pointerPosition.x * 10)), ((int)(pointerPosition.y * 10)), ((int)(pointerPosition.z * 10)));
         if (pointerDraggedPositions.Count != 0)
@@ -138,15 +158,15 @@ public class GesturesListener :  MonoBehaviour
         }
     }
 
-    void checkGestureMatch()
+    void DebugDirection(List<Tuple<VerticalDirection, HorizontalDirection>> directionsList)
     {
         String directions = "";
-        foreach (Tuple<VerticalDirection,HorizontalDirection> dir in signDirections)
+        foreach (Tuple<VerticalDirection, HorizontalDirection> dir in directionsList)
         {
             directions += "( ";
             switch (dir.Item1)
             {
-                case VerticalDirection.Down: 
+                case VerticalDirection.Down:
                     directions += "Down";
                     break;
                 case VerticalDirection.Up:
@@ -172,26 +192,30 @@ public class GesturesListener :  MonoBehaviour
             directions += " ) ->";
 
         }
-        debugResult += "directions: " + directions+"\n\n\n";
-        if (isDrawnLetterE())
+    }
+
+    void checkGestureMatch()
+    {
+        
+        List<Tuple<VerticalDirection, HorizontalDirection>> reverseDirections = reverseDirectionsList(signDirections);
+        if (isDrawnLetterE(signDirections) || isDrawnLetterE(reverseDirections))
         {
             ExplodeBtn.TriggerOnClick();
             showTooltip("Explode");
         }
-        else if (isDrawnLetterS()) 
+        else if (isDrawnLetterS(signDirections) || isDrawnLetterS(reverseDirections)) 
         {
             ScaleBtn.TriggerOnClick();
             showTooltip("Scale");
         }
-        else if (isDrawnLetterP())
+        else if (isDrawnLetterP(signDirections) || isDrawnLetterP(reverseDirections))
         {
             PlaceBtn.TriggerOnClick();
             showTooltip("Place");
         }
-        else if (isDrawnLetterC())
+        else if (isDrawnLetterC(signDirections) || isDrawnLetterC(reverseDirections))
         {
-            //TODO: set the cross cut button right
-            //ZBtn.TriggerOnClick();
+            CrossCutPanelBtn.TriggerOnClick();
             showTooltip("Cross Cut Panel");
         }
         else
@@ -200,47 +224,77 @@ public class GesturesListener :  MonoBehaviour
         }
         pointerDraggedPositions.Clear();
         signDirections.Clear();
-        Debug.Log(debugResult);
-        debugResult = "";
     }
-    bool isDrawnLetterC()
+
+
+    List<Tuple<VerticalDirection,HorizontalDirection>> reverseDirectionsList(List<Tuple<VerticalDirection, HorizontalDirection>> originalList)
     {
-        debugResult+= "isDrawnLetterC \n";
+        List<Tuple<VerticalDirection, HorizontalDirection>> reversedDirection = new List<Tuple<VerticalDirection, HorizontalDirection>>();
+        foreach (Tuple<VerticalDirection, HorizontalDirection> dir in signDirections)
+        {
+            VerticalDirection reversedVerticalDirection = VerticalDirection.Same;
+            HorizontalDirection reversedHorizontalDirection = HorizontalDirection.Same;
+            switch (dir.Item1)
+            {
+                case VerticalDirection.Down:
+                    reversedVerticalDirection = VerticalDirection.Up;
+                    break;
+                case VerticalDirection.Up:
+                    reversedVerticalDirection = VerticalDirection.Down;
+                    break;
+                case VerticalDirection.Same:
+                    break;
+            }
+            switch (dir.Item2)
+            {
+                case HorizontalDirection.Left:
+                    reversedHorizontalDirection = HorizontalDirection.Right;
+                    break;
+                case HorizontalDirection.Right:
+                    reversedHorizontalDirection = HorizontalDirection.Left;
+                    break;
+                case HorizontalDirection.Same:
+                    break;
+            }
+            Tuple<VerticalDirection, HorizontalDirection> reversedDir = new Tuple<VerticalDirection, HorizontalDirection>(reversedVerticalDirection, reversedHorizontalDirection);
+
+        }
+
+        return reversedDirection;
+    }
+    bool isDrawnLetterC(List<Tuple<VerticalDirection, HorizontalDirection>> directionsList)
+    {
         int i = 0;
         bool wentLeft = false;
         bool wentDown = false;
         int mistakesCounter = 0;
-        if (i < signDirections.Count &&  (signDirections[i].Item1 == VerticalDirection.Up || signDirections[i].Item2 == HorizontalDirection.Right)) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Up && signDirections[i].Item2 != HorizontalDirection.Right)
+        if (i < directionsList.Count &&  (directionsList[i].Item1 == VerticalDirection.Up || directionsList[i].Item2 == HorizontalDirection.Right)) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Up && directionsList[i].Item2 != HorizontalDirection.Right)
         {   //keep down/same height and keep left/
-            wentLeft =((signDirections[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
-            wentDown =((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentLeft =((directionsList[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
+            wentDown =((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
             i++;
         }
         if (!wentLeft)//there was no movement left or down at all
         {
-            debugResult += "isDrawnLetterC wentRight\n";
             return false;
         }
-        debugResult += "isDrawnLetterC wentLeft\n";
         bool wentRight = false;
-        if (i < signDirections.Count &&  (signDirections[i].Item1 == VerticalDirection.Up || signDirections[i].Item2 == HorizontalDirection.Left)) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Up && signDirections[i].Item2 != HorizontalDirection.Left)
+        if (i < directionsList.Count &&  (directionsList[i].Item1 == VerticalDirection.Up || directionsList[i].Item2 == HorizontalDirection.Left)) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Up && directionsList[i].Item2 != HorizontalDirection.Left)
         {   //keep down/same height and keep left/
-            wentDown = ((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
-            wentRight = ((signDirections[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
+            wentDown = ((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentRight = ((directionsList[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
             i++;
         }
-        if (wentDown && wentRight && (Math.Abs(i - signDirections.Count) <= 5))//there was no movement left at all
+        if (wentDown && wentRight && (Math.Abs(i - directionsList.Count) <= 5))//there was no movement left at all
         {
-            debugResult += "isDrawnLetterC went DOWN and right\n";
             return true;
         }
-        debugResult += "end isDrawnLetterC false\n";
         return false;
     }
 
-    bool isDrawnLetterP()
+    bool isDrawnLetterP(List<Tuple<VerticalDirection, HorizontalDirection>> directionsList)
     {
         //
         //                  ------------------------  <-we now reach to this point 
@@ -254,37 +308,32 @@ public class GesturesListener :  MonoBehaviour
         //                  -----
         //    this point -> -----
         //
-        debugResult += "isDrawnLetterP \n";
         int i = 0;
         bool wentRight = false;
         bool wentUp = false;
         bool wentDown = false;
-        if (i < signDirections.Count && signDirections[i].Item1 == VerticalDirection.Down) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Down  )
+        if (i < directionsList.Count && directionsList[i].Item1 == VerticalDirection.Down) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Down  )
         {   //keep down/same height and keep left/
-            wentRight = ((signDirections[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
-            wentUp = ((signDirections[i].Item1 == VerticalDirection.Up) ? true : wentUp) || wentUp;
+            wentRight = ((directionsList[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
+            wentUp = ((directionsList[i].Item1 == VerticalDirection.Up) ? true : wentUp) || wentUp;
             i++;
         }
         if (!wentUp)//there was no movement left or down at all
         {
-            debugResult += "isDrawnLetterP no up\n";
             return false;
         }
-        debugResult += "isDrawnLetterP yes up\n";
-        if (i < signDirections.Count && signDirections[i].Item2 == HorizontalDirection.Left) i++;
-        while (i < signDirections.Count && signDirections[i].Item2 != HorizontalDirection.Left )//for a little down right movement on the top edge of P
+        if (i < directionsList.Count && directionsList[i].Item2 == HorizontalDirection.Left) i++;
+        while (i < directionsList.Count && directionsList[i].Item2 != HorizontalDirection.Left )//for a little down right movement on the top edge of P
         {   //keep down/same height and keep left/
-            wentRight = ((signDirections[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
-            wentDown = ((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentRight = ((directionsList[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
+            wentDown = ((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
             i++;
         }
         if (!wentUp || !wentRight)//if there was no mevement right and up at all
         {
-            debugResult += "isDrawnLetterC did not went up and right\n";
             return false;
         }
-        debugResult += "isDrawnLetterC went up and right\n";
         //
         //                  ------------------------<- start point
         //                  -----             ------             
@@ -299,24 +348,22 @@ public class GesturesListener :  MonoBehaviour
         //                  -----
         //
         bool wentLeft = false;
-        if (i < signDirections.Count && (signDirections[i].Item1 == VerticalDirection.Up || signDirections[i].Item2 == HorizontalDirection.Right)) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Up && signDirections[i].Item2 != HorizontalDirection.Right )
+        if (i < directionsList.Count && (directionsList[i].Item1 == VerticalDirection.Up || directionsList[i].Item2 == HorizontalDirection.Right)) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Up && directionsList[i].Item2 != HorizontalDirection.Right )
         {   //keep down/same height and keep left/
-            wentLeft = ((signDirections[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
-            wentDown = ((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentLeft = ((directionsList[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
+            wentDown = ((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
             i++;
         }
-        if (wentDown && wentLeft && (Math.Abs(i - signDirections.Count) <= 5))//there was no movement right or up at all
+        if (wentDown && wentLeft && (Math.Abs(i - directionsList.Count) <= 5))//there was no movement right or up at all
         {
-            debugResult += "isDrawnLetterC went down and left\n";
             return true;
         }
-        debugResult += "end isDrawnLetterP false\n ";
 
         return false;
     }
 
-    bool isDrawnLetterE()
+    bool isDrawnLetterE(List<Tuple<VerticalDirection, HorizontalDirection>> directionsList)
     {
         //
         //                  ------------------------  <-this point 
@@ -330,37 +377,32 @@ public class GesturesListener :  MonoBehaviour
         //                  -----
         //                  -----------------------
         //
-        debugResult += "isDrawnLetterE\n";
         int i = 0;
         bool wentLeft = false;
         bool wentDown = false;
-        if (i < signDirections.Count && (signDirections[i].Item1 == VerticalDirection.Up || signDirections[i].Item2 == HorizontalDirection.Right)) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Up && signDirections[i].Item2 != HorizontalDirection.Right )
+        if (i < directionsList.Count && (directionsList[i].Item1 == VerticalDirection.Up || directionsList[i].Item2 == HorizontalDirection.Right)) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Up && directionsList[i].Item2 != HorizontalDirection.Right )
         {   //keep down/same height and keep left/
-            wentLeft = ((signDirections[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
-            wentDown = ((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentLeft = ((directionsList[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
+            wentDown = ((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
             i++;
         }
         if (!wentLeft)//there was no movement left or down at all
         {
-            debugResult += "isDrawnLetterE not left\n";
             return false;
         }
-        debugResult +="isDrawnLetterE did go left\n";
         bool wentRight = false;
-        if (i < signDirections.Count && (signDirections[i].Item1 == VerticalDirection.Up || signDirections[i].Item2 == HorizontalDirection.Left)) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Up && signDirections[i].Item2 != HorizontalDirection.Left )
+        if (i < directionsList.Count && (directionsList[i].Item1 == VerticalDirection.Up || directionsList[i].Item2 == HorizontalDirection.Left)) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Up && directionsList[i].Item2 != HorizontalDirection.Left )
         {   //keep down/same height and keep left/
-            wentDown = ((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
-            wentRight = ((signDirections[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
+            wentDown = ((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentRight = ((directionsList[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
             i++;
         }
         if (!wentDown || !wentRight)//there was no movement left at all
         {
-            debugResult += "isDrawnLetterE nor down or left\n";
             return false;
         }
-        debugResult += "isDrawnLetterE did go down and right\n";
         //
         //                  ------------------------
         //                  -----
@@ -375,38 +417,33 @@ public class GesturesListener :  MonoBehaviour
         //
         wentLeft = false;
         wentDown = false;
-        if (i < signDirections.Count && (signDirections[i].Item1 == VerticalDirection.Up || signDirections[i].Item2 == HorizontalDirection.Right)) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Up && signDirections[i].Item2 != HorizontalDirection.Right )
+        if (i < directionsList.Count && (directionsList[i].Item1 == VerticalDirection.Up || directionsList[i].Item2 == HorizontalDirection.Right)) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Up && directionsList[i].Item2 != HorizontalDirection.Right )
         {   //keep down/same height and keep left/
-            wentLeft = ((signDirections[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
-            wentDown = ((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentLeft = ((directionsList[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
+            wentDown = ((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
             i++;
         }
         if (!wentLeft)//there was no movement left or down at all
         {
-            debugResult += "isDrawnLetterE not left2\n";
             return false;
         }
-        debugResult += "isDrawnLetterE did go left2\n";
         wentRight = false;
-        if (i < signDirections.Count && (signDirections[i].Item1 == VerticalDirection.Up || signDirections[i].Item2 == HorizontalDirection.Left)) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Up && signDirections[i].Item2 != HorizontalDirection.Left )
+        if (i < directionsList.Count && (directionsList[i].Item1 == VerticalDirection.Up || directionsList[i].Item2 == HorizontalDirection.Left)) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Up && directionsList[i].Item2 != HorizontalDirection.Left )
         {   //keep down/same height and keep left/
-            wentRight = ((signDirections[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
-            wentDown = ((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentRight = ((directionsList[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
+            wentDown = ((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
             i++;
         }
-        if (wentDown && wentRight && (Math.Abs(i - signDirections.Count) <= 5))//there was no movement left at all
+        if (wentDown && wentRight && (Math.Abs(i - directionsList.Count) <= 5))//there was no movement left at all
         {
-            debugResult += "isDrawnLetterE did go down  and right2";
             return true;
         }
-        debugResult += "isDrawnLetterE nor down or left\n";
-        debugResult += "end isDrawnLetterE\n";
         return false;
     }
 
-    bool isDrawnLetterS()
+    bool isDrawnLetterS(List<Tuple<VerticalDirection, HorizontalDirection>> directionsList)
     {
         //
         //                  ------------------------  <-this point 
@@ -420,37 +457,32 @@ public class GesturesListener :  MonoBehaviour
         //                                      -----
         //                  -----------------------
         //
-        debugResult += "isDrawnLetterS\n";
         int i = 0;
         bool wentLeft = false;
         bool wentDown = false;
-        if (i < signDirections.Count && (signDirections[i].Item1 == VerticalDirection.Up || signDirections[i].Item2 == HorizontalDirection.Right)) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Up && signDirections[i].Item2 != HorizontalDirection.Right )
+        if (i < directionsList.Count && (directionsList[i].Item1 == VerticalDirection.Up || directionsList[i].Item2 == HorizontalDirection.Right)) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Up && directionsList[i].Item2 != HorizontalDirection.Right )
         {   //keep down/same height and keep left/
-            wentLeft = ((signDirections[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
-            wentDown = ((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentLeft = ((directionsList[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
+            wentDown = ((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
             i++;
         }
         if (!wentLeft)//there was no movement left or down at all
         {
-            debugResult += "isDrawnLetterS no left\n";
             return false;
         }
-        debugResult += "isDrawnLetterS yes left\n";
         bool wentRight = false;
-        if (i < signDirections.Count && (signDirections[i].Item1 == VerticalDirection.Up || signDirections[i].Item2 == HorizontalDirection.Left)) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Up && signDirections[i].Item2 != HorizontalDirection.Left )
+        if (i < directionsList.Count && (directionsList[i].Item1 == VerticalDirection.Up || directionsList[i].Item2 == HorizontalDirection.Left)) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Up && directionsList[i].Item2 != HorizontalDirection.Left )
         {   //keep down/same height and keep left/
-            wentDown = ((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
-            wentRight = ((signDirections[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
+            wentDown = ((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentRight = ((directionsList[i].Item2 == HorizontalDirection.Right) ? true : wentRight) || wentRight;
             i++;
         }
         if (!wentDown || !wentRight)//there was no movement left at all
         {
-            debugResult += "isDrawnLetterS no right or no down\n";
             return false;
         }
-        debugResult += "isDrawnLetterS did go down and right\n";
         //
         //                  ------------------------
         //                  -----
@@ -465,20 +497,17 @@ public class GesturesListener :  MonoBehaviour
         //
         wentLeft = false;
         wentDown = false;
-        if (i < signDirections.Count && (signDirections[i].Item1 == VerticalDirection.Up || signDirections[i].Item2 == HorizontalDirection.Right)) i++;
-        while (i < signDirections.Count && signDirections[i].Item1 != VerticalDirection.Up && signDirections[i].Item2 != HorizontalDirection.Right )
+        if (i < directionsList.Count && (directionsList[i].Item1 == VerticalDirection.Up || directionsList[i].Item2 == HorizontalDirection.Right)) i++;
+        while (i < directionsList.Count && directionsList[i].Item1 != VerticalDirection.Up && directionsList[i].Item2 != HorizontalDirection.Right )
         {   //keep down/same height and keep left/
-            wentLeft = ((signDirections[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
-            wentDown = ((signDirections[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
+            wentLeft = ((directionsList[i].Item2 == HorizontalDirection.Left) ? true : wentLeft) || wentLeft;
+            wentDown = ((directionsList[i].Item1 == VerticalDirection.Down) ? true : wentDown) || wentDown;
             i++;
         }
         if (wentDown && wentLeft && (Math.Abs(i- signDirections.Count)<= 5))//there was no movement right or up at all
         {
-            debugResult += "isDrawnLetterS left and down and finished success\n";
             return true;
         }
-        debugResult += "isDrawnLetterS not left down and finished\n";
-        debugResult += "end isDrawnLetterS\n";
         return false;
 
     }
@@ -571,27 +600,37 @@ public class GesturesListener :  MonoBehaviour
 
     public void startTrail(MixedRealityPointerEventData eventData)
     {
-        GameObject trailObj = new GameObject("Mouse Trail");
-        trailTransform = trailObj.transform;
-        TrailRenderer trail = trailObj.AddComponent<TrailRenderer>();
-        trail.time = -1f;
-        MoveTrailToCursor(eventData);
-        trail.time = trailTime;
-        trail.startWidth = startWidth;
-        trail.endWidth = endWidth;
-        //trail.numCapVertices = 2;
-        trail.numCapVertices = 45;
-        trail.numCornerVertices = 45;
-        //trail.sharedMaterial = new Material(Shader.Find("Unlit/Color"));
-        trail.sharedMaterial = material;
-        trail.sharedMaterial.color = trailColor;
+        if (isTrailActivated && !isPointerOnObject)//only show trail when not on object
+        {
+            GameObject trailObj = new GameObject("Mouse Trail");
+            trailTransform = trailObj.transform;
+            TrailRenderer trail = trailObj.AddComponent<TrailRenderer>();
+            trail.time = -1f;
+            MoveTrailToCursor(eventData);
+            trail.time = trailTime;
+            trail.startWidth = startWidth;
+            trail.endWidth = endWidth;
+            //trail.numCapVertices = 2;
+            trail.numCapVertices = 45;
+            trail.numCornerVertices = 45;
+            //trail.sharedMaterial = new Material(Shader.Find("Unlit/Color"));
+            trail.sharedMaterial = material;
+            trail.sharedMaterial.color = trailColor;
+        }
     }
 
     public void MoveTrailToCursor(MixedRealityPointerEventData eventData)
     {
-        //Vector3 screenPosition = eventData.Pointer.Position;
-        Vector3 screenPosition = gazeProvider.GazeOrigin + gazeProvider.GazeDirection*3;
-        trailTransform.position = new Vector3(screenPosition.x, screenPosition.y, screenPosition.z);
+        if (isTrailActivated && !isPointerOnObject)//only show trail when not on object
+        {
+            Vector3 screenPosition = gazeProvider.GazeOrigin + gazeProvider.GazeDirection * 3;
+            trailTransform.position = new Vector3(screenPosition.x, screenPosition.y, screenPosition.z);
+        }
+    }
+
+    public void toggleTrailMode()
+    {
+        isTrailActivated = !isTrailActivated;
     }
 
     void showTooltip(String text)

@@ -21,6 +21,7 @@ using CI.WSANative.Common;
 using CI.WSANative.Dispatchers;
 using CI.WSANative.Pickers;
 using CI.WSANative.FileStorage;
+using CI.WSANative.Device;
 #if UNITY_WSA && ENABLE_WINMD_SUPPORT
 using Windows.Storage;
 using System;
@@ -212,6 +213,31 @@ public class ObjBrowser : MonoBehaviour
 
     void addObjectToScene(ref string objectPath,string fileName, string fileString = "", string fileMtlString = "")
     {
+        //Progress Ring
+        WSANativeDevice.CreateProgressRing(new WSAProgressControlSettings()
+        {
+            HorizontalPlacement = WSAHorizontalPlacement.Centre,
+            VerticalPlacement = WSAVerticalPlacement.Centre,
+            Height = 45,
+            Width = 45,
+            Colour = new Color32(255, 20, 147, 255),
+            OffsetX = 1,
+            OffsetY = 1
+        });
+        //WSANativeDispatcher.Invoke(() =>
+        //{
+        //    WSANativeDevice.CreateProgressRing(new WSAProgressControlSettings()
+        //    {
+        //        HorizontalPlacement = WSAHorizontalPlacement.Centre,
+        //        VerticalPlacement = WSAVerticalPlacement.Centre,
+        //        Height = 45,
+        //        Width = 45,
+        //        Colour = new Color32(255, 20, 147, 255),
+        //        OffsetX = 0,
+        //        OffsetY = 0
+        //    });
+        //});
+
         //load
         initializeObjects(ref objectPath, fileName,fileString, fileMtlString);
 
@@ -229,6 +255,14 @@ public class ObjBrowser : MonoBehaviour
         MidAirPositioner.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
 
         //MidAirPositioner.transform.position = Camera.main.transform.forward * 1.0f;
+
+        //finish progress ring
+        //WSANativeDispatcher.Invoke(() =>
+        //{
+        //    WSANativeDevice.DestroyProgressBar();
+        //});
+
+        WSANativeDevice.DestroyProgressBar();
 
 
     }
