@@ -117,7 +117,6 @@ namespace Microsoft.MixedReality.Toolkit.Examples.Demos
             {
                 float normalizedProgress = Mathf.Clamp01((Time.time - timeStarted) / loadingTime);
                 indicator.Progress = normalizedProgress;
-                indicator.Message = loadingMessages[Mathf.FloorToInt(normalizedProgress * loadingMessages.Length)];
 
                 await Task.Yield();
 

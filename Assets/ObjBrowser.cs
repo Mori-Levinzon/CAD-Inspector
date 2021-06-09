@@ -22,6 +22,7 @@ using CI.WSANative.Dispatchers;
 using CI.WSANative.Pickers;
 using CI.WSANative.FileStorage;
 using CI.WSANative.Device;
+using System.Threading.Tasks;
 #if UNITY_WSA && ENABLE_WINMD_SUPPORT
 using Windows.Storage;
 using System;
@@ -57,6 +58,14 @@ public class ObjBrowser : MonoBehaviour
 
     public GameObject RemoveButton;
 
+    private float loadingTime = 5f;
+
+    private IProgressIndicator progressIndicatorRotatingOrbs;
+
+    public GameObject progressIndicatorRotatingOrbsGo;
+
+    private bool loadingDone = false;
+
     public void Awake()
     {
         // Call this once when your app starts up to configure the library
@@ -67,6 +76,23 @@ public class ObjBrowser : MonoBehaviour
         LoadButton.SetActive(true);
 #endif
     }
+
+    private void Update()
+    {
+        if (progressIndicatorRotatingOrbsGo.activeSelf)
+        {
+            progressIndicatorRotatingOrbsGo.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
+            progressIndicatorRotatingOrbsGo.transform.LookAt(progressIndicatorRotatingOrbsGo.transform.position + Camera.main.transform.rotation * Vector3.forward,
+                Camera.main.transform.rotation * Vector3.up);
+        }
+    }
+
+    private void OnEnable()
+    {
+        progressIndicatorRotatingOrbs = progressIndicatorRotatingOrbsGo.GetComponent<IProgressIndicator>();
+    }
+
+
 
     public void LoadOrRemovebuttonPressed()
     {
@@ -167,8 +193,8 @@ public class ObjBrowser : MonoBehaviour
 
     public void destroyLoadedObject()
     {
-        GameObject objectToDelete = loadedObj;
-        Destroy(objectToDelete);
+        DestroyImmediate(loadedObj);
+        Resources.UnloadUnusedAssets();
         //scale, locate and rotate the cube to the starting position
         containerCube.transform.rotation = Quaternion.identity;
         containerCube.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
@@ -195,6 +221,7 @@ public class ObjBrowser : MonoBehaviour
 
     void OpenFile(string pathToFile, string fileString="", string fileMtlString = "")
     {
+        loadingDone = false;
 
         //Debug.Log("objectPath pathToFile" + pathToFile);
 
@@ -207,67 +234,93 @@ public class ObjBrowser : MonoBehaviour
 
         //string finalPath = Path.Combine(path, fileName);
 
-
-        addObjectToScene(ref pathToFile, fileName, fileString, fileMtlString);
+        addObjectToScene(pathToFile, fileName, fileString, fileMtlString);
     }
 
-    void addObjectToScene(ref string objectPath,string fileName, string fileString = "", string fileMtlString = "")
+    void startProcessRing()
     {
         //Progress Ring
-        WSANativeDevice.CreateProgressRing(new WSAProgressControlSettings()
-        {
-            HorizontalPlacement = WSAHorizontalPlacement.Centre,
-            VerticalPlacement = WSAVerticalPlacement.Centre,
-            Height = 45,
-            Width = 45,
-            Colour = new Color32(255, 20, 147, 255),
-            OffsetX = 1,
-            OffsetY = 1
-        });
-        //WSANativeDispatcher.Invoke(() =>
-        //{
-        //    WSANativeDevice.CreateProgressRing(new WSAProgressControlSettings()
-        //    {
-        //        HorizontalPlacement = WSAHorizontalPlacement.Centre,
-        //        VerticalPlacement = WSAVerticalPlacement.Centre,
-        //        Height = 45,
-        //        Width = 45,
-        //        Colour = new Color32(255, 20, 147, 255),
-        //        OffsetX = 0,
-        //        OffsetY = 0
-        //    });
-        //});
+        progressIndicatorRotatingOrbsGo.SetActive(true);
+        progressIndicatorRotatingOrbsGo.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
+
+        HandleButtonClick(progressIndicatorRotatingOrbs);
+    }
+
+    void endProcessRing()
+    {
+        loadingDone = true;
+
+        HandleButtonClick(progressIndicatorRotatingOrbs);
+        progressIndicatorRotatingOrbsGo.SetActive(false);
+
+    }
+
+    void addObjectToScene(string objectPath,string fileName, string fileString = "", string fileMtlString = "")
+    {
+
+        startProcessRing();
+        Debug.Log("before load start");
 
         //load
-        initializeObjects(ref objectPath, fileName,fileString, fileMtlString);
+        StartCoroutine(initializeObjects(objectPath, fileName,fileString, fileMtlString));
 
         //addLoadObjectToDropdownMenu("LoadedObj #" + (copyNumber));
-        addLoadObjectToDropdownMenu(fileName);
+        //addLoadObjectToDropdownMenu(fileName);
 
-        adjustObjectHierachy();
+        //adjustObjectHierachy();
 
-        ScaleLoadedObject();
+        //ScaleLoadedObject();
 
-        //Debug.Log("appear_once" + ITScript.GetComponent<ImageTracker>().appear_once);
+        ////Debug.Log("appear_once" + ITScript.GetComponent<ImageTracker>().appear_once);
 
-        //that line works here fucks the other one
-        //containerCube.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
-        MidAirPositioner.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
+        //MidAirPositioner.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
 
-        //MidAirPositioner.transform.position = Camera.main.transform.forward * 1.0f;
-
-        //finish progress ring
-        //WSANativeDispatcher.Invoke(() =>
-        //{
-        //    WSANativeDevice.DestroyProgressBar();
-        //});
-
-        WSANativeDevice.DestroyProgressBar();
 
 
     }
 
-    void initializeObjects(ref string objectPath, string fileName, string fileString = "", string fileMtlString = "")
+    private async void HandleButtonClick(IProgressIndicator indicator)
+    {
+        // If the indicator is opening or closing, wait for that to finish before trying to open / close it
+        // Otherwise the indicator will display an error and take no action
+        await indicator.AwaitTransitionAsync();
+
+        switch (indicator.State)
+        {
+            case ProgressIndicatorState.Closed:
+                OpenProgressIndicator(indicator);
+                break;
+
+            case ProgressIndicatorState.Open:
+                await indicator.CloseAsync();
+                break;
+        }
+    }
+
+    private async void OpenProgressIndicator(IProgressIndicator indicator)
+    {
+        await indicator.OpenAsync();
+
+        while (!loadingDone)
+        {
+
+            await Task.Yield();
+
+            switch (indicator.State)
+            {
+                case ProgressIndicatorState.Open:
+                    break;
+
+                default:
+                    // The indicator was closed
+                    return;
+            }
+        }
+
+        await indicator.CloseAsync();
+    }
+
+    IEnumerator initializeObjects(string objectPath, string fileName, string fileString = "", string fileMtlString = "")
     {
         if (copyNumber != 1)
         {
@@ -283,6 +336,8 @@ public class ObjBrowser : MonoBehaviour
         MidAirPositioner.transform.rotation = Quaternion.identity;
         MidAirPositioner.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         MidAirPositioner.transform.localPosition = new Vector3(0.0f, -0.5f, 2.0f);
+        MidAirPositioner.SetActive(false);
+        containerCube.SetActive(false);
         //first option i used - a bit heavy but still promising
         //loadedObj = new OBJLoader().Load(objectPath);//load the object to the object
 
@@ -302,23 +357,37 @@ public class ObjBrowser : MonoBehaviour
             fileString = File.ReadAllText(objectPath);
             fileMtlString = File.ReadAllText(mtlPath);
 #endif
-        if (fileMtlString != "")
-        {
+        Hashtable texturesHashtable = new Hashtable();
+        yield return StartCoroutine(ObjImporter.ImportInBackground(fileString, fileMtlString, texturesHashtable, retval => SettingLoadedObjectEnviroment(retval, fileName)));
 
-            loadedObj = ObjImporter.Import(fileString, fileMtlString, textures);
-        }
-        else
-        {
-            loadedObj = ObjImporter.Import(fileString);
-        }
+    }
+
+    void SettingLoadedObjectEnviroment(GameObject retval, string fileName)
+    {
+        loadedObj = retval;
+
         loadedObj.name = fileName;
-        //TODO: change it later
 
+        MidAirPositioner.SetActive(true);
+
+        containerCube.SetActive(true);
+
+        addLoadObjectToDropdownMenu(fileName);
+
+        adjustObjectHierachy();
+
+        ScaleLoadedObject();
+
+        //Debug.Log("appear_once" + ITScript.GetComponent<ImageTracker>().appear_once);
+
+        MidAirPositioner.transform.position = Camera.main.transform.position + Camera.main.transform.forward * 2.0f;
+
+
+        endProcessRing();
 #if UNITY_WSA && ENABLE_WINMD_SUPPORT
         RemoveButton.SetActive(true);
         LoadButton.SetActive(false);
 #endif
-
     }
 
 
