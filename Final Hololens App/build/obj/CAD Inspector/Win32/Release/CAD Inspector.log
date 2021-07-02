@@ -1,0 +1,12 @@
+﻿  pch.cpp
+  App.cpp
+  Main.cpp
+  UnityGenerated.cpp
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\App.cpp(26,1): warning C4973: 'Windows::UI::ViewManagement::IApplicationView2::SuppressSystemOverlays::set': marked as deprecated
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\App.cpp(26,1): message : Message: 'Use the TryEnterFullScreen method and IsFullScreenMode property instead of SuppressSystemOverlays. For more info, see MSDN.'
+  Generating code
+  108 of 160 functions (67.5%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    52 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  CAD Inspector.vcxproj -> C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\CAD Inspector.exe

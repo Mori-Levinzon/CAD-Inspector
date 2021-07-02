@@ -1,0 +1,466 @@
+﻿#include "pch-c.h"
+#ifndef _MSC_VER
+# include <alloca.h>
+#else
+# include <malloc.h>
+#endif
+
+
+
+#include "codegen/il2cpp-codegen-metadata.h"
+
+
+
+
+
+IL2CPP_EXTERN_C_BEGIN
+IL2CPP_EXTERN_C_END
+
+
+
+
+// 0x00000001 System.Void UniFileBrowser::.ctor()
+extern void UniFileBrowser__ctor_mE0397E93A1B6BF3819DF54FF70456006A3AFDACC ();
+// 0x00000002 System.Boolean UniFileBrowser::get_allowMultiSelect()
+extern void UniFileBrowser_get_allowMultiSelect_mAAFBDC58684E6D5C3DAF22CBA1625B36C1CDF578 ();
+// 0x00000003 System.Void UniFileBrowser::set_allowMultiSelect(System.Boolean)
+extern void UniFileBrowser_set_allowMultiSelect_m6562875BF444C2B7D7217195C296A96E799339FE ();
+// 0x00000004 System.Void UniFileBrowser::Reset()
+extern void UniFileBrowser_Reset_mADF36F91E70C584788A35354245F9CB4DAC5CB65 ();
+// 0x00000005 System.Void UniFileBrowser::Awake()
+extern void UniFileBrowser_Awake_m5ADE2BF4BA296566AA2745AF32D5D9210847B5D1 ();
+// 0x00000006 System.Void UniFileBrowser::SetFileExtensions(System.String[])
+extern void UniFileBrowser_SetFileExtensions_mEE6A130F98C345A8EAB8EB658C09A9272D3C9EFF ();
+// 0x00000007 System.Void UniFileBrowser::SetupExtensions()
+extern void UniFileBrowser_SetupExtensions_mAC78E8ED5C97814ABA683EEBAC36A3571208D15E ();
+// 0x00000008 System.Void UniFileBrowser::SetAutoAddedExtension(System.String)
+extern void UniFileBrowser_SetAutoAddedExtension_m05B69448DCA8DB304371AA55BA378430F0F7E5AB ();
+// 0x00000009 System.Void UniFileBrowser::RefreshFileList()
+extern void UniFileBrowser_RefreshFileList_mFE8EB0FA2AD5F514FB37297F49E5FF5AB1C4FDA1 ();
+// 0x0000000A System.Void UniFileBrowser::SetDefaultPath()
+extern void UniFileBrowser_SetDefaultPath_mC20BE76F3E30BB25F5421EDAB140DA9E1001E94A ();
+// 0x0000000B System.Boolean UniFileBrowser::FileWindowOpen()
+extern void UniFileBrowser_FileWindowOpen_m3195ACA74D37AEFF3E34F8F45A86DD182BECFD0E ();
+// 0x0000000C UnityEngine.Rect UniFileBrowser::GetFileWindowRect()
+extern void UniFileBrowser_GetFileWindowRect_mEE938D4FC0FCAABCE9C7D6E20F6385FEE09B1B64 ();
+// 0x0000000D System.Void UniFileBrowser::UpdateRects()
+extern void UniFileBrowser_UpdateRects_mE5FF9EC4D5D33BD3421E255A7203AC9443EE3274 ();
+// 0x0000000E System.Void UniFileBrowser::Update()
+extern void UniFileBrowser_Update_mB0DF402BFCF4605EF387FC862E0BE82825FD1C39 ();
+// 0x0000000F System.Void UniFileBrowser::OnGUI()
+extern void UniFileBrowser_OnGUI_mDA088135B523749B3932F988C0CEC44D11AE7623 ();
+// 0x00000010 System.Void UniFileBrowser::DrawFileWindow()
+extern void UniFileBrowser_DrawFileWindow_m8E02C2FE90713FF3DC4487298E10FE1BF58AA6D8 ();
+// 0x00000011 System.Void UniFileBrowser::ShowError(System.String)
+extern void UniFileBrowser_ShowError_mBC71A624A1607B92041389681C51209659144A7D ();
+// 0x00000012 System.Void UniFileBrowser::ShowConfirmMessage(System.String,System.String,System.String,System.String)
+extern void UniFileBrowser_ShowConfirmMessage_m42C90A19ECE3B1E34257BACB89965D42B960A5CF ();
+// 0x00000013 System.Void UniFileBrowser::MessageWindow()
+extern void UniFileBrowser_MessageWindow_m8675F0C90FBECDC7D482967B3CC793CA560FE7AA ();
+// 0x00000014 System.Void UniFileBrowser::CloseMessageWindow(System.Boolean)
+extern void UniFileBrowser_CloseMessageWindow_m5A5F2A2E566AEE5645993EF8673B693FEC7A4EB8 ();
+// 0x00000015 System.Collections.IEnumerator UniFileBrowser::WaitForFrame()
+extern void UniFileBrowser_WaitForFrame_m72146916668D7E3E06B2D10CC3EC066FD347278E ();
+// 0x00000016 System.Void UniFileBrowser::FileWindowKeys()
+extern void UniFileBrowser_FileWindowKeys_m700F5F72F6BBF34D77266F6B74C6091ED91E4BC6 ();
+// 0x00000017 System.Void UniFileBrowser::ReturnHit()
+extern void UniFileBrowser_ReturnHit_mFBCF4D2FC4D6C964B28E8982F06063EBE2EBA10A ();
+// 0x00000018 System.Void UniFileBrowser::EscapeHit()
+extern void UniFileBrowser_EscapeHit_mC537DAB30BAB12A26D30E777697BF89EFFCCC701 ();
+// 0x00000019 System.Void UniFileBrowser::BuildPathList(System.Int32)
+extern void UniFileBrowser_BuildPathList_mC099046C6065995FBB960AB9CD404AB248A1CE22 ();
+// 0x0000001A System.Void UniFileBrowser::GetCurrentFileInfo()
+extern void UniFileBrowser_GetCurrentFileInfo_m998D5221BA5821F7809F2A1D9B68020C6F87C9B7 ();
+// 0x0000001B System.Void UniFileBrowser::HandleError(System.String)
+extern void UniFileBrowser_HandleError_m4C2B86B6F5C6791E105547CB548BE2E6842A80AE ();
+// 0x0000001C System.Void UniFileBrowser::SetPath(System.String)
+extern void UniFileBrowser_SetPath_m800505D21B6127112DAB2177A4C063A79A64A7C4 ();
+// 0x0000001D System.Void UniFileBrowser::OpenFileWindow(CompilerGenerated.__UniFileBrowser_delegateU24callable0U24169_24__)
+extern void UniFileBrowser_OpenFileWindow_mBD0E8D91FECCAF6BD8EF400AE0158E8B7E3D345E ();
+// 0x0000001E System.Void UniFileBrowser::OpenFileWindow(CompilerGenerated.__UniFileBrowser_multiDelegateU24callable1U24170_29__)
+extern void UniFileBrowser_OpenFileWindow_mA5562126F9D563AB8C58691E485CE2A628769D63 ();
+// 0x0000001F System.Void UniFileBrowser::OpenFolderWindow(System.Boolean,CompilerGenerated.__UniFileBrowser_delegateU24callable0U24169_24__)
+extern void UniFileBrowser_OpenFolderWindow_m2A0E8E7DEF0DE168231A9A8AB9948DD6F2B00285 ();
+// 0x00000020 System.Void UniFileBrowser::SaveFileWindow(CompilerGenerated.__UniFileBrowser_delegateU24callable0U24169_24__)
+extern void UniFileBrowser_SaveFileWindow_m9ACBE40B18EDE04BB901A436E074F3241DA910EE ();
+// 0x00000021 System.Void UniFileBrowser::ShowFileWindow()
+extern void UniFileBrowser_ShowFileWindow_mF7E1BA9CE65D8809E2E5A707D2AA71ABECF76A1D ();
+// 0x00000022 System.Void UniFileBrowser::SendWindowCloseMessage(CompilerGenerated.__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__)
+extern void UniFileBrowser_SendWindowCloseMessage_m581818AF7552EFFF40CF4E62B162884828EBF328 ();
+// 0x00000023 System.Void UniFileBrowser::DontSendWindowCloseMessage()
+extern void UniFileBrowser_DontSendWindowCloseMessage_m7AFED9962F2DB5445A4B6843967A9ECA055B6F70 ();
+// 0x00000024 System.Void UniFileBrowser::SendWindowChangeMessage(CompilerGenerated.__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__)
+extern void UniFileBrowser_SendWindowChangeMessage_m3AB0EB612C32B0FD4DD4D94ACD933F87264A964B ();
+// 0x00000025 System.Void UniFileBrowser::DontSendWindowChangeMessage()
+extern void UniFileBrowser_DontSendWindowChangeMessage_m6DE6F34BF739CE144D5AD3F9A4419B147764F04B ();
+// 0x00000026 System.Void UniFileBrowser::SetCustomFunction(CompilerGenerated.__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__)
+extern void UniFileBrowser_SetCustomFunction_m1917110C3957F0D714C18495AD68104EAAE8D490 ();
+// 0x00000027 System.Void UniFileBrowser::RemoveCustomFunction()
+extern void UniFileBrowser_RemoveCustomFunction_m5A68C292B8EDCFE9B903C394B1C74272E74DBC54 ();
+// 0x00000028 System.Void UniFileBrowser::UseFolderFilterFunction(CompilerGenerated.__UniFileBrowser_folderFunctionU24callable3U24200_30__)
+extern void UniFileBrowser_UseFolderFilterFunction_m5C2C0DD4A84A5331D23A9C45A25EF68603AD63CA ();
+// 0x00000029 System.Void UniFileBrowser::DontUseFolderFilterFunction()
+extern void UniFileBrowser_DontUseFolderFilterFunction_m7CE4B91D0224CEDAD2388AA6746179A5F73B37EC ();
+// 0x0000002A System.Void UniFileBrowser::UseFileFilterFunction(CompilerGenerated.__UniFileBrowser_fileFunctionU24callable4U24201_28__)
+extern void UniFileBrowser_UseFileFilterFunction_m7486F034C5AE4D92D9086E167CBB4B8EAEB49F08 ();
+// 0x0000002B System.Void UniFileBrowser::DontUseFileFilterFunction()
+extern void UniFileBrowser_DontUseFileFilterFunction_mCBDD677B36A879A8377A2DD945A8337A57349419 ();
+// 0x0000002C System.Void UniFileBrowser::CloseFileWindow()
+extern void UniFileBrowser_CloseFileWindow_m6A24F6D488928CAC722D7F740C98759A8099FD72 ();
+// 0x0000002D System.Void UniFileBrowser::SetWindowTitle(System.String)
+extern void UniFileBrowser_SetWindowTitle_mBA0676DCBD02B2A06C640925FE821F93E44AAAFC ();
+// 0x0000002E System.Void UniFileBrowser::SetFileWindowPosition(UnityEngine.Vector2)
+extern void UniFileBrowser_SetFileWindowPosition_m7734DA5D4FEF31DD63899B5ED6479E32EF1AB9C0 ();
+// 0x0000002F System.Void UniFileBrowser::SetFileWindowSize(UnityEngine.Vector2)
+extern void UniFileBrowser_SetFileWindowSize_m9DC19258898CD988DE338255DE2BB57780F2F435 ();
+// 0x00000030 UnityEngine.Rect UniFileBrowser::GetClampedWindowRect(UnityEngine.Rect)
+extern void UniFileBrowser_GetClampedWindowRect_mD90F62C131EC68DCC491B8DDEAA3B742BA819B65 ();
+// 0x00000031 System.Collections.IEnumerator UniFileBrowser::DeleteFile()
+extern void UniFileBrowser_DeleteFile_mEF327437F4B6584519402B269858238168B07308 ();
+// 0x00000032 System.Collections.Generic.List`1<System.String> UniFileBrowser::GetMultiFileNames()
+extern void UniFileBrowser_GetMultiFileNames_mA72A9A777AA08BCFE66320BA4EFD0897597B91BE ();
+// 0x00000033 System.Collections.IEnumerator UniFileBrowser::SelectFile()
+extern void UniFileBrowser_SelectFile_mA8A8C93DEEAD7F3F6F8D5C6F226BAEDF96707678 ();
+// 0x00000034 System.Void UniFileBrowser::Scale(System.Single,System.Single)
+extern void UniFileBrowser_Scale_mDC689D2412AEDDA7F6116A5F956BF6C40311154E ();
+// 0x00000035 System.Void UniFileBrowser::DontScale()
+extern void UniFileBrowser_DontScale_m21E9999039D14168BDE20CB2D5FA28DFF97C6E88 ();
+// 0x00000036 System.Int32 UniFileBrowser::U24GetCurrentFileInfoU24closureU2425(UniFileBrowser_FileData,UniFileBrowser_FileData)
+extern void UniFileBrowser_U24GetCurrentFileInfoU24closureU2425_mE67B0AC569C48B93F9837B28913E28F943C769C0 ();
+// 0x00000037 System.Int32 UniFileBrowser::U24GetCurrentFileInfoU24closureU2426(UniFileBrowser_FileData,UniFileBrowser_FileData)
+extern void UniFileBrowser_U24GetCurrentFileInfoU24closureU2426_m58E5B1B5D977AA6E3DB4E0EB23825AA2C5EAB21C ();
+// 0x00000038 System.Int32 UniFileBrowser::U24GetCurrentFileInfoU24closureU2429(UniFileBrowser_FileData,UniFileBrowser_FileData)
+extern void UniFileBrowser_U24GetCurrentFileInfoU24closureU2429_m50D02F7114C5D5851C73106783CB082612594CD7 ();
+// 0x00000039 System.Int32 UniFileBrowser::U24GetCurrentFileInfoU24closureU2430(UniFileBrowser_FileData,UniFileBrowser_FileData)
+extern void UniFileBrowser_U24GetCurrentFileInfoU24closureU2430_mAB761DBDB0A08556AAB56735B4C6F285682F9CAF ();
+// 0x0000003A System.Void UniFileBrowser_FileData::.ctor(System.String,System.DateTime)
+extern void FileData__ctor_m02C88AD7DDED87F8F8405D8E527BD23696FFFDC9 ();
+// 0x0000003B System.Void UniFileBrowser_U24WaitForFrameU2443::.ctor(UniFileBrowser)
+extern void U24WaitForFrameU2443__ctor_m7C69D489D152D3F7279C43CDF4A9F14BF4B50FFF ();
+// 0x0000003C System.Collections.Generic.IEnumerator`1<System.Object> UniFileBrowser_U24WaitForFrameU2443::GetEnumerator()
+extern void U24WaitForFrameU2443_GetEnumerator_m1E02328736A870F8905AD57EC41D3924529CA827 ();
+// 0x0000003D System.Void UniFileBrowser_U24WaitForFrameU2443_U24::.ctor(UniFileBrowser)
+extern void U24__ctor_mE24E6CE0E5B291E5DD680F5494CC6B7AFB416452 ();
+// 0x0000003E System.Boolean UniFileBrowser_U24WaitForFrameU2443_U24::MoveNext()
+extern void U24_MoveNext_mD346E9985A789D2D9A6D1F10194D8A05FFF70487 ();
+// 0x0000003F System.Void UniFileBrowser_U24DeleteFileU2446::.ctor(UniFileBrowser)
+extern void U24DeleteFileU2446__ctor_mE7C74E0C71B78ABD18D9CAE15C35C1F930548B51 ();
+// 0x00000040 System.Collections.Generic.IEnumerator`1<System.Object> UniFileBrowser_U24DeleteFileU2446::GetEnumerator()
+extern void U24DeleteFileU2446_GetEnumerator_m8DF8D0DBC22DC20BDE9FFFA4CAD2558D1770469D ();
+// 0x00000041 System.Void UniFileBrowser_U24DeleteFileU2446_U24::.ctor(UniFileBrowser)
+extern void U24__ctor_m17D35BB111771BF9F52D01FCC2C9559FAAE1B822 ();
+// 0x00000042 System.Boolean UniFileBrowser_U24DeleteFileU2446_U24::MoveNext()
+extern void U24_MoveNext_m1ED6E706D35D417563C7325D7E70A2156ABC6331 ();
+// 0x00000043 System.Void UniFileBrowser_U24SelectFileU2452::.ctor(UniFileBrowser)
+extern void U24SelectFileU2452__ctor_mD2B2C0216B044259FACC6F28FC455B06C7504A72 ();
+// 0x00000044 System.Collections.Generic.IEnumerator`1<System.Object> UniFileBrowser_U24SelectFileU2452::GetEnumerator()
+extern void U24SelectFileU2452_GetEnumerator_mDB677D664CC1E28898123F9CAD2E1160AF3E485A ();
+// 0x00000045 System.Void UniFileBrowser_U24SelectFileU2452_U24::.ctor(UniFileBrowser)
+extern void U24__ctor_m5E068108DD51281B548DFAC7EC4FBCDA24269FD8 ();
+// 0x00000046 System.Boolean UniFileBrowser_U24SelectFileU2452_U24::MoveNext()
+extern void U24_MoveNext_m925A765204E7383F1FD521FD99357A6E27F50A7D ();
+// 0x00000047 System.Void CompilerGenerated.__UniFileBrowser_delegateU24callable0U24169_24__::.ctor(System.Object,System.IntPtr)
+extern void __UniFileBrowser_delegateU24callable0U24169_24____ctor_m708030DEFC1A9DBAD6FAA566717AF1DC66CE09F6 ();
+// 0x00000048 System.Object CompilerGenerated.__UniFileBrowser_delegateU24callable0U24169_24__::Call(System.Object[])
+extern void __UniFileBrowser_delegateU24callable0U24169_24___Call_mC309441AE983DD745D8426C06F1B16E4A6DE78FC ();
+// 0x00000049 System.Void CompilerGenerated.__UniFileBrowser_delegateU24callable0U24169_24__::Invoke(System.String)
+extern void __UniFileBrowser_delegateU24callable0U24169_24___Invoke_m426486C356306933A79E4029F21547C278E09580 ();
+// 0x0000004A System.IAsyncResult CompilerGenerated.__UniFileBrowser_delegateU24callable0U24169_24__::BeginInvoke(System.String,System.AsyncCallback,System.Object)
+extern void __UniFileBrowser_delegateU24callable0U24169_24___BeginInvoke_m40579BABED3ED61C263430AA531666C61067D2FE ();
+// 0x0000004B System.Void CompilerGenerated.__UniFileBrowser_delegateU24callable0U24169_24__::EndInvoke(System.IAsyncResult)
+extern void __UniFileBrowser_delegateU24callable0U24169_24___EndInvoke_mD603D39162BC6A7C8D67F7522E64FCAEC912CD56 ();
+// 0x0000004C System.Void CompilerGenerated.__UniFileBrowser_multiDelegateU24callable1U24170_29__::.ctor(System.Object,System.IntPtr)
+extern void __UniFileBrowser_multiDelegateU24callable1U24170_29____ctor_mF9BA6E5AA028C10707564195A2CE98B5895E64B5 ();
+// 0x0000004D System.Object CompilerGenerated.__UniFileBrowser_multiDelegateU24callable1U24170_29__::Call(System.Object[])
+extern void __UniFileBrowser_multiDelegateU24callable1U24170_29___Call_mF84A6D0578E0BAE10F2D0D36564A4FE38B77B08B ();
+// 0x0000004E System.Void CompilerGenerated.__UniFileBrowser_multiDelegateU24callable1U24170_29__::Invoke(System.String[])
+extern void __UniFileBrowser_multiDelegateU24callable1U24170_29___Invoke_mCF52D0D24C89E326FD61052AC8A555D945FAB3FB ();
+// 0x0000004F System.IAsyncResult CompilerGenerated.__UniFileBrowser_multiDelegateU24callable1U24170_29__::BeginInvoke(System.String[],System.AsyncCallback,System.Object)
+extern void __UniFileBrowser_multiDelegateU24callable1U24170_29___BeginInvoke_m1595C3A73C8F55C8EE5EF2845005CB860D089930 ();
+// 0x00000050 System.Void CompilerGenerated.__UniFileBrowser_multiDelegateU24callable1U24170_29__::EndInvoke(System.IAsyncResult)
+extern void __UniFileBrowser_multiDelegateU24callable1U24170_29___EndInvoke_m7C76DB961066AD4684FA8F70F8751CA87FD67646 ();
+// 0x00000051 System.Void CompilerGenerated.__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__::.ctor(System.Object,System.IntPtr)
+extern void __UniFileBrowser_closeWindowFunctionU24callable2U24172_35____ctor_m6EF082A03C4489F96E4DBB9BE42BE4E9418A2840 ();
+// 0x00000052 System.Object CompilerGenerated.__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__::Call(System.Object[])
+extern void __UniFileBrowser_closeWindowFunctionU24callable2U24172_35___Call_m5DF808BFB64B81B2AC4F48F145F9011661DEF76D ();
+// 0x00000053 System.Void CompilerGenerated.__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__::Invoke()
+extern void __UniFileBrowser_closeWindowFunctionU24callable2U24172_35___Invoke_m728B5EE49D98F28DF86D6B5E0247267EA26ECD20 ();
+// 0x00000054 System.IAsyncResult CompilerGenerated.__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__::BeginInvoke(System.AsyncCallback,System.Object)
+extern void __UniFileBrowser_closeWindowFunctionU24callable2U24172_35___BeginInvoke_m46EDBADF3D0B7DAA313A340A9A7EC18A7CB6B548 ();
+// 0x00000055 System.Void CompilerGenerated.__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__::EndInvoke(System.IAsyncResult)
+extern void __UniFileBrowser_closeWindowFunctionU24callable2U24172_35___EndInvoke_m9CA1C77EA176F7A071A2F6D04274CD249323C388 ();
+// 0x00000056 System.Void CompilerGenerated.__UniFileBrowser_folderFunctionU24callable3U24200_30__::.ctor(System.Object,System.IntPtr)
+extern void __UniFileBrowser_folderFunctionU24callable3U24200_30____ctor_mB9AAC09A73CDAF0D8F58FE28BE1D037E2BDD816F ();
+// 0x00000057 System.Object CompilerGenerated.__UniFileBrowser_folderFunctionU24callable3U24200_30__::Call(System.Object[])
+extern void __UniFileBrowser_folderFunctionU24callable3U24200_30___Call_m36FF19F361A6731DF9B5BEF478FDB2DE8A7A69B0 ();
+// 0x00000058 System.Boolean CompilerGenerated.__UniFileBrowser_folderFunctionU24callable3U24200_30__::Invoke(System.IO.FileInfo[])
+extern void __UniFileBrowser_folderFunctionU24callable3U24200_30___Invoke_m412741DAD273088330273328AD9C4BC4EDE8DAA5 ();
+// 0x00000059 System.IAsyncResult CompilerGenerated.__UniFileBrowser_folderFunctionU24callable3U24200_30__::BeginInvoke(System.IO.FileInfo[],System.AsyncCallback,System.Object)
+extern void __UniFileBrowser_folderFunctionU24callable3U24200_30___BeginInvoke_m869D4F644A29B64044B4450A29B5CA9C3E104E31 ();
+// 0x0000005A System.Boolean CompilerGenerated.__UniFileBrowser_folderFunctionU24callable3U24200_30__::EndInvoke(System.IAsyncResult)
+extern void __UniFileBrowser_folderFunctionU24callable3U24200_30___EndInvoke_m29BA75C4F88F0011C464895E843DF32401FD0210 ();
+// 0x0000005B System.Void CompilerGenerated.__UniFileBrowser_fileFunctionU24callable4U24201_28__::.ctor(System.Object,System.IntPtr)
+extern void __UniFileBrowser_fileFunctionU24callable4U24201_28____ctor_m08AF8E1604D68764826723A3C924D8F286922748 ();
+// 0x0000005C System.Object CompilerGenerated.__UniFileBrowser_fileFunctionU24callable4U24201_28__::Call(System.Object[])
+extern void __UniFileBrowser_fileFunctionU24callable4U24201_28___Call_m278E3CBFA53CE736A108965AC860B2D47089C3F4 ();
+// 0x0000005D System.Boolean CompilerGenerated.__UniFileBrowser_fileFunctionU24callable4U24201_28__::Invoke(System.String)
+extern void __UniFileBrowser_fileFunctionU24callable4U24201_28___Invoke_m44DFC81146C770F3A299DAA9AFB9D26AEAD0F0C6 ();
+// 0x0000005E System.IAsyncResult CompilerGenerated.__UniFileBrowser_fileFunctionU24callable4U24201_28__::BeginInvoke(System.String,System.AsyncCallback,System.Object)
+extern void __UniFileBrowser_fileFunctionU24callable4U24201_28___BeginInvoke_m322777AD09FA898110B590730348461E0132DFAB ();
+// 0x0000005F System.Boolean CompilerGenerated.__UniFileBrowser_fileFunctionU24callable4U24201_28__::EndInvoke(System.IAsyncResult)
+extern void __UniFileBrowser_fileFunctionU24callable4U24201_28___EndInvoke_m2CF5844CDC394B8CF2CA5EF0164D1C56624EE891 ();
+// 0x00000060 System.Void CompilerGenerated.__UniFileBrowserU24callable5U241045_39__::.ctor(System.Object,System.IntPtr)
+extern void __UniFileBrowserU24callable5U241045_39____ctor_m75DE04E3137F3FC89DE965DD02A4B7B94199D13A ();
+// 0x00000061 System.Object CompilerGenerated.__UniFileBrowserU24callable5U241045_39__::Call(System.Object[])
+extern void __UniFileBrowserU24callable5U241045_39___Call_m43C42226533DD746A5C86173D1F586DB42F82C18 ();
+// 0x00000062 System.Int32 CompilerGenerated.__UniFileBrowserU24callable5U241045_39__::Invoke(UniFileBrowser_FileData,UniFileBrowser_FileData)
+extern void __UniFileBrowserU24callable5U241045_39___Invoke_m67CA7B7900D40179F5A7C83D304B5D9E284CD016 ();
+// 0x00000063 System.IAsyncResult CompilerGenerated.__UniFileBrowserU24callable5U241045_39__::BeginInvoke(UniFileBrowser_FileData,UniFileBrowser_FileData,System.AsyncCallback,System.Object)
+extern void __UniFileBrowserU24callable5U241045_39___BeginInvoke_mB07ECB76111BFB2E231B73946908B3FD00AD25E4 ();
+// 0x00000064 System.Int32 CompilerGenerated.__UniFileBrowserU24callable5U241045_39__::EndInvoke(System.IAsyncResult)
+extern void __UniFileBrowserU24callable5U241045_39___EndInvoke_m844BFB406DE01000081C3D5C6CAAADE2DA77429F ();
+// 0x00000065 System.Void CompilerGenerated.U24adaptorU24__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__U24WindowFunctionU240::.ctor(CompilerGenerated.__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__)
+extern void U24adaptorU24__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__U24WindowFunctionU240__ctor_m1CB8C7DACD731D46B8F5D366187520D4AFBE6F4B ();
+// 0x00000066 System.Void CompilerGenerated.U24adaptorU24__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__U24WindowFunctionU240::Invoke(System.Int32)
+extern void U24adaptorU24__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__U24WindowFunctionU240_Invoke_m0AFAE9AD08202F6E3E79BED84E74DD78049607A6 ();
+// 0x00000067 UnityEngine.GUI_WindowFunction CompilerGenerated.U24adaptorU24__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__U24WindowFunctionU240::Adapt(CompilerGenerated.__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__)
+extern void U24adaptorU24__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__U24WindowFunctionU240_Adapt_mDFA0191AB61087E3D4E8939FD75795BC53C685D8 ();
+// 0x00000068 System.Void CompilerGenerated.U24adaptorU24__UniFileBrowserU24callable5U241045_39__U24ComparisonU241::.ctor(CompilerGenerated.__UniFileBrowserU24callable5U241045_39__)
+extern void U24adaptorU24__UniFileBrowserU24callable5U241045_39__U24ComparisonU241__ctor_m6E75FE68B601C873F4E32A28D15D17943EA9819F ();
+// 0x00000069 System.Int32 CompilerGenerated.U24adaptorU24__UniFileBrowserU24callable5U241045_39__U24ComparisonU241::Invoke(UniFileBrowser_FileData,UniFileBrowser_FileData)
+extern void U24adaptorU24__UniFileBrowserU24callable5U241045_39__U24ComparisonU241_Invoke_mE4A9D074943C978E5EC0834DDEAA70D41E422FDD ();
+// 0x0000006A System.Comparison`1<UniFileBrowser_FileData> CompilerGenerated.U24adaptorU24__UniFileBrowserU24callable5U241045_39__U24ComparisonU241::Adapt(CompilerGenerated.__UniFileBrowserU24callable5U241045_39__)
+extern void U24adaptorU24__UniFileBrowserU24callable5U241045_39__U24ComparisonU241_Adapt_mF4DFB384C87372E0D257D96043EA6C5DA9FAFCBC ();
+static Il2CppMethodPointer s_methodPointers[106] = 
+{
+	UniFileBrowser__ctor_mE0397E93A1B6BF3819DF54FF70456006A3AFDACC,
+	UniFileBrowser_get_allowMultiSelect_mAAFBDC58684E6D5C3DAF22CBA1625B36C1CDF578,
+	UniFileBrowser_set_allowMultiSelect_m6562875BF444C2B7D7217195C296A96E799339FE,
+	UniFileBrowser_Reset_mADF36F91E70C584788A35354245F9CB4DAC5CB65,
+	UniFileBrowser_Awake_m5ADE2BF4BA296566AA2745AF32D5D9210847B5D1,
+	UniFileBrowser_SetFileExtensions_mEE6A130F98C345A8EAB8EB658C09A9272D3C9EFF,
+	UniFileBrowser_SetupExtensions_mAC78E8ED5C97814ABA683EEBAC36A3571208D15E,
+	UniFileBrowser_SetAutoAddedExtension_m05B69448DCA8DB304371AA55BA378430F0F7E5AB,
+	UniFileBrowser_RefreshFileList_mFE8EB0FA2AD5F514FB37297F49E5FF5AB1C4FDA1,
+	UniFileBrowser_SetDefaultPath_mC20BE76F3E30BB25F5421EDAB140DA9E1001E94A,
+	UniFileBrowser_FileWindowOpen_m3195ACA74D37AEFF3E34F8F45A86DD182BECFD0E,
+	UniFileBrowser_GetFileWindowRect_mEE938D4FC0FCAABCE9C7D6E20F6385FEE09B1B64,
+	UniFileBrowser_UpdateRects_mE5FF9EC4D5D33BD3421E255A7203AC9443EE3274,
+	UniFileBrowser_Update_mB0DF402BFCF4605EF387FC862E0BE82825FD1C39,
+	UniFileBrowser_OnGUI_mDA088135B523749B3932F988C0CEC44D11AE7623,
+	UniFileBrowser_DrawFileWindow_m8E02C2FE90713FF3DC4487298E10FE1BF58AA6D8,
+	UniFileBrowser_ShowError_mBC71A624A1607B92041389681C51209659144A7D,
+	UniFileBrowser_ShowConfirmMessage_m42C90A19ECE3B1E34257BACB89965D42B960A5CF,
+	UniFileBrowser_MessageWindow_m8675F0C90FBECDC7D482967B3CC793CA560FE7AA,
+	UniFileBrowser_CloseMessageWindow_m5A5F2A2E566AEE5645993EF8673B693FEC7A4EB8,
+	UniFileBrowser_WaitForFrame_m72146916668D7E3E06B2D10CC3EC066FD347278E,
+	UniFileBrowser_FileWindowKeys_m700F5F72F6BBF34D77266F6B74C6091ED91E4BC6,
+	UniFileBrowser_ReturnHit_mFBCF4D2FC4D6C964B28E8982F06063EBE2EBA10A,
+	UniFileBrowser_EscapeHit_mC537DAB30BAB12A26D30E777697BF89EFFCCC701,
+	UniFileBrowser_BuildPathList_mC099046C6065995FBB960AB9CD404AB248A1CE22,
+	UniFileBrowser_GetCurrentFileInfo_m998D5221BA5821F7809F2A1D9B68020C6F87C9B7,
+	UniFileBrowser_HandleError_m4C2B86B6F5C6791E105547CB548BE2E6842A80AE,
+	UniFileBrowser_SetPath_m800505D21B6127112DAB2177A4C063A79A64A7C4,
+	UniFileBrowser_OpenFileWindow_mBD0E8D91FECCAF6BD8EF400AE0158E8B7E3D345E,
+	UniFileBrowser_OpenFileWindow_mA5562126F9D563AB8C58691E485CE2A628769D63,
+	UniFileBrowser_OpenFolderWindow_m2A0E8E7DEF0DE168231A9A8AB9948DD6F2B00285,
+	UniFileBrowser_SaveFileWindow_m9ACBE40B18EDE04BB901A436E074F3241DA910EE,
+	UniFileBrowser_ShowFileWindow_mF7E1BA9CE65D8809E2E5A707D2AA71ABECF76A1D,
+	UniFileBrowser_SendWindowCloseMessage_m581818AF7552EFFF40CF4E62B162884828EBF328,
+	UniFileBrowser_DontSendWindowCloseMessage_m7AFED9962F2DB5445A4B6843967A9ECA055B6F70,
+	UniFileBrowser_SendWindowChangeMessage_m3AB0EB612C32B0FD4DD4D94ACD933F87264A964B,
+	UniFileBrowser_DontSendWindowChangeMessage_m6DE6F34BF739CE144D5AD3F9A4419B147764F04B,
+	UniFileBrowser_SetCustomFunction_m1917110C3957F0D714C18495AD68104EAAE8D490,
+	UniFileBrowser_RemoveCustomFunction_m5A68C292B8EDCFE9B903C394B1C74272E74DBC54,
+	UniFileBrowser_UseFolderFilterFunction_m5C2C0DD4A84A5331D23A9C45A25EF68603AD63CA,
+	UniFileBrowser_DontUseFolderFilterFunction_m7CE4B91D0224CEDAD2388AA6746179A5F73B37EC,
+	UniFileBrowser_UseFileFilterFunction_m7486F034C5AE4D92D9086E167CBB4B8EAEB49F08,
+	UniFileBrowser_DontUseFileFilterFunction_mCBDD677B36A879A8377A2DD945A8337A57349419,
+	UniFileBrowser_CloseFileWindow_m6A24F6D488928CAC722D7F740C98759A8099FD72,
+	UniFileBrowser_SetWindowTitle_mBA0676DCBD02B2A06C640925FE821F93E44AAAFC,
+	UniFileBrowser_SetFileWindowPosition_m7734DA5D4FEF31DD63899B5ED6479E32EF1AB9C0,
+	UniFileBrowser_SetFileWindowSize_m9DC19258898CD988DE338255DE2BB57780F2F435,
+	UniFileBrowser_GetClampedWindowRect_mD90F62C131EC68DCC491B8DDEAA3B742BA819B65,
+	UniFileBrowser_DeleteFile_mEF327437F4B6584519402B269858238168B07308,
+	UniFileBrowser_GetMultiFileNames_mA72A9A777AA08BCFE66320BA4EFD0897597B91BE,
+	UniFileBrowser_SelectFile_mA8A8C93DEEAD7F3F6F8D5C6F226BAEDF96707678,
+	UniFileBrowser_Scale_mDC689D2412AEDDA7F6116A5F956BF6C40311154E,
+	UniFileBrowser_DontScale_m21E9999039D14168BDE20CB2D5FA28DFF97C6E88,
+	UniFileBrowser_U24GetCurrentFileInfoU24closureU2425_mE67B0AC569C48B93F9837B28913E28F943C769C0,
+	UniFileBrowser_U24GetCurrentFileInfoU24closureU2426_m58E5B1B5D977AA6E3DB4E0EB23825AA2C5EAB21C,
+	UniFileBrowser_U24GetCurrentFileInfoU24closureU2429_m50D02F7114C5D5851C73106783CB082612594CD7,
+	UniFileBrowser_U24GetCurrentFileInfoU24closureU2430_mAB761DBDB0A08556AAB56735B4C6F285682F9CAF,
+	FileData__ctor_m02C88AD7DDED87F8F8405D8E527BD23696FFFDC9,
+	U24WaitForFrameU2443__ctor_m7C69D489D152D3F7279C43CDF4A9F14BF4B50FFF,
+	U24WaitForFrameU2443_GetEnumerator_m1E02328736A870F8905AD57EC41D3924529CA827,
+	U24__ctor_mE24E6CE0E5B291E5DD680F5494CC6B7AFB416452,
+	U24_MoveNext_mD346E9985A789D2D9A6D1F10194D8A05FFF70487,
+	U24DeleteFileU2446__ctor_mE7C74E0C71B78ABD18D9CAE15C35C1F930548B51,
+	U24DeleteFileU2446_GetEnumerator_m8DF8D0DBC22DC20BDE9FFFA4CAD2558D1770469D,
+	U24__ctor_m17D35BB111771BF9F52D01FCC2C9559FAAE1B822,
+	U24_MoveNext_m1ED6E706D35D417563C7325D7E70A2156ABC6331,
+	U24SelectFileU2452__ctor_mD2B2C0216B044259FACC6F28FC455B06C7504A72,
+	U24SelectFileU2452_GetEnumerator_mDB677D664CC1E28898123F9CAD2E1160AF3E485A,
+	U24__ctor_m5E068108DD51281B548DFAC7EC4FBCDA24269FD8,
+	U24_MoveNext_m925A765204E7383F1FD521FD99357A6E27F50A7D,
+	__UniFileBrowser_delegateU24callable0U24169_24____ctor_m708030DEFC1A9DBAD6FAA566717AF1DC66CE09F6,
+	__UniFileBrowser_delegateU24callable0U24169_24___Call_mC309441AE983DD745D8426C06F1B16E4A6DE78FC,
+	__UniFileBrowser_delegateU24callable0U24169_24___Invoke_m426486C356306933A79E4029F21547C278E09580,
+	__UniFileBrowser_delegateU24callable0U24169_24___BeginInvoke_m40579BABED3ED61C263430AA531666C61067D2FE,
+	__UniFileBrowser_delegateU24callable0U24169_24___EndInvoke_mD603D39162BC6A7C8D67F7522E64FCAEC912CD56,
+	__UniFileBrowser_multiDelegateU24callable1U24170_29____ctor_mF9BA6E5AA028C10707564195A2CE98B5895E64B5,
+	__UniFileBrowser_multiDelegateU24callable1U24170_29___Call_mF84A6D0578E0BAE10F2D0D36564A4FE38B77B08B,
+	__UniFileBrowser_multiDelegateU24callable1U24170_29___Invoke_mCF52D0D24C89E326FD61052AC8A555D945FAB3FB,
+	__UniFileBrowser_multiDelegateU24callable1U24170_29___BeginInvoke_m1595C3A73C8F55C8EE5EF2845005CB860D089930,
+	__UniFileBrowser_multiDelegateU24callable1U24170_29___EndInvoke_m7C76DB961066AD4684FA8F70F8751CA87FD67646,
+	__UniFileBrowser_closeWindowFunctionU24callable2U24172_35____ctor_m6EF082A03C4489F96E4DBB9BE42BE4E9418A2840,
+	__UniFileBrowser_closeWindowFunctionU24callable2U24172_35___Call_m5DF808BFB64B81B2AC4F48F145F9011661DEF76D,
+	__UniFileBrowser_closeWindowFunctionU24callable2U24172_35___Invoke_m728B5EE49D98F28DF86D6B5E0247267EA26ECD20,
+	__UniFileBrowser_closeWindowFunctionU24callable2U24172_35___BeginInvoke_m46EDBADF3D0B7DAA313A340A9A7EC18A7CB6B548,
+	__UniFileBrowser_closeWindowFunctionU24callable2U24172_35___EndInvoke_m9CA1C77EA176F7A071A2F6D04274CD249323C388,
+	__UniFileBrowser_folderFunctionU24callable3U24200_30____ctor_mB9AAC09A73CDAF0D8F58FE28BE1D037E2BDD816F,
+	__UniFileBrowser_folderFunctionU24callable3U24200_30___Call_m36FF19F361A6731DF9B5BEF478FDB2DE8A7A69B0,
+	__UniFileBrowser_folderFunctionU24callable3U24200_30___Invoke_m412741DAD273088330273328AD9C4BC4EDE8DAA5,
+	__UniFileBrowser_folderFunctionU24callable3U24200_30___BeginInvoke_m869D4F644A29B64044B4450A29B5CA9C3E104E31,
+	__UniFileBrowser_folderFunctionU24callable3U24200_30___EndInvoke_m29BA75C4F88F0011C464895E843DF32401FD0210,
+	__UniFileBrowser_fileFunctionU24callable4U24201_28____ctor_m08AF8E1604D68764826723A3C924D8F286922748,
+	__UniFileBrowser_fileFunctionU24callable4U24201_28___Call_m278E3CBFA53CE736A108965AC860B2D47089C3F4,
+	__UniFileBrowser_fileFunctionU24callable4U24201_28___Invoke_m44DFC81146C770F3A299DAA9AFB9D26AEAD0F0C6,
+	__UniFileBrowser_fileFunctionU24callable4U24201_28___BeginInvoke_m322777AD09FA898110B590730348461E0132DFAB,
+	__UniFileBrowser_fileFunctionU24callable4U24201_28___EndInvoke_m2CF5844CDC394B8CF2CA5EF0164D1C56624EE891,
+	__UniFileBrowserU24callable5U241045_39____ctor_m75DE04E3137F3FC89DE965DD02A4B7B94199D13A,
+	__UniFileBrowserU24callable5U241045_39___Call_m43C42226533DD746A5C86173D1F586DB42F82C18,
+	__UniFileBrowserU24callable5U241045_39___Invoke_m67CA7B7900D40179F5A7C83D304B5D9E284CD016,
+	__UniFileBrowserU24callable5U241045_39___BeginInvoke_mB07ECB76111BFB2E231B73946908B3FD00AD25E4,
+	__UniFileBrowserU24callable5U241045_39___EndInvoke_m844BFB406DE01000081C3D5C6CAAADE2DA77429F,
+	U24adaptorU24__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__U24WindowFunctionU240__ctor_m1CB8C7DACD731D46B8F5D366187520D4AFBE6F4B,
+	U24adaptorU24__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__U24WindowFunctionU240_Invoke_m0AFAE9AD08202F6E3E79BED84E74DD78049607A6,
+	U24adaptorU24__UniFileBrowser_closeWindowFunctionU24callable2U24172_35__U24WindowFunctionU240_Adapt_mDFA0191AB61087E3D4E8939FD75795BC53C685D8,
+	U24adaptorU24__UniFileBrowserU24callable5U241045_39__U24ComparisonU241__ctor_m6E75FE68B601C873F4E32A28D15D17943EA9819F,
+	U24adaptorU24__UniFileBrowserU24callable5U241045_39__U24ComparisonU241_Invoke_mE4A9D074943C978E5EC0834DDEAA70D41E422FDD,
+	U24adaptorU24__UniFileBrowserU24callable5U241045_39__U24ComparisonU241_Adapt_mF4DFB384C87372E0D257D96043EA6C5DA9FAFCBC,
+};
+static const int32_t s_InvokerIndices[106] = 
+{
+	23,
+	89,
+	31,
+	23,
+	23,
+	26,
+	23,
+	26,
+	23,
+	23,
+	89,
+	1524,
+	23,
+	23,
+	23,
+	23,
+	26,
+	450,
+	23,
+	31,
+	14,
+	23,
+	23,
+	23,
+	32,
+	23,
+	26,
+	26,
+	26,
+	26,
+	88,
+	26,
+	23,
+	26,
+	23,
+	26,
+	23,
+	26,
+	23,
+	26,
+	23,
+	26,
+	23,
+	23,
+	26,
+	1558,
+	1558,
+	1565,
+	14,
+	14,
+	14,
+	1512,
+	23,
+	41,
+	41,
+	41,
+	41,
+	967,
+	26,
+	14,
+	26,
+	89,
+	26,
+	14,
+	26,
+	89,
+	26,
+	14,
+	26,
+	89,
+	131,
+	28,
+	26,
+	220,
+	26,
+	131,
+	28,
+	26,
+	220,
+	26,
+	131,
+	28,
+	23,
+	114,
+	26,
+	131,
+	28,
+	9,
+	220,
+	9,
+	131,
+	28,
+	9,
+	220,
+	9,
+	131,
+	28,
+	41,
+	132,
+	121,
+	26,
+	32,
+	0,
+	26,
+	41,
+	0,
+};
+extern const Il2CppCodeGenModule g_UniFileBrowserCodeGenModule;
+const Il2CppCodeGenModule g_UniFileBrowserCodeGenModule = 
+{
+	"UniFileBrowser.dll",
+	106,
+	s_methodPointers,
+	s_InvokerIndices,
+	0,
+	NULL,
+	0,
+	NULL,
+	0,
+	NULL,
+	NULL,
+};
