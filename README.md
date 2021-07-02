@@ -9,18 +9,18 @@ An easy and intuitive app that allows you to scale, manipulate, break your objec
 
 Built Using Unity graphic engine and Vuforia library, you can load 3D objects on your Android phone or hololens and inspect them live
 
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wB_pVZwH-FE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+## Video presentation for the Android app:
+https://youtu.be/wB_pVZwH-FE
 ## ScreenShots from the Android app:
 <img width="512" alt="Feature Picture for google play console" src="https://user-images.githubusercontent.com/26859371/124269578-b7ed3500-db43-11eb-8d18-0142a6a0fa46.png">
-![BeFunky-collage](https://user-images.githubusercontent.com/26859371/124269598-bf144300-db43-11eb-93cc-fd93298a18a8.jpg)
-![image](https://user-images.githubusercontent.com/26859371/124269736-f387ff00-db43-11eb-8707-7caaabc960c9.png)
-![image](https://user-images.githubusercontent.com/26859371/124269744-f5ea5900-db43-11eb-9767-bf2d95762a71.png)
-![image](https://user-images.githubusercontent.com/26859371/124269763-f8e54980-db43-11eb-8312-8d8888963df7.png)
-![image](https://user-images.githubusercontent.com/26859371/124269772-fedb2a80-db43-11eb-80c7-182828fe81d2.png)
-![image](https://user-images.githubusercontent.com/26859371/124269807-08649280-db44-11eb-8a00-3f52abef60c2.png)
-![image](https://user-images.githubusercontent.com/26859371/124269831-10243700-db44-11eb-8082-03a297b90cd2.png)
+
+![3](https://user-images.githubusercontent.com/26859371/124271140-c63c5080-db45-11eb-9885-859e58f1f12f.jpg)
+![4](https://user-images.githubusercontent.com/26859371/124271174-cf2d2200-db45-11eb-9859-50780165e025.jpg)
+![5](https://user-images.githubusercontent.com/26859371/124271201-d7855d00-db45-11eb-9d39-ce9a919a3a81.jpg)
+![2](https://user-images.githubusercontent.com/26859371/124271278-f1bf3b00-db45-11eb-8f01-953cdfe17da9.jpg)
+
+
+![7](https://user-images.githubusercontent.com/26859371/124270317-ba03c380-db44-11eb-89ef-27156146de2b.jpg)
 
 ## ScreenShots from the Hololens app:
 
