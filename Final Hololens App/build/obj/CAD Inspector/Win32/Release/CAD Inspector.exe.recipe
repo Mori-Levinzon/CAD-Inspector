@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\CAD Inspector.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Assets\SplashScreen.scale-200.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Assets\Square150x150Logo.scale-200.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Assets\Square44x44Logo.scale-200.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Assets\Square44x44Logo.targetsize-24.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Assets\Square44x44Logo.targetsize-24_altform-unplated.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Assets\StoreLogo.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Assets\Wide310x150Logo.scale-200.png</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\StoreManifest.xml</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\boot.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\globalgamemanagers</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\globalgamemanagers.assets</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\level0</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\nativePlugins.txt</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\resources.assets</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\resources.assets.resS</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\resources.resource</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\sharedassets0.assets</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\sharedassets0.assets.resS</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\sharedassets0.resource</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\browscap.ini</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\2.0\DefaultWsdlHelpGenerator.aspx</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\2.0\machine.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\2.0\settings.map</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\2.0\web.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\2.0\Browsers\Compat.browser</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\4.0\DefaultWsdlHelpGenerator.aspx</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\4.0\machine.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\4.0\settings.map</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\4.0\web.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\4.0\Browsers\Compat.browser</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\4.5\DefaultWsdlHelpGenerator.aspx</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\4.5\machine.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\4.5\settings.map</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\4.5\web.config</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\4.5\Browsers\Compat.browser</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\etc\mono\mconfig\config.xml</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\Metadata\global-metadata.dat</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\Resources\I18N.CJK.dll-resources.dat</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\il2cpp_data\Resources\mscorlib.dll-resources.dat</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\Resources\unity default resources</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\Resources\unity_builtin_extra</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\StreamingAssets\Vuforia\DB.dat</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\StreamingAssets\Vuforia\DB.xml</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\StreamingAssets\Vuforia\VuforiaMars_Images.dat</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\StreamingAssets\Vuforia\VuforiaMars_Images.xml</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Data\UnitySubsystems\WindowsMRXRSDK\UnitySubsystemsManifest.json</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\VuforiaWrapper.dll</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\WindowsMRXRSDK.dll</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\Vuforia.dll</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\CAD Inspector\AudioPluginMsHRTF.dll</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\GameAssembly.dll</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\GameAssembly.pdb</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Program Files\Unity\Hub\Editor\2020.1.0b2\Editor\Data\PlaybackEngines\MetroSupport\Players\UAP\il2cpp\x86\Release\baselib.dll</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Program Files\Unity\Hub\Editor\2020.1.0b2\Editor\Data\PlaybackEngines\MetroSupport\Players\UAP\il2cpp\x86\Release\baselib_UAP_x86_Release_il2cpp.pdb</FullPath>
+    </ContentFile>
+  </ContentFiles>
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>

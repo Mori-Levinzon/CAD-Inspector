@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f18fec9b55c4f818e284af454161962, type: 3}
+  m_Name: New MixedRealitySpeechCommandsProfile
+  m_EditorClassIdentifier: 
+  isCustomProfile: 1
+  startBehavior: 0
+  recognitionConfidenceLevel: 1
+  speechCommands:
+  - localizationKey: 
+    keyword: Load
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Explode
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Scale
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Cross cut
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: X
+    keyCode: 0
+    action:
+      id: 17
+      description: StopToDrag
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Y
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Z
+    keyCode: 0
+    action:
+      id: 17
+      description: StopToDrag
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Invert
+    keyCode: 0
+    action:
+      id: 18
+      description: ZoomIn
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Visible
+    keyCode: 0
+    action:
+      id: 19
+      description: ZoomOut
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Remove
+    keyCode: 0
+    action:
+      id: 20
+      description: StartRecordingData
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Place
+    keyCode: 0
+    action:
+      id: 21
+      description: StopRecordingData
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Menu
+    keyCode: 0
+    action:
+      id: 24
+      description: LoadData
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Select component
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Trail
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Enable gestures
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0
+  - localizationKey: 
+    keyword: Disable gestures
+    keyCode: 0
+    action:
+      id: 0
+      description: None
+      axisConstraint: 0

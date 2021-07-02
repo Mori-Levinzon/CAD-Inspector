@@ -1,0 +1,158 @@
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\GameAssembly.dll
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\GameAssembly.pdb
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Assets\SplashScreen.scale-200.png
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Assets\Square150x150Logo.scale-200.png
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Assets\Square44x44Logo.scale-200.png
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Assets\Square44x44Logo.targetsize-24.png
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Assets\Square44x44Logo.targetsize-24_altform-unplated.png
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Assets\StoreLogo.png
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Assets\Wide310x150Logo.scale-200.png
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\StoreManifest.xml
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\boot.config
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\globalgamemanagers
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\globalgamemanagers.assets
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\level0
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\nativePlugins.txt
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\resources.assets
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\resources.assets.resS
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\resources.resource
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\sharedassets0.assets
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\sharedassets0.assets.resS
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\sharedassets0.resource
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\browscap.ini
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\config
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\2.0\DefaultWsdlHelpGenerator.aspx
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\2.0\machine.config
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\2.0\settings.map
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\2.0\web.config
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\2.0\Browsers\Compat.browser
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.0\DefaultWsdlHelpGenerator.aspx
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.0\machine.config
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.0\settings.map
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.0\web.config
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.0\Browsers\Compat.browser
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.5\DefaultWsdlHelpGenerator.aspx
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.5\machine.config
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.5\settings.map
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.5\web.config
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.5\Browsers\Compat.browser
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\mconfig\config.xml
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\Metadata\global-metadata.dat
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\Resources\I18N.CJK.dll-resources.dat
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\il2cpp_data\Resources\mscorlib.dll-resources.dat
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\Resources\unity default resources
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\Resources\unity_builtin_extra
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\StreamingAssets\Vuforia\DB.dat
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\StreamingAssets\Vuforia\DB.xml
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\StreamingAssets\Vuforia\VuforiaMars_Images.dat
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\StreamingAssets\Vuforia\VuforiaMars_Images.xml
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Data\UnitySubsystems\WindowsMRXRSDK\UnitySubsystemsManifest.json
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\VuforiaWrapper.dll
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\WindowsMRXRSDK.dll
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\Vuforia.dll
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\AudioPluginMsHRTF.dll
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\baselib.dll
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\baselib_UAP_x86_Release_il2cpp.pdb
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\resources.pri
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\AppxManifest.xml
+C:\Users\Mor Levinzon\Desktop\progressUI\build\bin\Win32\Release\CAD Inspector.build.appxrecipe
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\CAD Inspector.vcxprojAssemblyReference.cache
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\CAD Inspector.vcxproj.CopyComplete
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\ResourceHandlingTask.state
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\CAD Inspector.vcxproj.GenerateResource.Cache
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\priconfig.xml
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\priconfig.xml.intermediate
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\unfiltered.layout.resfiles
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\unfiltered.layout.resfiles.intermediate
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\filtered.layout.resfiles
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\filtered.layout.resfiles.intermediate
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\excluded.layout.resfiles
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\excluded.layout.resfiles.intermediate
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\resources.resfiles
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\resources.resfiles.intermediate
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\pri.resfiles
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\pri.resfiles.intermediate
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\qualifiers.txt
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\qualifiers.txt.intermediate
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\ProjectArchitectures.txt
+C:\Users\Mor Levinzon\Desktop\progressUI\build\obj\CAD Inspector\Win32\Release\.winmd_cache\$UnityPlayer.winmd_637195600480000000.json
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Assets\SplashScreen.scale-200.png
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Assets\Square150x150Logo.scale-200.png
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Assets\Square44x44Logo.scale-200.png
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Assets\Square44x44Logo.targetsize-24.png
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Assets\Square44x44Logo.targetsize-24_altform-unplated.png
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Assets\StoreLogo.png
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Assets\Wide310x150Logo.scale-200.png
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\StoreManifest.xml
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\boot.config
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\globalgamemanagers
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\globalgamemanagers.assets
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\level0
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\nativePlugins.txt
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\resources.assets
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\resources.assets.resS
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\resources.resource
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\sharedassets0.assets
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\sharedassets0.assets.resS
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\sharedassets0.resource
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\browscap.ini
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\config
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\2.0\DefaultWsdlHelpGenerator.aspx
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\2.0\machine.config
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\2.0\settings.map
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\2.0\web.config
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\2.0\Browsers\Compat.browser
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.0\DefaultWsdlHelpGenerator.aspx
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.0\machine.config
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.0\settings.map
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.0\web.config
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.0\Browsers\Compat.browser
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.5\DefaultWsdlHelpGenerator.aspx
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.5\machine.config
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.5\settings.map
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.5\web.config
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\4.5\Browsers\Compat.browser
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\etc\mono\mconfig\config.xml
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\Metadata\global-metadata.dat
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\Resources\I18N.CJK.dll-resources.dat
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\il2cpp_data\Resources\mscorlib.dll-resources.dat
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\Resources\unity default resources
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\Resources\unity_builtin_extra
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\StreamingAssets\Vuforia\DB.dat
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\StreamingAssets\Vuforia\DB.xml
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\StreamingAssets\Vuforia\VuforiaMars_Images.dat
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\StreamingAssets\Vuforia\VuforiaMars_Images.xml
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Data\UnitySubsystems\WindowsMRXRSDK\UnitySubsystemsManifest.json
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\VuforiaWrapper.dll
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\WindowsMRXRSDK.dll
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\Vuforia.dll
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\AudioPluginMsHRTF.dll
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\GameAssembly.dll
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\GameAssembly.pdb
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\baselib.dll
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\baselib_UAP_x86_Release_il2cpp.pdb
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\resources.pri
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\AppxManifest.xml
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\bin\Win32\Release\CAD Inspector.build.appxrecipe
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\CAD Inspector.vcxprojAssemblyReference.cache
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\CAD Inspector.vcxproj.CopyComplete
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\ResourceHandlingTask.state
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\CAD Inspector.vcxproj.GenerateResource.Cache
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\priconfig.xml
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\priconfig.xml.intermediate
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\unfiltered.layout.resfiles
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\unfiltered.layout.resfiles.intermediate
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\filtered.layout.resfiles
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\filtered.layout.resfiles.intermediate
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\excluded.layout.resfiles
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\excluded.layout.resfiles.intermediate
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\resources.resfiles
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\resources.resfiles.intermediate
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\pri.resfiles
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\pri.resfiles.intermediate
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\qualifiers.txt
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\qualifiers.txt.intermediate
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\MultipleQualifiersPerDimensionFound.txt
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\ProjectArchitectures.txt
+C:\Users\Mor Levinzon\Desktop\Final Hololens App\build\obj\CAD Inspector\Win32\Release\.winmd_cache\$UnityPlayer.winmd_637195600480000000.json

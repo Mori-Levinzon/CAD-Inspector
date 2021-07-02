@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6eb89cfdc3cfb4c97967cbf854efb888
+labels:
+- ObjReader
+- obj
+- import
+- mesh
+- model
+timeCreated: 18446744011573954816
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
